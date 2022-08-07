@@ -1,0 +1,1 @@
+copy_proprietary_softwares.sh
