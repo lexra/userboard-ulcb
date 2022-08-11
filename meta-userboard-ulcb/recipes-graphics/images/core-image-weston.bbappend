@@ -1,4 +1,6 @@
 
+IMAGE_INSTALL_append = " packagegroup-qt5-examples "
+
 IMAGE_INSTALL_append = " \
         tslib nfs-utils e2fsprogs e2fsprogs-resize2fs udev curl bc usbutils wget \
         mmc-utils squashfs-tools iputils sqlite3 libevent \
@@ -19,3 +21,6 @@ IMAGE_INSTALL_append = " \
 	ffmpeg \
 "
 
+IMAGE_INSTALL_append = " ${@oe.utils.conditional("CHROMIUM", "1", " \
+				chromium-ozone-wayland \
+                                ", "", d)}"

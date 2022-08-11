@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-BOARD_LIST=("h3ulcb" "m3ulcb")
+BOARD_LIST=("h3ulcb" "m3ulcb" "m3nulcb")
 TARGET_BOARD=$1
 SCRIPT_DIR=`pwd`
 PROPRIETARY_DIR=`pwd`/proprietary
@@ -36,6 +36,7 @@ cd ${WORK}
 (git clone git://git.openembedded.org/meta-openembedded || true) &
 (git clone https://github.com/renesas-rcar/meta-renesas || true) &
 (git clone https://github.com/CogentEmbedded/meta-rcar.git || true) &
+(git clone https://github.com/meta-qt5/meta-qt5.git || true) &
 
 # Wait for all clone operations
 wait
@@ -49,8 +50,22 @@ cd ${WORK}/meta-renesas
 git checkout -b tmp ${META_RENESAS_COMMIT} || true
 cd $WORK/meta-rcar
 git checkout -b ${META_RCAR_BRANCH} remotes/origin/${META_RCAR_BRANCH} || true
+cd $WORK/meta-qt5
+git checkout -b tmp c1b0c9f546289b1592d7a895640de103723a0305 || true
+
+# meta-python2
+cd ${WORK}
+git clone git://git.openembedded.org/meta-python2 || true
+git -C meta-python2 checkout -b develop 07dca1e54f82a06939df9b890c6d1ce1e3197f75 || true
+git clone https://github.com/kraj/meta-clang || true
+git -C meta-clang checkout -b develop e63d6f9abba5348e2183089d6ef5ea384d7ae8d8 || true
+git clone https://github.com/OSSystems/meta-browser || true
+git -C meta-browser checkout -b develop dcfb4cedc238eee8ed9bd6595bdcacf91c562f67 || true
+sed 's|virtual/libgl||g' -i meta-browser/recipes-browser/chromium/chromium-gn.inc
+git -C meta-browser checkout recipes-browser/chromium/chromium-gn.inc && git -C meta-browser apply ../../meta-userboard-ulcb/recipes-browser/chromium/files/chromium-gn.patch
 
 # Populate meta-renesas with proprietary software packages
+cd ${WORK}
 WORK_PROP_DIR=${WORK}/proprietary
 mkdir -p ${WORK_PROP_DIR}
 unzip -qo ${PROPRIETARY_DIR}/${GFX_MMP_LIB} -d ${WORK_PROP_DIR}
