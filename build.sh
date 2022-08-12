@@ -61,8 +61,6 @@ git clone https://github.com/kraj/meta-clang || true
 git -C meta-clang checkout -b develop e63d6f9abba5348e2183089d6ef5ea384d7ae8d8 || true
 git clone https://github.com/OSSystems/meta-browser || true
 git -C meta-browser checkout -b develop dcfb4cedc238eee8ed9bd6595bdcacf91c562f67 || true
-sed 's|virtual/libgl||g' -i meta-browser/recipes-browser/chromium/chromium-gn.inc
-git -C meta-browser checkout recipes-browser/chromium/chromium-gn.inc && git -C meta-browser apply ../../meta-userboard-ulcb/recipes-browser/chromium/files/chromium-gn.patch
 
 # Populate meta-renesas with proprietary software packages
 cd ${WORK}

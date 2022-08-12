@@ -1,0 +1,12 @@
+diff -Naur a/content/gpu/BUILD.gn b/content/gpu/BUILD.gn
+--- a/content/gpu/BUILD.gn	2021-02-06 02:38:16.000000000 +0800
++++ b/content/gpu/BUILD.gn	2022-08-12 10:22:21.476966608 +0800
+@@ -127,7 +127,7 @@
+   }
+ 
+   # Use DRI on desktop Linux builds.
+-  if (current_cpu != "s390x" && current_cpu != "ppc64" && is_linux &&
++  if (current_cpu != "s390x" && current_cpu != "ppc64" && is_linux && use_x11 &&
+       (!is_chromecast || is_cast_desktop_build)) {
+     configs += [ "//build/config/linux/dri" ]
+   }
