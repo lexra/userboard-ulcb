@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-BOARD_LIST=("h3ulcb" "m3ulcb" "m3nulcb")
+BOARD_LIST=("h3ulcb" "m3ulcb")
 TARGET_BOARD=$1
 SCRIPT_DIR=`pwd`
 PROPRIETARY_DIR=`pwd`/proprietary
