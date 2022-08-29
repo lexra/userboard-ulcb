@@ -1,6 +1,6 @@
 ## Flash writer helper overview
 
-<img src="/assets/flash_writer_helper.png" />
+<img src="https://github.com/lexra/userboard-rcar/blob/master/assets/flash_writer_helper.png" />
 
 As the picture displayed above, the `flash writer helper` can help quickly program the `BOOT-PARAMS`, `BL2`, `CERT`, `BL31`, and `U-BOOT` for the `Starter Kit` . 
 
@@ -41,7 +41,7 @@ After the `./build.sh` script had been successfully completed, it will prompt fo
 
 ### Cable setup
 
-<img src="/assets/cable-setup.png" />
+<img src="https://github.com/lexra/userboard-rcar/blob/master/assets/cable-setup.png" />
 
 | Baudrate     | 115200              |
 | :----------: | :------------------ |
@@ -52,7 +52,7 @@ After the `./build.sh` script had been successfully completed, it will prompt fo
 
 ### Related buttons and switches
 
-<img src="/assets/switches.png" />
+<img src="https://github.com/lexra/userboard-rcar/blob/master/assets/switches.png" />
 
 | Button | Function            |
 | :----: | :------------------ |
