@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-BOARD_LIST=("h3ulcb" "m3ulcb")
+BOARD_LIST=("h3ulcb" "m3ulcb" "m3nulcb")
 TARGET_BOARD=$1
 SCRIPT_DIR=`pwd`
 PROPRIETARY_DIR=`pwd`/proprietary
@@ -18,7 +18,7 @@ Usage () {
     echo "Usage: $0 \${TARGET_BOARD_NAME}"
     echo "BOARD_NAME list: "
     for i in ${BOARD_LIST[@]}; do echo "  - $i"; done
-    exit
+    exit 0
 }
 
 # Check Param.
@@ -61,6 +61,11 @@ git clone https://github.com/kraj/meta-clang || true
 git -C meta-clang checkout -b develop e63d6f9abba5348e2183089d6ef5ea384d7ae8d8 || true
 git clone https://github.com/OSSystems/meta-browser || true
 git -C meta-browser checkout -b develop dcfb4cedc238eee8ed9bd6595bdcacf91c562f67 || true
+
+##############################
+cd ${WORK}
+cp ../proprietary/r8a77965_linux_gsx_binaries_gles.tar.bz2 meta-renesas/meta-rcar-gen3/recipes-graphics/gles-module/gles-user-module || true
+cp ../proprietary/GSX_KM_M3N.tar.bz2 meta-renesas/meta-rcar-gen3/recipes-kernel/kernel-module-gles/kernel-module-gles || true
 
 # Populate meta-renesas with proprietary software packages
 cd ${WORK}
