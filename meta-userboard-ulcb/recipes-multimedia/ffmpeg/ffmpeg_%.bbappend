@@ -11,19 +11,21 @@ EXTRA_OEMAKE_append = " V=1"
 
 EXTRA_OECONF += " \
 	--enable-ffplay \
+	--enable-shared --disable-static \
 "
 
 PACKAGECONFIG[omx] = "--enable-omx,--disable-omx"
 
 PACKAGECONFIG = " \
-        avdevice avfilter avcodec avformat swresample swscale postproc avresample \
-        alsa bzlib gpl lzma theora x264 zlib \
-        ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'xv xcb', '', d)} \
-        ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'sdl2', '', d)} \
-        omx \
-        mp3lame \
-        speex \
-        openssl \
+	avdevice avfilter avcodec avformat swresample swscale postproc avresample \
+	alsa bzlib gpl lzma theora x264 zlib \
+	${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'xv xcb', '', d)} \
+	${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'sdl2', '', d)} \
+	omx \
+	mp3lame \
+	speex \
+	openssl \
+	vidstab \
 "
 
 #PACKAGECONFIG += " fdk-aac "
