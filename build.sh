@@ -71,6 +71,7 @@ unzip -qo ${PROPRIETARY_DIR}/${GFX_MMP_DRIVER} -d ${WORK_PROP_DIR}
 cd ${WORK}/meta-renesas
 sh meta-rcar-gen3/docs/sample/copyscript/copy_proprietary_softwares.sh -f ${WORK_PROP_DIR}
 
+##############################
 cd ${WORK}
 source poky/oe-init-build-env ${WORK}/build
 
@@ -82,6 +83,17 @@ cp conf/local-wayland.conf conf/local.conf
 bitbake-layers show-layers
 bitbake core-image-weston -v
 
+##############################
+cd ${SCRIPT_DIR}
+sudo rm -rf rootfs && mkdir -p rootfs
+sudo tar zxvf ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/core-image-weston-${TARGET_BOARD}.tar.gz -C rootfs
+sudo tar zxvf ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/modules-${TARGET_BOARD}.tgz -C rootfs
+sudo cp -Rpfv ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/*.dtb rootfs/boot
+sudo cp -Rpfv ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/Image* rootfs/boot
+sudo cp -Rpfv ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/core-image-weston-${TARGET_BOARD}.tar.gz rootfs/boot
+sudo cp -Rpfv ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/modules-${TARGET_BOARD}.tgz rootfs/boot
+
+##############################
 cd ${SCRIPT_DIR}
 ls -l --color ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}
 exit 0
