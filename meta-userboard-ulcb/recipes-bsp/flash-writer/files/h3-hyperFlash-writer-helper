@@ -1,0 +1,198 @@
+#!/usr/bin/env python3
+
+import serial
+import sys
+import time
+
+sport = ""
+if len(sys.argv) > 1:
+    sport = sys.argv[1]
+
+supcommand = 0
+suptext = b" SUP"
+speeduptext1 = b"Change to 460.8Kbps baud rate setting of the SCIF."
+speeduptext2 = b"Please change to 921.6Kbps baud rate setting of the terminal."
+speeduptext3 = b"Please change to 460.8Kbps baud rate setting of the terminal."
+
+#flasherwaittext = b"-- Load Program to SystemRAM ---------------\r\nWork RAM(H'E6300000-H'E632E800) Clear....\r\nplease send !"
+flasherwaittext = b"please send !"
+flasherreadytext = b">"
+extcsdindextext = b"Please Input EXT_CSD Index"
+extcsdvaluetext = b"Please Input Value"
+writeareatext = b"Select area"
+writesectortext = b"Please Input Start Address in sector"
+writeaddresstext = b"Please Input Program Start Address"
+sendrequesttext = b"please send"
+speeduptext1 = b"Change to 460.8Kbps baud rate setting of the SCIF."
+speeduptext2 = b"Please change to 921.6Kbps baud rate setting of the terminal."
+speeduptext3 = b"Please change to 460.8Kbps baud rate setting of the terminal."
+
+selecttext = b"Select (1-3)>"
+sw1text = b"SW1    ON!                Setting OK? (Push Y key)"
+topaddrtext = b"Program Top Address & Qspi/HyperFlash Save Address\r\n===== Please Input Program Top Address ============\r\n  Please Input : H'"
+slaveaddrtext = b"===== Please Input Qspi/HyperFlash Save Address ===\r\n  Please Input : H'"
+pushytext = b" (Push Y key)"
+inputtext = b"  Please Input : H'"
+clearoktext = b"Clear OK?(y/n)"
+
+flasherfile = "AArch64_Flash_writer_SCIF_DUMMY_CERT_E6300400_ULCB.mot"
+
+bootloadermap = [
+	{"part": "1", "sector": "0", "address": "E6320000", "slave" : "000000", "file": "bootparam_sa0-4x2g.srec"},
+	{"part": "1", "sector": "1E", "address": "E6304000", "slave" : "040000", "file": "bl2-h3ulcb-4x2g.srec"},
+	{"part": "1", "sector": "180", "address": "E6320000", "slave" : "180000", "file": "cert_header_sa6-4x2g.srec"},
+	{"part": "1", "sector": "200", "address": "44000000", "slave" : "1C0000", "file": "bl31-h3ulcb-4x2g.srec"},
+	{"part": "1", "sector": "220", "address": "44100000", "slave" : "200000", "file": "tee-h3ulcb.srec"},
+	{"part": "2", "sector": "0", "address": "50000000", "slave" : "640000", "file": "u-boot-elf-h3ulcb.srec"},
+]
+
+if len(sport) == 0:
+    sport = "/dev/ttyUSB0"
+
+print("Rcar flash burner helper started.")
+sp = serial.Serial(sport, 115200, timeout=0.5)
+if sp is None:
+    print("Failed to open serial port %s!" % sport)
+    exit()
+
+print("Open serial port %s successfully." % sport)
+
+print("Waiting for download mode prompt...")
+while True:
+    rdata = sp.read(8192)
+    if flasherwaittext in rdata:
+        break
+
+print("Download mode detected, sending flash burner...")
+f = open(flasherfile, "rb")
+tlen = 0
+while True:
+    fdata = f.read(4096)
+    fdatalen = len(fdata)
+    if fdatalen == 0:
+        break;
+    sp.write(fdata)
+    tlen += fdatalen
+    print('\r%d bytes completed.' % tlen, end='')
+f.close()
+sp.write(b'.\r\n')
+print('')
+while True:
+    rdata = sp.read(4096)
+    if flasherreadytext in rdata:
+        break
+sp.write(b'\r\n')
+while True:
+    rdata = sp.read(4096)
+    if flasherreadytext in rdata:
+        break
+print(">")
+
+sspeed = 115200
+
+###########################################################
+sp.write(b'H\r\n')
+while True:
+    rdata = sp.read(8192)
+    if suptext in rdata:
+        supcommand = 1
+    if flasherreadytext in rdata:
+        break
+if supcommand > 0:
+    #print("SUP")
+    sp.write(b'SUP\r\n')
+    while True:
+        rdata = sp.read(8192)
+        if speeduptext2 in rdata:
+            sspeed = 921600
+            break
+        elif speeduptext1 in rdata:
+            sspeed = 460800
+            break
+        elif speeduptext3 in rdata:
+            sspeed = 460800
+            break
+    print("SUP baudrate = %d. " % sspeed)
+    print("")
+
+###########################################################
+sp.close()
+sp = serial.Serial(sport, sspeed, timeout=0.5)
+
+sp.write(b'\r\n')
+while True:
+    rdata = sp.read(4096)
+    if flasherreadytext in rdata:
+        break
+
+###########################################################
+
+sp.write(b'\r\n')
+while True:
+    rdata = sp.read(4096)
+    if flasherreadytext in rdata:
+        break
+
+for i in range(0, (len(bootloadermap) - 0)):
+    print("XLS2: %s         " % bootloadermap[i]['file'])
+    sp.write(b'XLS2\r\n')
+    while True:
+        rdata = sp.read(4096)
+        if flasherreadytext in rdata:
+            break
+    sp.write(b'3\r\n')
+    while True:
+        rdata = sp.read(8192)
+        if pushytext in rdata:
+            break
+    sp.write(b'y\r\n')
+    while True:
+        rdata = sp.read(8192)
+        if pushytext in rdata:
+            break
+    sp.write(b'y\r\n')
+    while True:
+        rdata = sp.read(8192)
+        if inputtext in rdata:
+            break
+    print("TOP: %s " % bootloadermap[i]['address'])
+    cmd = str("%s\r\n" % bootloadermap[i]['address'])
+    sp.write(cmd.encode())
+    while True:
+        rdata = sp.read(8192)
+        if inputtext in rdata:
+            break
+    print("SLAVE: %s " % bootloadermap[i]['slave'])
+    cmd = str("%s\r\n" % bootloadermap[i]['slave'])
+    sp.write(cmd.encode())
+    while True:
+        rdata = sp.read(8192)
+        if sendrequesttext in rdata:
+            break
+    f = open(bootloadermap[i]['file'], "rb")
+    tlen = 0
+    while True:
+        fdata = f.read(8192)
+        fdatalen = len(fdata)
+        if fdatalen == 0:
+            break;
+        sp.write(fdata)
+        tlen += fdatalen
+        print('\r%d bytes completed.\r' % tlen, end='')
+    f.close()
+    sp.write(b'.\r\n')
+    for i in range(16):
+        rdata = sp.read(8192)
+        if clearoktext in rdata:
+            break
+    sp.write(b'y\r\n')
+    for i in range(16):
+        rdata = sp.read(4096)
+        if flasherreadytext in rdata:
+            break
+
+sp.close()
+print("")
+print("all succeeded. ")
+exit()
+

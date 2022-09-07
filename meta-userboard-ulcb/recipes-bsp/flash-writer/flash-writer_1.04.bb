@@ -15,6 +15,7 @@ SRC_URI[sha256sum] = "3171fa74ab5a8780cd05ac18c9dae75fe769c4a74d6612bcdc45aee0e0
 
 SRC_URI_append = " \
 	file://hyperFlash-writer-helper \
+	file://h3-hyperFlash-writer-helper \
 "
 
 #DEPENDS += " libunistring"
@@ -24,16 +25,16 @@ ALLOW_EMPTY_${PN} = "1"
 S = "${WORKDIR}/git"
 
 do_compile() {
-        if [ "${MACHINE}" == "ebisu" ]; then
-                BOARD="EBISU4D";
-        elif [ "${MACHINE}" == "draak" ]; then
-                BOARD="DRAAK";
-        elif [ "${MACHINE}" == "salvator" ]; then
-                BOARD="SALVATOR";
-        elif [ "${MACHINE}" == "m3ulcb" -o "${MACHINE}" == "h3ulcb" -o "${MACHINE}" == "m3nulcb" ]; then
-                BOARD="ULCB";
-        fi
-        cd ${S}
+	if [ "${MACHINE}" == "ebisu" ]; then
+		BOARD="EBISU4D";
+	elif [ "${MACHINE}" == "draak" ]; then
+		BOARD="DRAAK";
+	elif [ "${MACHINE}" == "salvator" ]; then
+		BOARD="SALVATOR";
+	elif [ "${MACHINE}" == "m3ulcb" -o "${MACHINE}" == "h3ulcb" -o "${MACHINE}" == "m3nulcb" ]; then
+		BOARD="ULCB";
+	fi
+	cd ${S}
 
 	git checkout makefile
 	sed 's|^INCLUDE_DIR = include$|INCLUDE_DIR = include -I../recipe-sysroot/usr/include|' -i makefile
@@ -47,9 +48,13 @@ do_compile() {
 do_install[noexec] = "1"
 
 do_deploy() {
-        install -d ${DEPLOYDIR}
-        install -m 644 ${S}/AArch64_output/*.mot ${DEPLOYDIR}
-        install -m 755 ${WORKDIR}/hyperFlash-writer-helper ${DEPLOYDIR}
+	install -d ${DEPLOYDIR}
+	install -m 644 ${S}/AArch64_output/*.mot ${DEPLOYDIR}
+	if [ "${MACHINE}" == "h3ulcb" ]; then
+		cp -Rpfv ${WORKDIR}/h3-hyperFlash-writer-helper ${DEPLOYDIR}/hyperFlash-writer-helper
+	else
+		cp -Rpfv ${WORKDIR}/hyperFlash-writer-helper ${DEPLOYDIR}/hyperFlash-writer-helper
+	fi
 }
 PARALLEL_MAKE = "-j 1"
 addtask deploy after do_compile
