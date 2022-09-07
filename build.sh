@@ -64,8 +64,8 @@ git -C meta-browser checkout -b develop dcfb4cedc238eee8ed9bd6595bdcacf91c562f67
 
 ##############################
 cd ${WORK}
-cp ../proprietary/r8a77965_linux_gsx_binaries_gles.tar.bz2 meta-renesas/meta-rcar-gen3/recipes-graphics/gles-module/gles-user-module || true
-cp ../proprietary/GSX_KM_M3N.tar.bz2 meta-renesas/meta-rcar-gen3/recipes-kernel/kernel-module-gles/kernel-module-gles || true
+cp -fv ../proprietary/r8a77965_linux_gsx_binaries_gles.tar.bz2 meta-renesas/meta-rcar-gen3/recipes-graphics/gles-module/gles-user-module || true
+cp -fv ../proprietary/GSX_KM_M3N.tar.bz2 meta-renesas/meta-rcar-gen3/recipes-kernel/kernel-module-gles/kernel-module-gles || true
 
 # Populate meta-renesas with proprietary software packages
 cd ${WORK}
