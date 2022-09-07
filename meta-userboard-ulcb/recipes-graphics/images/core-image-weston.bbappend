@@ -2,6 +2,7 @@
 IMAGE_INSTALL_append = " packagegroup-qt5-examples "
 
 IMAGE_INSTALL_append = " \
+	dosfstools \
         tslib nfs-utils e2fsprogs e2fsprogs-resize2fs udev curl bc usbutils wget \
         mmc-utils squashfs-tools iputils sqlite3 libevent \
         devmem2 i2c-tools libgpiod sysbench \
