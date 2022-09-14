@@ -1,4 +1,5 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/ffmpeg_4.3.2:"
+#FILESEXTRAPATHS_prepend := "${THISDIR}/ffmpeg_4.3.2:"
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}_${PV}:"
 
 SUMMARY = "A complete, cross-platform solution to record, convert and stream audio and video."
 DESCRIPTION = "FFmpeg is the leading multimedia framework, able to decode, encode, transcode, \
