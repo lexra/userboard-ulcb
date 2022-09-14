@@ -95,8 +95,8 @@ sudo tar zxvf ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/core-image
 sudo tar zxvf ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/modules-${TARGET_BOARD}.tgz -C rootfs
 sudo cp -Rpfv ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/*.dtb rootfs/boot
 sudo cp -Rpfv ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/Image* rootfs/boot
-sudo cp -Rpfv ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/core-image-weston-${TARGET_BOARD}.tar.gz rootfs/boot
-sudo cp -Rpfv ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/modules-${TARGET_BOARD}.tgz rootfs/boot
+sudo cp -Rpfv ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/core-image-weston-*${TARGET_BOARD}*.tar.gz rootfs/boot
+sudo cp -Rpfv ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/modules-*${TARGET_BOARD}*.tgz rootfs/boot
 
 ##############################
 cd ${SCRIPT_DIR}
