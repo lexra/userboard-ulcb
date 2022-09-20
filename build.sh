@@ -14,7 +14,7 @@ META_RCAR_BRANCH=v5.9.0
 GFX_MMP_LIB=R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-20220121.zip
 GFX_MMP_DRIVER=R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-20220121.zip
 
-Usage () {
+function Usage () {
     echo "Usage: $0 \${TARGET_BOARD_NAME}"
     echo "BOARD_NAME list: "
     for i in ${BOARD_LIST[@]}; do echo "  - $i"; done
