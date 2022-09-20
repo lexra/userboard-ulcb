@@ -10,7 +10,6 @@ SCRIPT_DIR=`pwd`
 WORK=`pwd`/${TARGET_BOARD}
 
 SDDEV=${WORK}/build/tmp/deploy/images/${TARGET_BOARD}/SDMMC
-TOTAL=8192
 TOTAL=5120
 PART1=1280
 
