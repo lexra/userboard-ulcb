@@ -4,6 +4,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 DEPENDS += " \
 	gles-user-module \
 	omx-user-module \
+	${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'libsdl2', '', d)} \
 "
 
 EXTRA_OEMAKE_append = " V=1"
