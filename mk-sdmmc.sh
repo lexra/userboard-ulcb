@@ -4,7 +4,7 @@ RED='\033[0;31m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-BOARD_LIST=("h3ulcb" "m3ulcb" "m3nulcb" "salvator-x" "ebisu")
+BOARD_LIST=("h3ulcb" "m3ulcb" "m3nulcb" "ebisu" "salvator-x")
 TARGET_BOARD=$1
 SCRIPT_DIR=`pwd`
 WORK=`pwd`/${TARGET_BOARD}
