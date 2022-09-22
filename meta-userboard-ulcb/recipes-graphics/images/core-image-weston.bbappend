@@ -18,7 +18,7 @@ IMAGE_INSTALL_append = " \
 	vspfilter-init \
 	flash-writer \
 	omxh264-decode-test \
-	vsp-tests fdp1test \
+	vsp2driver-tp vsp-tests fdp1test \
 	ffmpeg \
 "
 

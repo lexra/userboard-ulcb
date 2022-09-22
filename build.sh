@@ -27,9 +27,15 @@ function Usage () {
 
 # Check Param.
 if ! `IFS=$'\n'; echo "${BOARD_LIST[*]}" | grep -qx "${TARGET_BOARD}"`; then
-    Usage
+	Usage
 fi
-sudo chown -R ${USER}.${USER} meta-userboard-ulcb
+if [ ! -e proprietary/R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-20220121.zip ]; then
+	Usage
+fi
+if [ ! -e proprietary/R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-20220121.zip ]; then
+	Usage
+fi
+sudo chown -R ${USER}.${USER} *.sh meta-userboard-ulcb proprietary
 sudo find meta-userboard-ulcb -name "*.conf" | xargs chmod -x
 
 mkdir -p ${WORK}
@@ -100,14 +106,21 @@ bitbake core-image-weston -v
 ##############################
 cd ${SCRIPT_DIR}
 sudo rm -rf rootfs && mkdir -p rootfs
-sudo tar zxvf ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/core-image-weston-${TARGET_BOARD}.tar.gz -C rootfs
-sudo tar zxvf ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/modules-${TARGET_BOARD}.tgz -C rootfs
-sudo cp -Rpfv ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/*.dtb rootfs/boot
-sudo cp -Rpfv ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/Image* rootfs/boot
-sudo cp -Rpfv ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/core-image-weston-*${TARGET_BOARD}*.tar.gz rootfs/boot
-sudo cp -Rpfv ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/modules-*${TARGET_BOARD}*.tgz rootfs/boot
+sudo tar zxf ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/core-image-weston-${TARGET_BOARD}.tar.gz -C rootfs
+sudo tar zxf ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/modules-${TARGET_BOARD}.tgz -C rootfs
+sudo cp -Rpf ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/*.dtb rootfs/boot
+sudo cp -Rpf ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/Image* rootfs/boot
+sudo cp -Rpf ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/core-image-weston-*${TARGET_BOARD}*.tar.gz rootfs/boot
+sudo cp -Rpf ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/modules-*${TARGET_BOARD}*.tgz rootfs/boot
 
 ##############################
 cd ${SCRIPT_DIR}
-ls -l --color ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}
+ls -l --color ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/Image
+ls -l --color ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/core-image-weston-${TARGET_BOARD}.tar.gz
+ls -l --color ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/modules-${TARGET_BOARD}.tgz
+echo ""
+ls -l --color ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/*.dtb
+echo ""
+ls -l --color ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/*.srec
+echo ""
 exit 0

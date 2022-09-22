@@ -1,0 +1,100 @@
+diff --git a/uds/v4l2_uds_tp.c b/uds/v4l2_uds_tp.c
+index 41551f9..c3b5915 100644
+--- a/uds/v4l2_uds_tp.c
++++ b/uds/v4l2_uds_tp.c
+@@ -1725,8 +1725,7 @@ static int open_video_device(struct media_device *pmedia, char *pentity_base,
+ 	struct media_entity *pentity;
+ 
+ 	snprintf(entity_name, sizeof(entity_name), pentity_base, pmedia_name);
+-	pentity = media_get_entity_by_name(pmedia, entity_name,
+-					   strlen(entity_name));
++	pentity = media_get_entity_by_name(pmedia, entity_name);
+ 	if (!pentity) {
+ 		printf("Error media_get_entity(%s)\n", entity_name);
+ 		return -1;
+diff --git a/bru/v4l2_bru_tp.c b/bru/v4l2_bru_tp.c
+index a7077d7..a9ecef2 100644
+--- a/bru/v4l2_bru_tp.c
++++ b/bru/v4l2_bru_tp.c
+@@ -2548,8 +2548,7 @@ static int open_video_device(struct media_device *pmedia, char *pentity_base,
+ 	struct media_entity *pentity;
+ 
+ 	snprintf(entity_name, sizeof(entity_name), pentity_base, pmedia_name);
+-	pentity = media_get_entity_by_name(pmedia, entity_name,
+-					   strlen(entity_name));
++	pentity = media_get_entity_by_name(pmedia, entity_name);
+ 	if (!pentity) {
+ 		printf("Error media_get_entity(%s)\n", entity_name);
+ 		return -1;
+diff --git a/hgo/v4l2_hgo_tp.c b/hgo/v4l2_hgo_tp.c
+index 9fef708..6cd7c51 100644
+--- a/hgo/v4l2_hgo_tp.c
++++ b/hgo/v4l2_hgo_tp.c
+@@ -1830,8 +1830,7 @@ static int set_hgo(struct media_device *pmedia, void *pvirt_addr,
+ 
+ 	/* Set config */
+ 	snprintf(entity_name, sizeof(entity_name), pentity_base, pmedia_name);
+-	pentity = media_get_entity_by_name(pmedia, entity_name,
+-					   strlen(entity_name));
++	pentity = media_get_entity_by_name(pmedia, entity_name);
+ 	if (pentity == NULL) {
+ 		printf("Error media_get_entity(%s)\n", entity_name);
+ 		return -1;
+@@ -1887,8 +1886,7 @@ static int open_video_device(struct media_device *pmedia, char *pentity_base,
+ 	struct media_entity *pentity;
+ 
+ 	snprintf(entity_name, sizeof(entity_name), pentity_base, pmedia_name);
+-	pentity = media_get_entity_by_name(pmedia, entity_name,
+-					   strlen(entity_name));
++	pentity = media_get_entity_by_name(pmedia, entity_name);
+ 	if (!pentity) {
+ 		printf("Error media_get_entity(%s)\n", entity_name);
+ 		return -1;
+diff --git a/lut/v4l2_lut_tp.c b/lut/v4l2_lut_tp.c
+index 3607541..cee577d 100644
+--- a/lut/v4l2_lut_tp.c
++++ b/lut/v4l2_lut_tp.c
+@@ -1823,8 +1823,7 @@ static int set_lut(struct media_device *pmedia, void *plut_table,
+ 
+ 	/* Set config */
+ 	snprintf(entity_name, sizeof(entity_name), pentity_base, pmedia_name);
+-	pentity = media_get_entity_by_name(pmedia, entity_name,
+-		                           strlen(entity_name));
++	pentity = media_get_entity_by_name(pmedia, entity_name);
+ 	if (pentity == NULL) {
+ 		printf("Error media_get_entity_by_name(%s)\n", entity_name);
+ 		return -1;
+@@ -1880,8 +1879,7 @@ static int open_video_device(struct media_device *pmedia, char *pentity_base,
+ 	struct media_entity *pentity;
+ 
+ 	snprintf(entity_name, sizeof(entity_name), pentity_base, pmedia_name);
+-	pentity = media_get_entity_by_name(pmedia, entity_name,
+-					   strlen(entity_name));
++	pentity = media_get_entity_by_name(pmedia, entity_name);
+ 	if (!pentity) {
+ 		printf("Error media_get_entity(%s)\n", entity_name);
+ 		return -1;
+diff --git a/clu/v4l2_clu_tp.c b/clu/v4l2_clu_tp.c
+index 68654d5..f3c18e8 100644
+--- a/clu/v4l2_clu_tp.c
++++ b/clu/v4l2_clu_tp.c
+@@ -1863,8 +1863,7 @@ static int set_clu(struct media_device *pmedia, unsigned long virt_addr,
+ 
+ 	/* Set config */
+ 	snprintf(entity_name, sizeof(entity_name), pentity_base, pmedia_name);
+-	pentity = media_get_entity_by_name(pmedia, entity_name,
+-		                           strlen(entity_name));
++	pentity = media_get_entity_by_name(pmedia, entity_name);
+ 	if (pentity == NULL) {
+ 		printf("Error media_get_entity_by_name(%s)\n", entity_name);
+ 		return -1;
+@@ -1923,8 +1922,7 @@ static int open_video_device(struct media_device *pmedia, char *pentity_base,
+ 	struct media_entity *pentity;
+ 
+ 	snprintf(entity_name, sizeof(entity_name), pentity_base, pmedia_name);
+-	pentity = media_get_entity_by_name(pmedia, entity_name,
+-					   strlen(entity_name));
++	pentity = media_get_entity_by_name(pmedia, entity_name);
+ 	if (!pentity) {
+ 		printf("Error media_get_entity(%s)\n", entity_name);
+ 		return -1;
