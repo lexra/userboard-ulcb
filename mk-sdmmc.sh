@@ -4,12 +4,12 @@ RED='\033[0;31m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-BOARD_LIST=("h3ulcb" "m3ulcb" "m3nulcb")
+BOARD_LIST=("h3ulcb" "m3ulcb" "m3nulcb" "salvator-x" "ebisu")
 TARGET_BOARD=$1
 SCRIPT_DIR=`pwd`
 WORK=`pwd`/${TARGET_BOARD}
 
-SDDEV=${WORK}/build/tmp/deploy/images/${TARGET_BOARD}/SDMMC
+SDDEV=${WORK}/build/tmp/deploy/images/${TARGET_BOARD}/SDMMC.img
 TOTAL=5120
 PART1=1280
 
@@ -17,7 +17,17 @@ function print_boot_example() {
         echo ""
         echo ">> FOR SD BOOT"
 	echo -e "${YELLOW} => setenv bootargs rw rootwait ipv6.disable=1 earlycon root=/dev/mmcblk1p2 ${NC}"
-	echo -e "${YELLOW} => setenv bootcmd 'ext4load mmc 0:1 0x48080000 Image; ext4load mmc 0:1 0x48000000 r8a779m1-ulcb-kf.dtb; booti 0x48080000 - 0x48000000' ${NC}"
+	if [ "${TARGET_BOARD}" == "h3ulcb" ]; then
+		echo -e "${YELLOW} => setenv bootcmd 'ext4load mmc 0:1 0x48080000 Image; ext4load mmc 0:1 0x48000000 r8a779m1-ulcb-kf.dtb; booti 0x48080000 - 0x48000000' ${NC}"
+	elif [ "${TARGET_BOARD}" == "m3ulcb" ]; then
+		echo -e "${YELLOW} => setenv bootcmd 'ext4load mmc 0:1 0x48080000 Image; ext4load mmc 0:1 0x48000000 r8a77961-ulcb-kf.dtb; booti 0x48080000 - 0x48000000' ${NC}"
+	elif [ "${TARGET_BOARD}" == "m3nulcb" ]; then
+		echo -e "${YELLOW} => setenv bootcmd 'ext4load mmc 0:1 0x48080000 Image; ext4load mmc 0:1 0x48000000 r8a77965-ulcb-kf.dtb; booti 0x48080000 - 0x48000000' ${NC}"
+	elif [ "${TARGET_BOARD}" == "ebisu" ]; then
+		echo -e "${YELLOW} => setenv bootcmd 'ext4load mmc 0:1 0x48080000 Image; ext4load mmc 0:1 0x48000000 r8a77990-ebisu-4d.dtb; booti 0x48080000 - 0x48000000' ${NC}"
+	elif [ "${TARGET_BOARD}" == "salvator-x" ]; then
+		echo -e "${YELLOW} => setenv bootcmd 'ext4load mmc 0:1 0x48080000 Image; ext4load mmc 0:1 0x48000000 r8a779m1-salvator-xs.dtb; booti 0x48080000 - 0x48000000' ${NC}"
+	fi
 	echo -e "${YELLOW} => saveenv ${NC}"
 	echo ""
 }

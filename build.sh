@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-BOARD_LIST=("h3ulcb" "m3ulcb" "m3nulcb")
+BOARD_LIST=("h3ulcb" "m3ulcb" "m3nulcb" "salvator-x" "ebisu")
 TARGET_BOARD=$1
 SCRIPT_DIR=`pwd`
 PROPRIETARY_DIR=`pwd`/proprietary
@@ -9,7 +9,11 @@ WORK=`pwd`/${TARGET_BOARD}
 POKY_COMMIT=74b22db6879b388d700f61e08cb3f239cf940d18
 META_OE_COMMIT=814eec96c2a29172da57a425a3609f8b6fcc6afe
 META_RENESAS_COMMIT=13fd24957b9acc29a235ee0c7f398fd867f38b47
-META_RCAR_BRANCH=v5.9.0
+META_RCAR_COMMIT=v5.9.0
+
+META_PYTHON2_COMMIT=07dca1e54f82a06939df9b890c6d1ce1e3197f75
+META_CLANG_COMMIT=e63d6f9abba5348e2183089d6ef5ea384d7ae8d8
+META_BROWSER_COMMIT=dcfb4cedc238eee8ed9bd6595bdcacf91c562f67
 
 GFX_MMP_LIB=R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-20220121.zip
 GFX_MMP_DRIVER=R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-20220121.zip
@@ -34,7 +38,7 @@ cd ${WORK}
 # Clone basic Yocto layers in parallel
 (git clone git://git.yoctoproject.org/poky || true) &
 (git clone git://git.openembedded.org/meta-openembedded || true) &
-(git clone https://github.com/renesas-rcar/meta-renesas || true) &
+(git clone https://github.com/renesas-rcar/meta-renesas.git || true) &
 (git clone https://github.com/CogentEmbedded/meta-rcar.git || true) &
 (git clone https://github.com/meta-qt5/meta-qt5.git || true) &
 
@@ -49,23 +53,28 @@ git checkout -b tmp ${META_OE_COMMIT} || true
 cd ${WORK}/meta-renesas
 git checkout -b tmp ${META_RENESAS_COMMIT} || true
 cd $WORK/meta-rcar
-git checkout -b ${META_RCAR_BRANCH} remotes/origin/${META_RCAR_BRANCH} || true
+git checkout -b ${META_RCAR_COMMIT} remotes/origin/${META_RCAR_COMMIT} || true
 cd $WORK/meta-qt5
 git checkout -b tmp c1b0c9f546289b1592d7a895640de103723a0305 || true
 
-# meta-python2
+# meta-python2, meta-clang, meta-browser
 cd ${WORK}
 git clone git://git.openembedded.org/meta-python2 || true
-git -C meta-python2 checkout -b develop 07dca1e54f82a06939df9b890c6d1ce1e3197f75 || true
+git -C meta-python2 checkout -b develop ${META_PYTHON2_COMMIT} || true
 git clone https://github.com/kraj/meta-clang || true
-git -C meta-clang checkout -b develop e63d6f9abba5348e2183089d6ef5ea384d7ae8d8 || true
+git -C meta-clang checkout -b develop ${META_CLANG_COMMIT} || true
 git clone https://github.com/OSSystems/meta-browser || true
-git -C meta-browser checkout -b develop dcfb4cedc238eee8ed9bd6595bdcacf91c562f67 || true
+git -C meta-browser checkout -b develop ${META_BROWSER_COMMIT} || true
 
-##############################
+# M3N
 cd ${WORK}
 cp -fv ../proprietary/r8a77965_linux_gsx_binaries_gles.tar.bz2 meta-renesas/meta-rcar-gen3/recipes-graphics/gles-module/gles-user-module || true
 cp -fv ../proprietary/GSX_KM_M3N.tar.bz2 meta-renesas/meta-rcar-gen3/recipes-kernel/kernel-module-gles/kernel-module-gles || true
+
+# E3
+cd ${WORK}
+cp -fv ../proprietary/r8a77990_linux_gsx_binaries_gles.tar.bz2 meta-renesas/meta-rcar-gen3/recipes-graphics/gles-module/gles-user-module || true
+cp -fv ../proprietary/GSX_KM_E3.tar.bz2 meta-renesas/meta-rcar-gen3/recipes-kernel/kernel-module-gles/kernel-module-gles || true
 
 # Populate meta-renesas with proprietary software packages
 cd ${WORK}
