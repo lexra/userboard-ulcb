@@ -28,17 +28,17 @@ do_compile () {
 }
 
 do_install () {
-	install -d ${D}/usr/bin
-	install -d ${D}/usr/share/tests
-	install ${S}/bru/v4l2_bru_tp ${D}/usr/bin
-	install ${S}/clu/v4l2_clu_tp ${D}/usr/bin
-	install ${S}/hgo/v4l2_hgo_tp ${D}/usr/bin
-	install ${S}/lut/v4l2_lut_tp ${D}/usr/bin
-	install ${S}/uds/v4l2_uds_tp ${D}/usr/bin
-	install ${S}/input_image/1280_720_ARGB32.argb ${D}/usr/share/tests
+	install -d ${D}${prefix}/bin
+	install -d ${D}${prefix}/share/tests
+	install ${S}/bru/v4l2_bru_tp ${D}${prefix}/bin
+	install ${S}/clu/v4l2_clu_tp ${D}${prefix}/bin
+	install ${S}/hgo/v4l2_hgo_tp ${D}${prefix}/bin
+	install ${S}/lut/v4l2_lut_tp ${D}${prefix}/bin
+	install ${S}/uds/v4l2_uds_tp ${D}${prefix}/bin
+	install ${S}/input_image/1280_720_ARGB32.argb ${D}${prefix}/share/tests
 }
 
 FILES_${PN} += " \
-	/usr/bin \
-	/usr/share/tests \
+	${prefix}/bin/v4l2_*_tp \
+	${prefix}/share/tests/1280_720_ARGB32.argb \
 "
