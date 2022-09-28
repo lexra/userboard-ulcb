@@ -17,6 +17,7 @@ META_BROWSER_COMMIT=dcfb4cedc238eee8ed9bd6595bdcacf91c562f67
 
 GFX_MMP_LIB=R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-20220121.zip
 GFX_MMP_DRIVER=R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-20220121.zip
+GEN3E_V590_SOFTWARE=Gen3e_v590_Software.zip
 
 function Usage () {
     echo "Usage: $0 \${TARGET_BOARD_NAME}"
@@ -72,22 +73,23 @@ git -C meta-clang checkout -b develop ${META_CLANG_COMMIT} || true
 git clone https://github.com/OSSystems/meta-browser || true
 git -C meta-browser checkout -b develop ${META_BROWSER_COMMIT} || true
 
-# M3N
-cd ${WORK}
-cp -fv ../proprietary/r8a77965_linux_gsx_binaries_gles.tar.bz2 meta-renesas/meta-rcar-gen3/recipes-graphics/gles-module/gles-user-module || true
-cp -fv ../proprietary/GSX_KM_M3N.tar.bz2 meta-renesas/meta-rcar-gen3/recipes-kernel/kernel-module-gles/kernel-module-gles || true
-
-# E3
-cd ${WORK}
-cp -fv ../proprietary/r8a77990_linux_gsx_binaries_gles.tar.bz2 meta-renesas/meta-rcar-gen3/recipes-graphics/gles-module/gles-user-module || true
-cp -fv ../proprietary/GSX_KM_E3.tar.bz2 meta-renesas/meta-rcar-gen3/recipes-kernel/kernel-module-gles/kernel-module-gles || true
-
 # Populate meta-renesas with proprietary software packages
 cd ${WORK}
 WORK_PROP_DIR=${WORK}/proprietary
 mkdir -p ${WORK_PROP_DIR}
 unzip -qo ${PROPRIETARY_DIR}/${GFX_MMP_LIB} -d ${WORK_PROP_DIR}
 unzip -qo ${PROPRIETARY_DIR}/${GFX_MMP_DRIVER} -d ${WORK_PROP_DIR}
+
+cd ${WORK}
+WORK_PROP_DIR=${WORK}/proprietary
+mkdir -p ${WORK_PROP_DIR}
+if [ -e ../proprietary/${GEN3E_V590_SOFTWARE} ]; then
+	unzip -o ../proprietary/${GEN3E_V590_SOFTWARE} -d ${WORK_PROP_DIR}
+	mv ${WORK_PROP_DIR}/Software/* ${WORK_PROP_DIR}
+	rm -rfv ${WORK_PROP_DIR}/Software
+	rm -rfv ${WORK_PROP_DIR}/INFRTM8RC7795ZG300Q10JPL3E_4_1_1.zip
+	rm -rfv ${WORK_PROP_DIR}/INFRTM8RC7796ZG300Q10JPL3E_4_1_1.zip
+fi
 cd ${WORK}/meta-renesas
 sh meta-rcar-gen3/docs/sample/copyscript/copy_proprietary_softwares.sh -f ${WORK_PROP_DIR}
 
