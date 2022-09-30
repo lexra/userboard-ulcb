@@ -30,10 +30,7 @@ function Usage () {
 if ! `IFS=$'\n'; echo "${BOARD_LIST[*]}" | grep -qx "${TARGET_BOARD}"`; then
 	Usage
 fi
-if [ ! -e proprietary/R-Car_Gen3_Series_Evaluation_Software_Package_for_Linux-20220121.zip ]; then
-	Usage
-fi
-if [ ! -e proprietary/R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-20220121.zip ]; then
+if [[ ( ! -e proprietary/${GFX_MMP_LIB} || ! -e proprietary/${GFX_MMP_DRIVER} ) && ! -e proprietary/${GEN3E_V590_SOFTWARE} ]]; then
 	Usage
 fi
 sudo chown -R ${USER}.${USER} *.sh meta-userboard-ulcb proprietary
@@ -87,8 +84,8 @@ if [ -e ../proprietary/${GEN3E_V590_SOFTWARE} ]; then
 	unzip -o ../proprietary/${GEN3E_V590_SOFTWARE} -d ${WORK_PROP_DIR}
 	mv ${WORK_PROP_DIR}/Software/* ${WORK_PROP_DIR}
 	rm -rfv ${WORK_PROP_DIR}/Software
-	rm -rfv ${WORK_PROP_DIR}/INFRTM8RC7795ZG300Q10JPL3E_4_1_1.zip
-	rm -rfv ${WORK_PROP_DIR}/INFRTM8RC7796ZG300Q10JPL3E_4_1_1.zip
+	[ -e ${WORK_PROP_DIR}/INFRTM8RC7795ZG300Q10JPL3E_4_2_1.zip -a -e ${WORK_PROP_DIR}/INFRTM8RC7795ZG300Q10JPL3E_4_1_1.zip ] && rm -rfv ${WORK_PROP_DIR}/INFRTM8RC7795ZG300Q10JPL3E_4_1_1.zip
+	[ -e ${WORK_PROP_DIR}/INFRTM8RC7796ZG300Q10JPL3E_4_2_1.zip -a -e ${WORK_PROP_DIR}/INFRTM8RC7796ZG300Q10JPL3E_4_1_1.zip ] && rm -rfv ${WORK_PROP_DIR}/INFRTM8RC7796ZG300Q10JPL3E_4_1_1.zip
 fi
 cd ${WORK}/meta-renesas
 sh meta-rcar-gen3/docs/sample/copyscript/copy_proprietary_softwares.sh -f ${WORK_PROP_DIR}
