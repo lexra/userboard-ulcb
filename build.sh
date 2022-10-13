@@ -95,6 +95,7 @@ cd ${WORK}
 source poky/oe-init-build-env ${WORK}/build
 
 cp ${WORK}/../meta-userboard-ulcb/docs/sample/conf/${TARGET_BOARD}/poky-gcc/mmp/*.conf ./conf/
+cp ${WORK}/../meta-userboard-ulcb/conf/machine/${TARGET_BOARD}.conf ../meta-renesas/meta-rcar-gen3/conf/machine/
 
 cd ${WORK}/build
 cp conf/local-wayland.conf conf/local.conf
