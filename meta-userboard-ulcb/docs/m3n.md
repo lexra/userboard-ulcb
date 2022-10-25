@@ -132,6 +132,15 @@ for Dual QSPI (QSPI0+QSPI1).
   - Descriptor function (each channel) supported
   - MMU (each channel) supported
   - Channel bandwidth arbiter (each channel)
+- Boot
+  - System startup with selectable boot mode at power-on reset
+  - Either external ROM boot (area 0)* or on-chip ROM boot can be selected through MD pin on development chip.
+  - In on-chip ROM boot, RPC-IF or QSPI serial ROM boot is supported.
+  - Program downloaded to internal memory (System RAM)
+  - Autorun function for the downloaded program
+  - Secure boot supported. Integrity check of boot image is proceeded before executing.
+  - On secure chip, boot operation is restricted to on-chip ROM boot mode.
+  - About detail information of BOOT, refer to Section 19 (Boot) and Appendix B (Active sequence).
 
 
 
