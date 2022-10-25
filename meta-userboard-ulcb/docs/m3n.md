@@ -181,7 +181,25 @@ for Dual QSPI (QSPI0+QSPI1).
 - IPMMU
   - An IPMMU is a memory management unit (MMU) which provides address translation and access protection functionalities to processing units and interconnect networks. 
 
-
+- Interrupt Controller (INTC) 
+  - INTC-AP (For All Products; for APSystem core CortexA57/Cortex-A53)
+    - 7 interrupt pins which can detect external interrupts
+    - Max. 480 shared peripheral interrupts supported
+    - Fall/rise/high level/low level detection is selectable
+    - On-chip peripheral interrupts: Priority can be specified for each module
+    - 16 software interrupts that have been generated and 6 private peripheral interrupts supported
+    - 32-level priority selectable
+    - Trust Zone supported
+  - INTC-RT
+    - 7 interrupt pins which can detect external interrupts
+    - Fall/rise/high level/low level detection is selectable
+    - On-chip peripheral interrupts: Priority can be specified for each module
+    - Max. 384 peripheral interrupts supported
+  - Multifunctional Interface (MFIS)
+    -  Interrupt generation between SYS domain and RT domain
+    -  Fifteen external source bits for controlling 32-K types of interrupts
+    -  Lock function for exclusive access supported
+    -  Error checking function control and arbitrate error signal from other module. 
 
 
 
