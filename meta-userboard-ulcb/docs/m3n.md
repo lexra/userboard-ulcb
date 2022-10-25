@@ -1,10 +1,8 @@
 ### Introduction
 
-The R-Car Series, 3rd Generation are SoCs that feature the basic functions for next-generation car navigation systems. 
-
 ![image](https://user-images.githubusercontent.com/33512027/197733514-d6b37727-cfe2-42ee-95ed-4f16f0eb998c.png)
 
-The M3-N includes: 
+The R-Car Series, 3rd Generation are SoCs that feature the basic functions for next-generation car navigation systems. The M3-N includes: 
 - Two 1.5-GHz Arm® Cortex®-A57 MPCore™ cores,
 - Memory controller for LPDDR4-3200/DDR3-2133/DDR3L-1866 with 32 bits × 1 channel,
 - 1 channel for HDMI1.4b output (option) and 1channel for RGB888 output and 1channel for LVDS,
@@ -19,7 +17,7 @@ The M3-N includes:
 - PCI Express interface, 
 - Video processing units,
 - CAN interface, and
-- EthernetAVB interface. 
+- Ethernet AVB interface. 
 
 ### Arm Core
 
