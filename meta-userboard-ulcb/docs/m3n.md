@@ -95,6 +95,14 @@ The M3-N includes:
   - Supports external buffer enable/direction control
   - Supports Burst ROM interface
   - Supports Byte-control SRAM interface
+- External Flash Controller 
+  - Supports RPC-IF (Reduced Pin Count interface) flash memory or QSPI flash memory. Maximum Frequency 160 MHz (320MB/s) for RPC-IF, 80 MHz (80MB/s)* for QSPI (QSPI0) . Dual QSPI operation for two 4-bit serial flash memories is also available; 80 MHz (160MB/s)
+for Dual QSPI (QSPI0+QSPI1). 
+- External Bus Controller for LPDDR4/DDR3/DDR3L SDRAM (DBSC4) 
+  - 1 channel (32-bit bus mode)
+  - LPDDR4-3200 and DDR3L-1866 and DDR3-2133 can be connected directly.
+  - Memory Size: Up to 4GB
+
 
 
 
