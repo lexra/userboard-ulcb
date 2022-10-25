@@ -61,7 +61,7 @@ The M3-N includes:
   - System-CPU shut down mode control supported
 - System Controller (SYSC)
   - Cortex-A57 (with independent shutting down of CPUs 0, 1 and SCU+L2 cache)
-  - Cortex-R7: 
+  - Cortex-R7
   - Low leakage standby mode supported. 
 - Reset
   - Includes one reset-signal external output port for external modules
@@ -199,6 +199,103 @@ for Dual QSPI (QSPI0+QSPI1).
     -  Fifteen external source bits for controlling 32-K types of interrupts
     -  Lock function for exclusive access supported
     -  Error checking function control and arbitrate error signal from other module. 
+
+### Internal Memory
+
+- System RAM
+  - RAM of 384 KBytes
+
+### Graphics Units 
+
+- 3D Graphics Engine (3DGE) 
+  - Imagination Technologies PowerVR Series 7XE GE7800
+  - Max. Freq. 700 MHz with DVFS control
+  - Drastically performance improvements for sophisticated graphics and GPU computer
+  - Reducing power consumption even further through advanced power saving mechanisms
+  - Lowest memory bandwidth in the industry with compression technologies
+  - Ultra HD deep color GPU Support APIs: OpenGL ES 3.1, (OpenCL 1.2 EP)
+  - 2.8Gpix/s 233Mpoly/s 44.8GFLOPS
+- 2D Graphics Engine (D/AVE HD) 
+  - TES Corporation D/AVE HD
+  - Max. Freq. 266/400 MHz as core clock frequency
+  - R-Car H3, R-Car M3-W, R-Car M3-W+: 266 MHz
+  - R-Car D3, M3-N, and E3: 400 MHz
+    - Supporting high quality 2D rendering for displays up to 4K × 4K
+    - High render quality
+    - Hardware accelerated primitives
+  - Fast clear/rectangle fill
+  - Lines
+  - Triangles and Quadrangles
+  - Beziers
+  - Advanced Blit operations supporting scaling, stretching, rotating, coloring and alpha-blending
+  - Convolution Filtering
+- Display Unit (DU)
+  - Display channel
+    - 3 independently controllable channels
+  - Interface
+    - HDMI 1channel
+    - LVDS 2 channels
+    - Digital RGB 1 channel
+  - LVDS interface (per channel)
+    - Output: compliant with TIA/EIA-644; five pairs of differential output (four pairs of data and one pair of clock)
+    - Operating frequency: Dotclk 148.5 MHz
+  - HDMI
+    - Support HDMI 1.4 class transfer rate, up to 3D format 1080p60/4Kp30
+    - Dotclk 297 MHz
+  - Screen size and number of composite planes per channel
+    - Maximum screen size: 3840 × 2160
+    -  Number of planes specifiable: 5 (VSP2 processing)
+    -  Number of planes specifiable: 1 (DU)
+  - CRT scanning method
+    - Non-interlaced 
+  - Synchronization method
+    - Master
+  - Internal color palette (VSP2)
+    - Includes four color palette planes which can display 256 of 260 thousands colors at the same time. 
+  - Output display numbers
+    - Three output channels (resolutions for different displays)
+    - Output on rising and falling edges of the synchronizing signal (resolution for the same display)
+    - 8-bit precision for each RGB color
+  - Blending ratio settings (VSP2)
+    - Number of color palette planes with blending ratio: 4
+  - Dot clock
+    - Switchable between external input and internal clock
+  - Color management (CMM)
+    - 1D LUT, 3D LUT, 1D Histogram
+    - Color space conversion. Following functions will be supported by Renesas software portfolio.
+    - γ correction, gain correction
+    - Applies correction of color (skin color adjustment and color correction set in memory) in terms of color phase, brightness, and chromaticity for a specified range of colors or for the full range of colors
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
