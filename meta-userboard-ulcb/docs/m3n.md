@@ -1,9 +1,8 @@
 ### Introduction
 
-![image](https://user-images.githubusercontent.com/33512027/197733514-d6b37727-cfe2-42ee-95ed-4f16f0eb998c.png)
-
-
 The R-Car Series, 3rd Generation are SoCs that feature the basic functions for next-generation car navigation systems. 
+
+![image](https://user-images.githubusercontent.com/33512027/197733514-d6b37727-cfe2-42ee-95ed-4f16f0eb998c.png)
 
 The M3-N includes: 
 - Two 1.5-GHz Arm® Cortex®-A57 MPCore™ cores,
