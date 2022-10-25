@@ -141,7 +141,19 @@ for Dual QSPI (QSPI0+QSPI1).
   - Secure boot supported. Integrity check of boot image is proceeded before executing.
   - On secure chip, boot operation is restricted to on-chip ROM boot mode.
   - About detail information of BOOT, refer to Section 19 (Boot) and Appendix B (Active sequence).
-
+- Realtime Direct Memory Access Controller (RT-DMAC)
+  - 16 channels for Realtime domain
+  - Address space: 4 GBytes on architecture
+  - Data transfer length: Byte, word (2 Bytes), longword (4 Bytes), 8 Bytes, 16 Bytes, 32 Bytes and 64 Bytes
+  - Maximum number of transfer times: 16,777,215 times
+  - Transfer request: Selectable from on-chip peripheral module request and auto request
+  - Bus mode: Selectable from normal mode and slow mode
+  - Priority: Selectable from fixed channel priority mode and round-robin mode
+  - Interrupt request: Supports interrupt request to CPU at the end of data transfer
+  - Repeat function: Automatically resets the transfer source, destination, and count at the end of DMA transfer (by descriptor function)
+  - Descriptor function (each channel) supported
+  - MMU (each channel) supported
+  - Channel bandwidth arbiter (each channel)
 
 
 
