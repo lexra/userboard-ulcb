@@ -102,7 +102,11 @@ for Dual QSPI (QSPI0+QSPI1).
   - 1 channel (32-bit bus mode)
   - LPDDR4-3200 and DDR3L-1866 and DDR3-2133 can be connected directly.
   - Memory Size: Up to 4GB
-
-
+  - Auto Refresh/Self Refresh/Partial Array Self Refresh supported
+  - Auto Pre-charge Mode
+  - DDR Back Up supported
+  - Cache memory for DDR-Memory access efficiency
+  - Decompression of visual near lossless compressed image
+  - Memory access protection for secure/safety regions
 
 
