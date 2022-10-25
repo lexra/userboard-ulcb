@@ -37,14 +37,17 @@ The M3-N includes:
 
 ### Arm Realtime Core
 
-- Arm Cortex-R7 800 MHz
-- L1 I/D cache 32/32 Kbytes (ECC)
-- I-TCM/D-TCM (32/32 Kbytes) (ECC)
-- Dual Lock-Step supported (safety function option)
-- VFPv3 supported
-- Armv7 architecture
-- JTAG/SWD I/F supported
-- ETM-R7 supported
-- ETF 4 KBytes for program flow trace
+- Arm Realtime Core Cortex-R7
+  - Arm Cortex-R7 800 MHz
+  - L1 I/D cache 32/32 Kbytes (ECC)
+  - I-TCM/D-TCM (32/32 Kbytes) (ECC)
+  - Dual Lock-Step supported (safety function option)
+  - VFPv3 supported
+  - Armv7 architecture
+- Debug and Trace
+  - JTAG/SWD I/F supported
+  - ETM-R7 supported
+  - ETF 4 KBytes for program flow trace
+
 
 
