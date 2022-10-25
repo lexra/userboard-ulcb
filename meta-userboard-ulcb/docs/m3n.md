@@ -79,7 +79,22 @@ The M3-N includes:
   -  Programmable 3 temperature level for the sensor, to indicate the temperature level
   -  Interrupt when the temperature reaches programmed
 
+### External Bus Module
 
+- External Bus Controller for EXBus (LBSC)
+  - EX-BUS interface: max. 16-bit bus
+  - Frequency: 66 MHz
+  - External area divided into several areas and managed
+    - Allocation to space of area 0, area 1.
+    - Area 0 supports 1-MByte memory space (startup mode).
+    - I/F settings, bus width settings, and wait state insertion are possible for each area
+  - SRAM interface
+    - Wait states can be inserted through register settings. Period of waiting is set in cycle unit, and the maximum value is 15.
+    - EX_WAIT pin can be used for wait state insertion
+    - Connectable bus widths: 16 bits or 8 bits
+  - Supports external buffer enable/direction control
+  - Supports Burst ROM interface
+  - Supports Byte-control SRAM interface
 
 
 
