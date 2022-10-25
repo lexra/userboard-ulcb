@@ -1,5 +1,7 @@
 ### Introduction
 
+![image](https://user-images.githubusercontent.com/33512027/197713937-065f0a16-5a92-41cd-b2c7-a87a435a6560.png)
+
 The R-Car Series, 3rd Generation are SoCs that feature the basic functions for next-generation car navigation systems. 
 
 The M3-N includes: 
