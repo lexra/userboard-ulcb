@@ -205,7 +205,7 @@ for Dual QSPI (QSPI0+QSPI1).
 - System RAM
   - RAM of 384 KBytes
 
-### Graphics Units 
+### Graphics Units
 
 - 3D Graphics Engine (3DGE) 
   - Imagination Technologies PowerVR Series 7XE GE7800
@@ -270,7 +270,23 @@ for Dual QSPI (QSPI0+QSPI1).
   - Modulate the various timing signal for LCD panel driver with RGB parallel output interface
 - Display Output Checker (DOC) 
   - The DOC allows to check whether the display content (warning, light, and so on) is correctly output by the Display Unit (DU). 
-
+- Video Input Module (VIN)
+  - MIPI-CSI2 interface
+    - 2 channels (4lane × 1channel, 2lane × 1channel)
+    - Interleaving by 4 VC (virtual channel) supported
+    - Filtering by DT (data type) supported
+    - YUV422 8/10bit, RGB888, Embedded 8bit, User Defined 8bit are supported
+    - 1.5Gbps/Lane
+  - Digital interface
+    - 2 channels (RGB/YCbCr)
+    - Dotclk 100 MHz
+    - ITU-R BT.601 interface: 8-, 10- (same size only (not scaling)), 12- (same size only (not scaling)) 16-, 20- (same size only (not scaling)) or 24-bit (same size only (not scaling)), YCbCr422, 18-bit RGB666, 24-bit RGB888
+    - ITU-R BT.656 interface: 8-, 10- (same size only (not scaling)), or 12-bit (same size only (not scaling)) YCbCr422
+    - ITU-R BT.1358 interface: 16-, 20- (same size only (not scaling)), or 24-bit (same size only (not scaling)) YCbCr422
+    - ITU-R BT.709 interface: 8-, 10- (same size only (not scaling)), 12- (same size only (not scaling)) 16-, 20- (same size only (not scaling)) or 24-bit (same size only (not scaling)) YCbCr422, 18-bit RGB666, 24-bit RGB888 About Digital RGB channel usage combination, Refer as follows cases.
+      - CASE1 VIN-A8bit + VIN-B8/12/16
+      - CASE2 VIN-A12bit + VIN-B8/12/16
+      - CASE3 VIN-A16bit + VIN-B8/12
 
 
 
