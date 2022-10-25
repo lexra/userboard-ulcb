@@ -265,7 +265,11 @@ for Dual QSPI (QSPI0+QSPI1).
     - Color space conversion. Following functions will be supported by Renesas software portfolio.
     - γ correction, gain correction
     - Applies correction of color (skin color adjustment and color correction set in memory) in terms of color phase, brightness, and chromaticity for a specified range of colors or for the full range of colors
-
+- TCON
+  - 2 channels (TCON0, TCON1) (TCON0 is output via LVDS interface)
+  - Modulate the various timing signal for LCD panel driver with RGB parallel output interface
+- Display Output Checker (DOC) 
+  - The DOC allows to check whether the display content (warning, light, and so on) is correctly output by the Display Unit (DU). 
 
 
 
