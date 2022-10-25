@@ -49,5 +49,37 @@ The M3-N includes:
   - ETM-R7 supported
   - ETF 4 KBytes for program flow trace
 
+### CPU Core Peripherals
+
+- Clock Pulse Generator (CPG)
+  - Maximum Cortex-A57 clock: 1.5 GHz ~ 1.8 GHz
+  - Maximum 3DGE clock: 700 MHz
+  - Maximum Cortex-R7 clock: 800 MHz
+  - Maximum AXI-bus clock: 400 MHz
+  - Maximum SDRAM bus clock: 1600 MHz (LPDDR4-3200)
+  - Maximum media clock: 400 MHz
+  - System-CPU shut down mode control supported
+- System Controller (SYSC)
+  - Cortex-A57 (with independent shutting down of CPUs 0, 1 and SCU+L2 cache)
+  - Cortex-R7: 
+  - Low leakage standby mode supported. 
+- Reset
+  - Includes one reset-signal external output port for external modules
+  - Includes Boot Address Register etc. 
+- Pin function controller (PFC)
+  - Setting multiplexed pin functions for LSI pins. Function of the LSI pin selectable by setting the registers in the PFC module
+  - Module selection: Enable and disable the functions of LSI pins to which pin functions from multiple pin groups are assigned by setting the registers in the PFC module.
+  - Pull-up/down control for each LSI pin: On/off and up/down of the pull register on each LSI pin can be controlled by setting the registers in the PFC module. 
+  - Control of SDIO functions: SDIO functions, including the driving ability of pins for the SDIF, can be controlled by setting registers of the PFC.
+- General-purpose I/O (GPIO)
+  - General-purpose I/O ports
+  - Supports GPIO interrupts
+- Thermal sensor / Chip Internal Voltage Monitor (THS/CIVM) 
+  - 3 channels of thermal sensor
+  -  Programmable 3 temperature level for the sensor, to indicate the temperature level
+  -  Interrupt when the temperature reaches programmed
+
+
+
 
 
