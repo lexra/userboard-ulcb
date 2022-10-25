@@ -1,6 +1,7 @@
 ### Introduction
 
-![image](https://user-images.githubusercontent.com/33512027/197713937-065f0a16-5a92-41cd-b2c7-a87a435a6560.png)
+![image](https://user-images.githubusercontent.com/33512027/197733514-d6b37727-cfe2-42ee-95ed-4f16f0eb998c.png)
+
 
 The R-Car Series, 3rd Generation are SoCs that feature the basic functions for next-generation car navigation systems. 
 
