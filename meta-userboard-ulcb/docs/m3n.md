@@ -170,7 +170,16 @@ for Dual QSPI (QSPI0+QSPI1).
   - Descriptor function (each channel) supported
   - MMU (each channel) supported
   - Channel bandwidth arbiter (each channel)
-
+- Audio-DMACPeripheral-Peripheral
+  - Audio-DMAC (for transfer from Peripheral to Peripheral)
+  - 4 channels for audio domain
+  - Data transfer length: longword (4 Bytes)
+  - Transfer count: Transfer count is not specified (DMA transfer is made from the transferstart to transfer-stop settings.)
+  - Transfer request: Selectable from on-chip audio peripheral module request
+  - Priority: round-robin mode
+  - Interrupt request: not supports interrupt request to CPU at the end of data transfer
+- IPMMU
+  - An IPMMU is a memory management unit (MMU) which provides address translation and access protection functionalities to processing units and interconnect networks. 
 
 
 
