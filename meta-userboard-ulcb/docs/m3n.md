@@ -1,4 +1,4 @@
-## Introduction
+### Introduction
 
 The R-Car Series, 3rd Generation are SoCs that feature the basic functions for next-generation car navigation systems. 
 
@@ -19,7 +19,7 @@ The M3-N includes:
 - CAN interface, and
 - EthernetAVB interface. 
 
-## Arm Core
+### Arm Core
 
 - Arm Cortex-A57 Dual MPCore 1.5 GHz – 1.8 GHz (with DVFS control)
 - L2 cache 1 Mbytes (ECC)
@@ -30,4 +30,17 @@ The M3-N includes:
 - JTAG/SWD I/F supported
 - ETM-A57/A53 supported (each CPU)
 - ETF 16 KBytes for program flow trace (each cluster)
+
+### Arm Realtime Core
+
+- Arm Cortex-R7 800 MHz
+- L1 I/D cache 32/32 Kbytes (ECC)
+- I-TCM/D-TCM (32/32 Kbytes) (ECC)
+- Dual Lock-Step supported (safety function option)
+- VFPv3 supported
+- Armv7 architecture
+- JTAG/SWD I/F supported
+- ETM-R7 supported
+- ETF 4 KBytes for program flow trace
+
 
