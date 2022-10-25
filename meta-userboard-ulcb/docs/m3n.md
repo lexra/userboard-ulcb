@@ -23,15 +23,17 @@ The M3-N includes:
 
 ### Arm Core
 
-- Arm Cortex-A57 Dual MPCore 1.5 GHz – 1.8 GHz (with DVFS control)
-- L2 cache 1 Mbytes (ECC)
-- NEON™/VFPv4 supported
-- Security extension supported
-- Virtualization supported
-- Armv8 architecture
-- JTAG/SWD I/F supported
-- ETM-A57/A53 supported (each CPU)
-- ETF 16 KBytes for program flow trace (each cluster)
+- System CPU Cortex-A57
+  - Arm Cortex-A57 Dual MPCore 1.5 GHz – 1.8 GHz (with DVFS control)
+  - L2 cache 1 Mbytes (ECC)
+  - NEON™/VFPv4 supported
+  - Security extension supported
+  - Virtualization supported
+  - Armv8 architecture
+- Debug and Trace
+  - JTAG/SWD I/F supported
+  - ETM-A57/A53 supported (each CPU)
+  - ETF 16 KBytes for program flow trace (each cluster)
 
 ### Arm Realtime Core
 
