@@ -111,16 +111,16 @@ for Dual QSPI (QSPI0+QSPI1).
 
 ### Internal Bus Module
 
-- AXI-bus
-  - On-chip main bus
-    - Bus protocol: AXI3 with QoS control
-    - Frequency: 400 MHz
-    - Bus width: 512 bits/256 bits/128 bits
-  - On-chip CPU bus
-    - Bus protocol: AXI3
-    - Frequency: 800 MHz
-    - Bus width: 128 bits
-- Direct Memory Access Controller for System (SYS-DMAC) 
+##### AXI-bus
+- On-chip main bus
+  - Bus protocol: AXI3 with QoS control
+  - Frequency: 400 MHz
+  - Bus width: 512 bits/256 bits/128 bits
+- On-chip CPU bus
+  - Bus protocol: AXI3
+  - Frequency: 800 MHz
+  - Bus width: 128 bits
+##### Direct Memory Access Controller for System (SYS-DMAC) 
   - Address space: 4 GBytes on architecture
   - Data transfer length: Byte, word (2 Bytes), longword (4 Bytes), 8 Bytes, 16 Bytes, 32 Bytes and 64 Bytes
   - Maximum number of transfer times: 16,777,215 times
@@ -132,7 +132,7 @@ for Dual QSPI (QSPI0+QSPI1).
   - Descriptor function (each channel) supported
   - MMU (each channel) supported
   - Channel bandwidth arbiter (each channel)
-- Boot
+##### Boot
   - System startup with selectable boot mode at power-on reset
   - Either external ROM boot (area 0)* or on-chip ROM boot can be selected through MD pin on development chip.
   - In on-chip ROM boot, RPC-IF or QSPI serial ROM boot is supported.
@@ -141,7 +141,7 @@ for Dual QSPI (QSPI0+QSPI1).
   - Secure boot supported. Integrity check of boot image is proceeded before executing.
   - On secure chip, boot operation is restricted to on-chip ROM boot mode.
   - About detail information of BOOT, refer to Section 19 (Boot) and Appendix B (Active sequence).
-- Realtime Direct Memory Access Controller (RT-DMAC)
+##### Realtime Direct Memory Access Controller (RT-DMAC)
   - 16 channels for Realtime domain
   - Address space: 4 GBytes on architecture
   - Data transfer length: Byte, word (2 Bytes), longword (4 Bytes), 8 Bytes, 16 Bytes, 32 Bytes and 64 Bytes
@@ -154,7 +154,7 @@ for Dual QSPI (QSPI0+QSPI1).
   - Descriptor function (each channel) supported
   - MMU (each channel) supported
   - Channel bandwidth arbiter (each channel)
-- Direct Memory Access Controller for Audio (Audio-DMAC)
+##### Direct Memory Access Controller for Audio (Audio-DMAC)
   - 32 channels
   - asdm0: 16 channels
   - asdm1: 16 channels
@@ -169,7 +169,7 @@ for Dual QSPI (QSPI0+QSPI1).
   - Descriptor function (each channel) supported
   - MMU (each channel) supported
   - Channel bandwidth arbiter (each channel)
-- Audio-DMACPeripheral-Peripheral
+##### Audio-DMACPeripheral-Peripheral
   - Audio-DMAC (for transfer from Peripheral to Peripheral)
   - 4 channels for audio domain
   - Data transfer length: longword (4 Bytes)
@@ -177,10 +177,10 @@ for Dual QSPI (QSPI0+QSPI1).
   - Transfer request: Selectable from on-chip audio peripheral module request
   - Priority: round-robin mode
   - Interrupt request: not supports interrupt request to CPU at the end of data transfer
-- IPMMU
+##### IPMMU
   - An IPMMU is a memory management unit (MMU) which provides address translation and access protection functionalities to processing units and interconnect networks. 
 
-- Interrupt Controller (INTC) 
+##### Interrupt Controller (INTC) 
   - INTC-AP (For All Products; for APSystem core CortexA57/Cortex-A53)
     - 7 interrupt pins which can detect external interrupts
     - Max. 480 shared peripheral interrupts supported
