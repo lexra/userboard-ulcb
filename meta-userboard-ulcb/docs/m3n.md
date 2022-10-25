@@ -207,7 +207,7 @@ for Dual QSPI (QSPI0+QSPI1).
 
 ### Graphics Units
 
-- 3D Graphics Engine (3DGE) 
+##### 3D Graphics Engine (3DGE) 
   - Imagination Technologies PowerVR Series 7XE GE7800
   - Max. Freq. 700 MHz with DVFS control
   - Drastically performance improvements for sophisticated graphics and GPU computer
@@ -215,7 +215,8 @@ for Dual QSPI (QSPI0+QSPI1).
   - Lowest memory bandwidth in the industry with compression technologies
   - Ultra HD deep color GPU Support APIs: OpenGL ES 3.1, (OpenCL 1.2 EP)
   - 2.8Gpix/s 233Mpoly/s 44.8GFLOPS
-- 2D Graphics Engine (D/AVE HD) 
+
+##### 2D Graphics Engine (D/AVE HD) 
   - TES Corporation D/AVE HD
   - Max. Freq. 266/400 MHz as core clock frequency
   - R-Car H3, R-Car M3-W, R-Car M3-W+: 266 MHz
@@ -229,7 +230,8 @@ for Dual QSPI (QSPI0+QSPI1).
   - Beziers
   - Advanced Blit operations supporting scaling, stretching, rotating, coloring and alpha-blending
   - Convolution Filtering
-- Display Unit (DU)
+
+##### Display Unit (DU)
   - Display channel
     - 3 independently controllable channels
   - Interface
@@ -265,28 +267,49 @@ for Dual QSPI (QSPI0+QSPI1).
     - Color space conversion. Following functions will be supported by Renesas software portfolio.
     - γ correction, gain correction
     - Applies correction of color (skin color adjustment and color correction set in memory) in terms of color phase, brightness, and chromaticity for a specified range of colors or for the full range of colors
-- TCON
+
+##### TCON
   - 2 channels (TCON0, TCON1) (TCON0 is output via LVDS interface)
   - Modulate the various timing signal for LCD panel driver with RGB parallel output interface
-- Display Output Checker (DOC) 
+
+##### Display Output Checker (DOC) 
   - The DOC allows to check whether the display content (warning, light, and so on) is correctly output by the Display Unit (DU). 
-- Video Input Module (VIN)
-  - MIPI-CSI2 interface
-    - 2 channels (4lane × 1channel, 2lane × 1channel)
-    - Interleaving by 4 VC (virtual channel) supported
-    - Filtering by DT (data type) supported
-    - YUV422 8/10bit, RGB888, Embedded 8bit, User Defined 8bit are supported
-    - 1.5Gbps/Lane
-  - Digital interface
-    - 2 channels (RGB/YCbCr)
-    - Dotclk 100 MHz
-    - ITU-R BT.601 interface: 8-, 10- (same size only (not scaling)), 12- (same size only (not scaling)) 16-, 20- (same size only (not scaling)) or 24-bit (same size only (not scaling)), YCbCr422, 18-bit RGB666, 24-bit RGB888
-    - ITU-R BT.656 interface: 8-, 10- (same size only (not scaling)), or 12-bit (same size only (not scaling)) YCbCr422
-    - ITU-R BT.1358 interface: 16-, 20- (same size only (not scaling)), or 24-bit (same size only (not scaling)) YCbCr422
-    - ITU-R BT.709 interface: 8-, 10- (same size only (not scaling)), 12- (same size only (not scaling)) 16-, 20- (same size only (not scaling)) or 24-bit (same size only (not scaling)) YCbCr422, 18-bit RGB666, 24-bit RGB888 About Digital RGB channel usage combination, Refer as follows cases.
-      - CASE1 VIN-A8bit + VIN-B8/12/16
-      - CASE2 VIN-A12bit + VIN-B8/12/16
-      - CASE3 VIN-A16bit + VIN-B8/12
+
+##### Video Input Module (VIN)
+- MIPI-CSI2 interface
+  - 2 channels (4lane × 1channel, 2lane × 1channel)
+  - Interleaving by 4 VC (virtual channel) supported
+  - Filtering by DT (data type) supported
+  - YUV422 8/10bit, RGB888, Embedded 8bit, User Defined 8bit are supported
+  - 1.5Gbps/Lane
+- Digital interface
+  - 2 channels (RGB/YCbCr)
+  - Dotclk 100 MHz
+  - ITU-R BT.601 interface: 8-, 10- (same size only (not scaling)), 12- (same size only (not scaling)) 16-, 20- (same size only (not scaling)) or 24-bit (same size only (not scaling)), YCbCr422, 18-bit RGB666, 24-bit RGB888
+  - ITU-R BT.656 interface: 8-, 10- (same size only (not scaling)), or 12-bit (same size only (not scaling)) YCbCr422
+  - ITU-R BT.1358 interface: 16-, 20- (same size only (not scaling)), or 24-bit (same size only (not scaling)) YCbCr422
+  - ITU-R BT.709 interface: 8-, 10- (same size only (not scaling)), 12- (same size only (not scaling)) 16-, 20- (same size only (not scaling)) or 24-bit (same size only (not scaling)) YCbCr422, 18-bit RGB666, 24-bit RGB888 About Digital RGB channel usage combination, Refer as follows cases.
+    - CASE1 VIN-A8bit + VIN-B8/12/16
+    - CASE2 VIN-A12bit + VIN-B8/12/16
+    - CASE3 VIN-A16bit + VIN-B8/12
+- Capturing function
+  - Up to 8 input images can be captured (using VC, DT filtering)
+- Clipping function
+  - Up to 4096 × 4096
+- Horizontal scaling
+  - Up to two times, but only scaling down is possible for HD1080i or HD1080p data. (one input only)
+- Vertical scaling
+  - Up to three times, but only scaling down is possible for HD1080i or HD1080p data. (one input only)
+- Output format
+  - RGB-565, ARGB-1555, ARGB8888, YCbCr422, RGB888, YCbCr420 YC separation, and extraction of the Y component
+
+##### IMR-LX4
+
+- IMR-LX4-M3W/M3N
+- 2 Image Renders for camera image distortion correction application
+- Pixel Performance: 400Mpixel/sec (peak, @400 MHz) per one IMR-LX4-M3W/M3N
+
+
 
 
 
