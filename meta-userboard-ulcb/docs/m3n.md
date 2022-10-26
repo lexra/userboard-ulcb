@@ -379,6 +379,7 @@ VSPDL has the following features. 1 set of VSPDL is integrated.
   - 1920 pixels × 1088 lines
 - Includes its own reference data cache
 - Lossless image compression for reference picture is supported if bit depth is 8 bits
+
 Use the software from Renesas to handle iVDP1C functions.
 
 ##### Video Codec Processor (VCP4) 
