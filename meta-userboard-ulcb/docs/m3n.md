@@ -368,6 +368,19 @@ VSPDL has the following features. 1 set of VSPDL is integrated.
   - Writing back image data which is transferred to Display Unit (DU) to memory
 - Supports DISCOM function
 
+##### Video Decoding Processor for inter-device video transfer (iVDP1C)
+
+- Low-latency decoder H.264/AVC, JPEG
+- Color format 4:2:0/4:2:2
+- Bit depth 8/10/12bits
+- Performance:
+  - 1280 pixels × 960 lines × 30 frames/second × 4 channels
+- Max resolution:
+  - 1920 pixels × 1088 lines
+- Includes its own reference data cache
+- Lossless image compression for reference picture is supported if bit depth is 8 bits
+Use the software from Renesas to handle iVDP1C functions.
+
 ##### Video Codec Processor (VCP4) 
 
 The VCP4 is a multi-codec module which provides encoding and decoding capabilities
