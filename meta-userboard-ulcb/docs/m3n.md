@@ -311,10 +311,8 @@ for Dual QSPI (QSPI0+QSPI1).
 
 ##### Video Signal Processor (VSPI) 
 
-- VSPI has the following features: 
-  - 1 set of VSPI is integrated.
-  - 500 Mpix/s process rate per 1 VSPI
-  - Supports 4K (3840 pixels × 2160 lines) processing
+VSPI has the following features: 1 set of VSPI is integrated. 500 Mpix/s process rate per 1 VSPI. Supports 4K (3840 pixels × 2160 lines) processing. 
+
 - Supports Various Data Formats and Conversion
   - Supports YCbCr444/422/420, RGB, αRGB, αplane
   - Color space conversion and changes to the number of colors by dithering
@@ -336,9 +334,8 @@ for Dual QSPI (QSPI0+QSPI1).
 
 ##### Video Signal Processor (VSPD)
 
-- VSPD has the following features. 
-  - 1 set of VSPD is integrated
-  - Supports 4K (3840 pixels × 2160 lines) resolution
+VSPD has the following features. 1 set of VSPD is integrated. Supports 4K (3840 pixels × 2160 lines) resolution
+
 - Supports Various Data Formats and Conversion
   - Supports YCbCr444/422/420, RGB, αRGB, αplane
   - Color space conversion and changes to the number of colors by dithering
@@ -353,6 +350,23 @@ for Dual QSPI (QSPI0+QSPI1).
   - Writing back image data which is transferred to Display Unit (DU) to memory
 - Supports DISCOM function
 
+##### Video Signal Processor (VSPDL)
+
+VSPDL has the following features. 1 set of VSPDL is integrated. 
+
+- Supports various data formats and conversion
+  - Supports YCbCr444/422/420, RGB, αRGB, αplane
+  - Color space conversion and changes to the number of colors by dithering
+  - Color keying
+  - Supports combination between pixel alpha and global alpha
+  - Supports generating pre multiplied alpha
+- Video processing
+  - Blending of five picture layers and raster operations (ROPs)
+- Direct connection to display module
+  - Supports two display output interfaces
+  - Supports 2048 pixels in horizontal direction
+  - Writing back image data which is transferred to Display Unit (DU) to memory
+- Supports DISCOM function
 
 
 
