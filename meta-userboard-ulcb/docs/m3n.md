@@ -481,6 +481,87 @@ The FDP1 is the de-interlacing module which converts the interlaced video to pro
 - Automatically generates antialiasing filter coefficients
 - For monaural to eight-channel sound sources
 
+##### Channel count conversion unit (CTU) 
+
+- Downmixing and splitter functions
+  - Conversion of eight input channels into four output channels
+  - Conversion of six input channels into two output channels
+  - Conversion of two input channels into four sets of two output channels
+  - Conversion of one input channel into eight sets of one output channel
+  - No conversion
+
+##### Mixer (MIX)
+
+- Mixing (adds) two to four sources into one
+- Ratio for adding sources is selectable
+- Ratio is dynamically changeable
+- Mixing with volume ramp is available (ramp period is selectable)
+
+##### Digital volume and mute function (DVC)
+
+- Volume control function including digital volume, volume ramp, and zero-crossing mute
+- The digital volume function is specified by a 24-bit fixed-point value within the range from 0 to 8 times (mute, or -120 to 18 dB)
+- The volume ramp function can be used for soft mute, fade-in, fadeout, or desired volume adjustment
+- The volume ramp period can be changed within the sampling range from the 0th to 23rd power of 2
+- The zero-crossing mute function silences the sound at the zerocrossing point of the audio data
+
+#### Serial Sound Interface Unit (SSIU) 
+
+##### Overall specification
+
+- Includes ten SSI modules functioning as interfaces with external devices.
+  - Supports short and long formats for monaural
+  - Supports TDM format (six modules of ten modules can be used for this function) 
+  - Max. 16 independent monaural sound sources in a TDM format can be in TDM format.
+
+##### Serial sound interface (SSI)
+
+- 10 channels
+- Max SCK frequency 15.1 MHz (for slave input) or 12.5 MHz (for master output)
+- Operating mode: non-compressed mode (Not support compressed mode)
+- Supports versatile serial audio formats (I2S/left justified/right justified)
+- Supports master/slave functions
+- Programmable word clock, bit clock generation functions
+- Multichannel format functions (up to four channels)
+- Supports 8-/16-/18-/20-/22-/24-bit data formats
+- Supports TDM mode
+- Supports WS continue mode
+- The DMA controller or interrupts control the transfer of data to and from the SSI module.
+- Supports short and long frames for monaural data (valid data lengths are 8 and 16 bits)
+- Up to nine independent clock signals can be input.
+
+#### MediaLB I/F (MLBIF)
+
+- MOST interface
+  - Media Local Bus (MediaLB)
+    - MediaLB 3-pin interface (Not support MediaLB 5-pin/6-pin interface)
+    - Up to 50-Mbps data transfer rate is supported.
+  - Synchronous transfer
+  - Asynchronous transfer
+  - Isochronous transfer
+  - Control transfer 
+- Buffer memory for MLBIF
+
+#### Digital Transmission Content Protection (DTCP)
+
+- AKE and the protection of contents is possible.
+- Two lines are simultaneously possible.
+- Supports MOST-DTCP only
+- Supports audio data only
+
+#### Audio Clock Generator (ADG) 
+
+Selection or division of audio clock signals
+
+
+
+
+
+
+
+
+
+
 
 
 
