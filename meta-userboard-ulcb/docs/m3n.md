@@ -473,13 +473,13 @@ The FDP1 is the de-interlacing module which converts the interlaced video to pro
 
 #### Sampling Rate Converter Unit (SCU) 
 
-##### Overall specification
-
-- Includes ten SRC modules
+Includes ten SRC modules
   - Supports the quality suitable for audio sound (High-soundquality type) (THD+N -132dB): six modules
   - Supports the quality suitable for voice sound (general-soundquality type) (THD+N -96dB): four modules
-- The SRC module is capable of correcting phase change and delay (timing jitter) generated during data transfer over external memories or external devices.
-- The channel count conversion unit (CTU), mixer (MIX), and digital mute and volume function (DVC) can be used on two fixed output channels. 
+
+The SRC module is capable of correcting phase change and delay (timing jitter) generated during data transfer over external memories or external devices.
+
+The channel count conversion unit (CTU), mixer (MIX), and digital mute and volume function (DVC) can be used on two fixed output channels. 
 
 ##### Sampling rate conversion (SRC) 
 
@@ -517,12 +517,10 @@ The FDP1 is the de-interlacing module which converts the interlaced video to pro
 
 #### Serial Sound Interface Unit (SSIU) 
 
-##### Overall specification
-
-- Includes ten SSI modules functioning as interfaces with external devices.
-  - Supports short and long formats for monaural
-  - Supports TDM format (six modules of ten modules can be used for this function) 
-  - Max. 16 independent monaural sound sources in a TDM format can be in TDM format.
+Includes ten SSI modules functioning as interfaces with external devices.
+- Supports short and long formats for monaural
+- Supports TDM format (six modules of ten modules can be used for this function) 
+- Max. 16 independent monaural sound sources in a TDM format can be in TDM format.
 
 ##### Serial sound interface (SSI)
 
