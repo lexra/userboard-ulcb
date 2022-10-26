@@ -311,11 +311,10 @@ for Dual QSPI (QSPI0+QSPI1).
 
 ##### Video Signal Processor (VSPI) 
 
-VSPI has the following features: 
+- VSPI has the following features: 
   - 1 set of VSPI is integrated.
   - 500 Mpix/s process rate per 1 VSPI
   - Supports 4K (3840 pixels × 2160 lines) processing
-
 - Supports Various Data Formats and Conversion
   - Supports YCbCr444/422/420, RGB, αRGB, αplane
   - Color space conversion and changes to the number of colors by dithering
