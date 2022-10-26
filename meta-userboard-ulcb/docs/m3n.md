@@ -399,19 +399,13 @@ controlling software for VCP4 executed on host CPU.
   - VP9 (Profile 0) decoding 
 - Supported for up to 4K resolutions (H.265, H.264 and VP9)
   - Multiple channel processing:
-    - (H.265 1920 × 1080p × 120 fps) + (H.264 1920 × 1080p × 120 fps), or
-    - (H.265 1920 × 1080p × 120 fps) + (H.264 1920 × 1080p × 30fps) + (RealVideo8/9/10 1920 × 1080p × 30 fps), or 
-    - (H.265 1920 × 1080p × 120 fps) + (H.264 1920 × 1080p × 60 fps) + (Others 1920 × 1080p × 30 fps), or
-    - (H.265 1920 × 1080p × 120 fps) + (H.264 1920 × 1080p × 30 fps) + (Others 1920 × 1080p × 60 fps)
-    - (VP9 1920 x 1080p x 120 fps), or
-    - (VP9 1920 × 1080p × 60 fps) + (H.264 1920 × 1080p × 120 fps), or
-    - (VP9 1920 × 1080p × 60 fps) + (H.264 1920 × 1080p × 30fps) + (RealVideo8/9/10 1920 × 1080p × 30 fps), or
-    - (VP9 1920 × 1080p × 60 fps) + (H.264 1920 × 1080p × 60 fps) + (Others 1920 × 1080p × 30 fps), or
-    - (VP9 1920 × 1080p × 60 fps) + (H.264 1920 × 1080p × 30 fps) + (Others 1920 × 1080p × 60 fps), or
-    - (VP9 1920 × 1080p × 30 fps) + (H.265 1920 × 1080p × 60 fps) + (H.264 1920 × 1080p × 120 fps), or
-    - (VP9 1920 × 1080p × 30 fps) + (H.265 1920 × 1080p × 60 fps) + (H.264 1920 × 1080p × 30fps) + (RealVideo8/9/10 1920 × 1080p × 30 fps), or
-    - (VP9 1920 × 1080p × 30 fps) + (H.265 1920 × 1080p × 60 fps) + (H.264 1920 × 1080p × 60 fps) + (Others 1920 × 1080p × 30 fps), or
-    - (VP9 1920 × 1080p × 30 fps) + (H.265 1920 × 1080p × 60 fps) + (H.264 1920 × 1080p × 30 fps) + (Others 1920 × 1080p × 60 fps)
+    - (H.264/H.265 1920 × 1080p × 120 fps),
+    - or (H.264/H.265 1920 × 1080p x 30 fps) + (RealVideo8/9/10 1920 × 1080p × 30 fps),
+    - or (H.264/H.265 1920 × 1080p × 60 fps) + (Others 1920 × 1080p × 30 fps),
+    - or (H.264/H.265 1920 × 1080p × 30 fps) + (Others 1920 × 1080p × 60 fps)
+    - (VP9 1920 × 1080p × 60 fps), 
+    - or (VP9 1920 × 1080p × 30 fps) + (H.264 1920 × 1080p × 60 fps),
+    - or (VP9 1920 × 1080p × 30 fps) + (Others 1920 × 1080p × 30 fps)
 - Data handling on a picture-by-picture basis
   - Encodes/decodes data one picture (frame or field) at a time.
 - High picture quality
