@@ -553,14 +553,35 @@ The FDP1 is the de-interlacing module which converts the interlaced video to pro
 
 Selection or division of audio clock signals
 
+### Storage
 
+#### USB2.0 Host (EHCI/OHCI)
 
+- 2 channels (Host only1 channel/Host-Function 1channel)
+- USB Host (EHCI/OHCI) 2LINK
+- (USB3.0 module also can be used as USB2.0)
+- Compliance with USB2.0
+- USB Function 1LINK
+- Supports On-The-Go (OTG) function Rev2.0 complying with 2 protocols:
+  - Session Request Protocol (SRP).
+  - Host Negotiation Protocol (HNP).
+- Compliance with USB2.0 (High-Speed)
+- Interrupt request
+- Internal dedicated DMA
+- Compliance with Battery Charging function Rev1.2:
+  - Charging Port (Host): CDP, SDP are supported (Not support DCP).
+  - Portable Device (Function) is supported. 
 
+#### USB3.0 Host Controller
 
+- USB 3.0 DRD 1 channel
+- Supports SS/HS/FS/LS. xHCI
 
+#### Serial-ATA Gen3
 
-
-
+- Serial ATA Standard Rev3.2 supported
+- 6.0-Gbps (Gen3) transfer rate supported
+  - PHY is shared with PCIE Controller
 
 
 
