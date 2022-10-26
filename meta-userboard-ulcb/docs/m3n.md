@@ -745,10 +745,32 @@ receiver both have a 16-stage FIFO buffer structure, enabling continuous serial 
 - On-chip baud rate generator, enabling any bit rate to be selected. The SCIF enables choice of a clock source for transmission/reception:
   - a clock from the on-chip baud rate generator based on the internal clock or an external clock.
 - Eight interrupt sources: The SCIF has eight types of interrupt sources. receive-data-ready, receive-FIFO-data-full, break, transmit-FIFO-data-empty, transmitend, receive-error, overrun-error and time-out and enables any of them to be requested independently. 
+- DMA data transfer: When the transmit FIFO register is empty or the receive FIFO register has received data, issuing a DMA transfer request activates the DMA controller (DMAC) to execute a data transfer.
+- In asynchronous mode using channels 0, 1, 3, and 4, modem control functions (RTS and CTS) are stored.
+- RTS and CTS are not implement for SCIF2 and SCIF5
+- The amount of data in the transmit/receive FIFO registers and the number of receive errors in receive data in the receive FIFO register are available. 
+- In asynchronous mode, a receive data ready (DR) or a timeout error (TO) can be detected during reception.
 
+#### Clock-Synchronized Serial Interface with FIFO (MSIOF)
 
+- 4 channels
+- Internal 32-bit × 64-stage transmit FIFOs/internal 32-bit × 256-stage receive FIFOs
+- Supports master and slave modes
+- Internal prescaler
+- Supports serial formats: IIS, SPI (master and slave modes)
+- Interrupt request, DMAC request
 
+#### High Speed Serial Communication Interface with FIFO (HSCIF) 
 
+- 5 channels
+- Asynchronous serial communication mode
+- Capable of full-duplex communication
+- On-chip baud rate generator, enabling any bit rate to be selected
+- Eight interrupt sources
+- DMA data transfer
+- Modem control functions (HRTS# and HCTS#) are stored.
+- The amount of data in the transmit/receive FIFO registers and the number of receive errors in receive data in the receive FIFO register are available. 
+- A receive data ready (DR) or a timeout error (TO) can be detected during reception.
 
 
 
