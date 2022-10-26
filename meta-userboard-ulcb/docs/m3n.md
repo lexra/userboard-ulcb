@@ -441,6 +441,47 @@ The FDP1 is the de-interlacing module which converts the interlaced video to pro
   - Diagonal line interpolation (DLI)
 - Visual near lossless image compression supported and 50% of bandwidth is diminished
 
+### Sound Interface
+
+#### Audio DSP (ADSP)
+
+- On-chip Audio-DSP (Dual MACs can operate as 32 × 16-bit / 24 × 24-bit)
+- 32-bit RISC architecture with 7-stage pipeline
+- 24-bit audio processing instructions
+- Dual-issue, static super-scalar VLIW
+- Instruction RAM 128KB, Data RAM 96KB
+
+#### Digital Radio Interface (DRIF) 
+
+- 4 channels of DRIF
+- FIFO capacity: 32 bits × 256 stages for reception
+- MSB first or LSB first selectable for data reception
+- Synchronization by frame synchronization pulse, or level mode, or left/right channel switch
+- Supports mode: Slave mode
+- DMA transfer
+- Serial format: Supports serial format of IIS, SPI (Slave mode)
+
+#### Sampling Rate Converter Unit (SCU) 
+
+##### Overall specification
+
+- Includes ten SRC modules
+  - Supports the quality suitable for audio sound (High-soundquality type) (THD+N -132dB): six modules
+  - Supports the quality suitable for voice sound (general-soundquality type) (THD+N -96dB): four modules
+- The SRC module is capable of correcting phase change and delay (timing jitter) generated during data transfer over external memories or external devices.
+- The channel count conversion unit (CTU), mixer (MIX), and digital mute and volume function (DVC) can be used on two fixed output channels. 
+
+##### Sampling rate conversion (SRC) 
+
+- Capable of asynchronous sampling rate conversion
+- Supports resolutions up to 24 bits
+- Two kinds of filter type for SRC.
+  - Supports the quality suitable for audio sound (High-soundquality type) (THD+N -132dB): Realized the filter by passband - 1dB@0.4575FS, cutoff -18dB@0.5FS.
+  - Supports the quality suitable for voice sound (general-soundquality type) (THD+N -96dB): Realized the filter by passband - 1dB@0.4561FS, cutoff -72dB@0.5FS. (Characteristics of each filter is written in the equivalent/up-sampling cases.)
+- Automatically generates antialiasing filter coefficients
+- For monaural to eight-channel sound sources
+
+
 
 
 
