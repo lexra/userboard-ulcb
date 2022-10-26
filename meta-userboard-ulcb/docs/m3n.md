@@ -368,11 +368,48 @@ VSPDL has the following features. 1 set of VSPDL is integrated.
   - Writing back image data which is transferred to Display Unit (DU) to memory
 - Supports DISCOM function
 
+##### Video Codec Processor (VCP4) 
 
+The VCP4 is a multi-codec module which provides encoding and decoding capabilities
+on the basis of multiple video coding schemes, e.g., H.265/HEVC, H.264/AVC, MPEG4, MPEG-2 and VC-1. 
 
+This IP (Intellectual Property) is a multi codec that processes the frame or each field by
+controlling software for VCP4 executed on host CPU. 
 
+- The VCP4 has the following features: Support for multiple codecs
+  - H.265/HEVC MP (Main Profile) decoding
+  - H.264/MPEG-4 AVC HP (High Profile) and MVC SHP (Stereo High Profile) encoding and decoding
+  - H.262/MPEG-2 MP (Main Profile) decoding
+  - MPEG-4 ASP (Advanced Simple Profile) decoding
+  - VC-1 SP/MP/AP (Simple, Main, Advanced Profile) decoding
+  - H.263 Baseline decoding
+  - DivX decoding (Home Theater*, HD1080*, and Plus HD Profiles)
+  - RealVideo8/9/10 decoding
+  - VP8 encoding and decoding
+  - VP9 (Profile 0) decoding 
+- Support for up to 4K resolutions (H.265, H.264 and VP9)
+  - Multiple channel processing:
+    - (H.264/H.265 1920 × 1080p × 120 fps),
+    - or (H.264/H.265 1920 × 1080p x 30 fps) + (RealVideo8/9/10 1920 × 1080p × 30 fps),
+    - or (H.264/H.265 1920 × 1080p × 60 fps) + (Others 1920 × 1080p × 30 fps),
+    - or (H.264/H.265 1920 × 1080p × 30 fps) + (Others 1920 × 1080p × 60 fps) 
+    - (VP9 1920 × 1080p × 60 fps),
+    - or (VP9 1920 × 1080p × 30 fps) + (H.264 1920 × 1080p × 60 fps),
+    - or (VP9 1920 × 1080p × 30 fps) + (Others 1920 × 1080p × 30 fps)
+- Data handling on a picture-by-picture basis
+  - Encodes/decodes data one picture (frame or field) at a time.
+- High picture quality
+  - Supports the H.264 high-efficiency coding tools (CABAC, 8 × 8 frequency conversion, and quantization matrix). 
+  - High-efficiency motion vector detection by a combination of discrete search and trace search
+  - Optimal-mode selection by Rate-Distortion (RD) cost evaluation
+  - Picture quality control based on activity analysis results which match visual models
+- Low power dissipation
+  - Dynamically disables the clocks for the entire VCP4.
+  - Dynamically disables the clocks for individual submodules.
+- Includes its own reference data cache
+- Lossless image compression for reference picture is supported
 
-
+Use the software from Renesas to handle VCP4 functions. 
 
 
 
