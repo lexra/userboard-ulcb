@@ -592,10 +592,32 @@ Selection or division of audio clock signals
 - Support block transfer (not support stream transfer)
 - Block size in multiple block transfer: 512 Bytes
 
+#### rawNAND Controller
 
+- The NAND Flash Memory Interface controller implements the function of a high level interface to one NAND flash device. It supports the functionality of the high speed NAND Flash devices described in the ONFI 1.x specifications.
 
+### Network 
 
+#### Controller Area Network Interface (CAN interface)
 
+- 2 interfaces
+- Supports CAN specification 2.0B
+- Maximum bit rate: 1 Mbps
+- Message box
+  - Normal mode: 32 receive-only mailboxes and 32 mailboxes for transmission/reception
+  - FIFO mode:
+    - 32 receive-only mailboxes and 24 mailboxes for transmission/reception, 4-stage FIFO for transmission, and 4-stage FIFO for reception
+- Reception
+  - Data frame and remote frame can be received.
+  - Selectable receiving ID format
+  - Selectable overwrite mode (message overwritten) or overrun mode (message discarded)
+- Acceptance filter
+- Mask can be enabled or disabled for each mailbox.
+- Transmission
+  - Data frame and remote frame can be transmitted.
+  - Selectable transmitting ID format (only standard ID, only extended ID, or both IDs)
+  - Selectable ID priority mode or mailbox number priority mode
+- Sleep mode for reducing power consumption 
 
 
 
