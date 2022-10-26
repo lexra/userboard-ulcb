@@ -639,6 +639,90 @@ Selection or division of audio clock signals
 - RGMII v1.3
 - Supports transfer at 1000 Mbps and 100 Mbps.
 
+### Timer
+
+#### RCLK Watchdog Timer
+
+- 1 channel
+- Internal 16-bit watchdog timer operated by RCLK
+- Programmable overflow time period: more than 1 hour count capable
+
+#### 16-Bit Timer Pulse Unit (TPU) 
+
+- 4-channel 16-bit timers
+- Each channel outputs PWM
+
+#### System Watchdog Timer
+
+- 1 channel
+- Internal 16-bit watchdog timer
+- Programmable overflow time period: more than 1 hour count capable initial counter value 171[s] 
+
+#### Compare Match Timer Type0 (CMT0)
+
+- 2 channels
+- 32-bit timer (16 bits/32 bits can be selected)
+- Source clock: RCLK clock
+- Compare match function provided
+- Interrupt requests
+
+#### Compare Match Timer Type1 (CMT1)
+
+CMT2 and CMT3 were the same as CMT1. 
+
+- 8 channels
+- 48-bit timer (16 bits/32 bits/48 bits can be selected)
+- Source clock: RCLK/system clock
+- Compare match function provided
+- Interrupt requests 
+
+#### System Timer
+
+- 32-bit timer, 1channel (16 bits/32 bits can be selected)
+- Compare match function provided
+- Interrupt requests
+
+#### System up-time clock
+
+- 1 channel
+- Internal 32-bit timer
+- Programmable overflow time period: maximum 24 hours
+
+#### Timer Unit (TMU) 
+
+- 15 channels
+- 32-bit timer
+- Auto-reload type 32-bit down counter
+- Internal prescaler
+- Interrupt request
+- 2 channels for input capture
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
