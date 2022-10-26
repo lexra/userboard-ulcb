@@ -619,9 +619,25 @@ Selection or division of audio clock signals
   - Selectable ID priority mode or mailbox number priority mode
 - Sleep mode for reducing power consumption 
 
+#### CAN-FD
 
+-  2 interfaces
+-  8 Mbps (CAN clock 40 MHz)
 
+#### PCIE Controller
 
+- PCI Express Base Specification Revision 2.0
+- PHY integrated
+- 1 Lane × 2 channels (one of PHY is shared with Serial ATA)
+
+#### EthernetAVB-IF
+
+- Supports IEEE802.1BA, IEEE802.1AS, IEEE802.1Qav and IEEE1722 functions
+- Magic packet detection
+- Supports Reception Filtering to separate streaming frames from different sources
+- Supports interface conforming to IEEE802.3 PHY RGMII (Reduced Gigabit Media Independent Interface)
+- RGMII v1.3
+- Supports transfer at 1000 Mbps and 100 Mbps.
 
 
 
