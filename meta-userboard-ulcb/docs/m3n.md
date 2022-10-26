@@ -307,11 +307,33 @@ for Dual QSPI (QSPI0+QSPI1).
 - 2 Image Renders for camera image distortion correction application
 - Pixel Performance: 400Mpixel/sec (peak, @400 MHz) per one IMR-LX4-M3W/M3N
 
+### Video Processing
 
+##### Video Signal Processor (VSPI) 
 
+VSPI has the following features: 
+  - 1 set of VSPI is integrated.
+  - 500 Mpix/s process rate per 1 VSPI
+  - Supports 4K (3840 pixels × 2160 lines) processing
 
-
-
+- Supports Various Data Formats and Conversion
+  - Supports YCbCr444/422/420, RGB, αRGB, αplane
+  - Color space conversion and changes to the number of colors by dithering
+  - Color keying
+  - Supports combination between pixel alpha and global alpha
+  - Supports generating pre multiplied alpha
+- Video Processing
+  - Up and down scaling with arbitrary scaling ratio
+  - Super resolution processing
+  - Image rotation/reversal function: Reverses an image vertically/horizontally or rotates it by 90°/270°
+- Picture Quality/Color Correction with 1D/3D Look Up Table (LUT)
+  - Hue, brightness, and saturation adjustment
+  - 1D and 2D histogram
+    - Following functions will be supported by Renesas software portfolio.
+  - Dynamic γ correction and gain correction
+  - Correction of color (to adjust skin tones or colors in memory)
+- Visual near lossless image compression supported
+  - 50% of bandwidth is diminished 
 
 
 
