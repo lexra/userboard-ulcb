@@ -583,8 +583,14 @@ Selection or division of audio clock signals
 - 6.0-Gbps (Gen3) transfer rate supported
   - PHY is shared with PCIE Controller
 
+#### SD Card Host Interface (SDHI)
 
-
+- 2 channels
+- eMMC 5.0 base, Support HS400 class transfer rate
+- eMMC controllable
+- Data bus: 1/4/8-bit MMC mode (not support SPI mode)
+- Support block transfer (not support stream transfer)
+- Block size in multiple block transfer: 512 Bytes
 
 
 
