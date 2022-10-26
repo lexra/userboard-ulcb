@@ -109,7 +109,7 @@ for Dual QSPI (QSPI0+QSPI1).
 
 ### Internal Bus Module
 
-##### AXI-bus
+#### AXI-bus
 - On-chip main bus
   - Bus protocol: AXI3 with QoS control
   - Frequency: 400 MHz
@@ -118,7 +118,7 @@ for Dual QSPI (QSPI0+QSPI1).
   - Bus protocol: AXI3
   - Frequency: 800 MHz
   - Bus width: 128 bits
-##### Direct Memory Access Controller for System (SYS-DMAC) 
+#### Direct Memory Access Controller for System (SYS-DMAC) 
   - Address space: 4 GBytes on architecture
   - Data transfer length: Byte, word (2 Bytes), longword (4 Bytes), 8 Bytes, 16 Bytes, 32 Bytes and 64 Bytes
   - Maximum number of transfer times: 16,777,215 times
@@ -130,7 +130,7 @@ for Dual QSPI (QSPI0+QSPI1).
   - Descriptor function (each channel) supported
   - MMU (each channel) supported
   - Channel bandwidth arbiter (each channel)
-##### Boot
+#### Boot
   - System startup with selectable boot mode at power-on reset
   - Either external ROM boot (area 0)* or on-chip ROM boot can be selected through MD pin on development chip.
   - In on-chip ROM boot, RPC-IF or QSPI serial ROM boot is supported.
@@ -139,7 +139,7 @@ for Dual QSPI (QSPI0+QSPI1).
   - Secure boot supported. Integrity check of boot image is proceeded before executing.
   - On secure chip, boot operation is restricted to on-chip ROM boot mode.
   - About detail information of BOOT, refer to Section 19 (Boot) and Appendix B (Active sequence).
-##### Realtime Direct Memory Access Controller (RT-DMAC)
+#### Realtime Direct Memory Access Controller (RT-DMAC)
   - 16 channels for Realtime domain
   - Address space: 4 GBytes on architecture
   - Data transfer length: Byte, word (2 Bytes), longword (4 Bytes), 8 Bytes, 16 Bytes, 32 Bytes and 64 Bytes
@@ -152,7 +152,7 @@ for Dual QSPI (QSPI0+QSPI1).
   - Descriptor function (each channel) supported
   - MMU (each channel) supported
   - Channel bandwidth arbiter (each channel)
-##### Direct Memory Access Controller for Audio (Audio-DMAC)
+#### Direct Memory Access Controller for Audio (Audio-DMAC)
   - 32 channels
   - asdm0: 16 channels
   - asdm1: 16 channels
@@ -167,7 +167,7 @@ for Dual QSPI (QSPI0+QSPI1).
   - Descriptor function (each channel) supported
   - MMU (each channel) supported
   - Channel bandwidth arbiter (each channel)
-##### Audio-DMACPeripheral-Peripheral
+#### Audio-DMACPeripheral-Peripheral
   - Audio-DMAC (for transfer from Peripheral to Peripheral)
   - 4 channels for audio domain
   - Data transfer length: longword (4 Bytes)
@@ -175,10 +175,10 @@ for Dual QSPI (QSPI0+QSPI1).
   - Transfer request: Selectable from on-chip audio peripheral module request
   - Priority: round-robin mode
   - Interrupt request: not supports interrupt request to CPU at the end of data transfer
-##### IPMMU
+#### IPMMU
   - An IPMMU is a memory management unit (MMU) which provides address translation and access protection functionalities to processing units and interconnect networks. 
 
-##### Interrupt Controller (INTC) 
+#### Interrupt Controller (INTC) 
   - INTC-AP (For All Products; for APSystem core CortexA57/Cortex-A53)
     - 7 interrupt pins which can detect external interrupts
     - Max. 480 shared peripheral interrupts supported
@@ -205,7 +205,7 @@ for Dual QSPI (QSPI0+QSPI1).
 
 ### Graphics Units
 
-##### 3D Graphics Engine (3DGE) 
+#### 3D Graphics Engine (3DGE) 
   - Imagination Technologies PowerVR Series 7XE GE7800
   - Max. Freq. 700 MHz with DVFS control
   - Drastically performance improvements for sophisticated graphics and GPU computer
@@ -214,7 +214,7 @@ for Dual QSPI (QSPI0+QSPI1).
   - Ultra HD deep color GPU Support APIs: OpenGL ES 3.1, (OpenCL 1.2 EP)
   - 2.8Gpix/s 233Mpoly/s 44.8GFLOPS
 
-##### 2D Graphics Engine (D/AVE HD) 
+#### 2D Graphics Engine (D/AVE HD) 
   - TES Corporation D/AVE HD
   - Max. Freq. 266/400 MHz as core clock frequency
   - R-Car H3, R-Car M3-W, R-Car M3-W+: 266 MHz
@@ -229,7 +229,7 @@ for Dual QSPI (QSPI0+QSPI1).
   - Advanced Blit operations supporting scaling, stretching, rotating, coloring and alpha-blending
   - Convolution Filtering
 
-##### Display Unit (DU)
+#### Display Unit (DU)
   - Display channel
     - 3 independently controllable channels
   - Interface
@@ -266,14 +266,14 @@ for Dual QSPI (QSPI0+QSPI1).
     - γ correction, gain correction
     - Applies correction of color (skin color adjustment and color correction set in memory) in terms of color phase, brightness, and chromaticity for a specified range of colors or for the full range of colors
 
-##### TCON
+#### TCON
   - 2 channels (TCON0, TCON1) (TCON0 is output via LVDS interface)
   - Modulate the various timing signal for LCD panel driver with RGB parallel output interface
 
-##### Display Output Checker (DOC) 
+#### Display Output Checker (DOC) 
   - The DOC allows to check whether the display content (warning, light, and so on) is correctly output by the Display Unit (DU). 
 
-##### Video Input Module (VIN)
+#### Video Input Module (VIN)
 - MIPI-CSI2 interface
   - 2 channels (4lane × 1channel, 2lane × 1channel)
   - Interleaving by 4 VC (virtual channel) supported
@@ -301,7 +301,7 @@ for Dual QSPI (QSPI0+QSPI1).
 - Output format
   - RGB-565, ARGB-1555, ARGB8888, YCbCr422, RGB888, YCbCr420 YC separation, and extraction of the Y component
 
-##### IMR-LX4
+#### IMR-LX4
 
 - IMR-LX4-M3W/M3N
 - 2 Image Renders for camera image distortion correction application
@@ -309,7 +309,7 @@ for Dual QSPI (QSPI0+QSPI1).
 
 ### Video Processing
 
-##### Video Signal Processor (VSPI) 
+#### Video Signal Processor (VSPI) 
 
 VSPI has the following features: 1 set of VSPI is integrated. 500 Mpix/s process rate per 1 VSPI. Supports 4K (3840 pixels × 2160 lines) processing. 
 
@@ -332,7 +332,7 @@ VSPI has the following features: 1 set of VSPI is integrated. 500 Mpix/s process
 - Visual near lossless image compression supported
   - 50% of bandwidth is diminished 
 
-##### Video Signal Processor (VSPD)
+#### Video Signal Processor (VSPD)
 
 VSPD has the following features. 1 set of VSPD is integrated. Supports 4K (3840 pixels × 2160 lines) resolution
 
@@ -350,7 +350,7 @@ VSPD has the following features. 1 set of VSPD is integrated. Supports 4K (3840 
   - Writing back image data which is transferred to Display Unit (DU) to memory
 - Supports DISCOM function
 
-##### Video Signal Processor (VSPDL)
+#### Video Signal Processor (VSPDL)
 
 VSPDL has the following features. 1 set of VSPDL is integrated. 
 
@@ -368,7 +368,7 @@ VSPDL has the following features. 1 set of VSPDL is integrated.
   - Writing back image data which is transferred to Display Unit (DU) to memory
 - Supports DISCOM function
 
-##### Video Codec Processor (VCP4) 
+#### Video Codec Processor (VCP4) 
 
 The VCP4 is a multi-codec module which provides encoding and decoding capabilities
 on the basis of multiple video coding schemes, e.g., H.265/HEVC, H.264/AVC, MPEG4, MPEG-2 and VC-1. 
@@ -411,7 +411,7 @@ controlling software for VCP4 executed on host CPU.
 
 Use the software from Renesas to handle VCP4 functions. 
 
-##### Video Decoding Processor for inter-device video transfer (iVDP1C)
+#### Video Decoding Processor for inter-device video transfer (iVDP1C)
 
 - Low-latency decoder H.264/AVC, JPEG
 - Color format 4:2:0/4:2:2
@@ -425,19 +425,21 @@ Use the software from Renesas to handle VCP4 functions.
 
 Use the software from Renesas to handle iVDP1C functions.
 
-##### Fine Display Processor (FDP1) 
+#### Fine Display Processor (FDP1) 
 
-- Low-latency decoder H.264/AVC, JPEG
-- Color format 4:2:0/4:2:2
-- Bit depth 8/10/12bits
-- Performance:
-  - 1280 pixels × 960 lines × 30 frames/second × 4 channels
-- Max resolution:
-  - 1920 pixels × 1088 lines
-- Includes its own reference data cache
-- Lossless image compression for reference picture is supported if bit depth is 8 bits
+The FDP1 is the de-interlacing module which converts the interlaced video to progressive video, and has the following features. 
 
-Use the software from Renesas to handle iVDP1C functions. 
+- Supports 1 channel
+  - 500 Mpix/s for output performance per 1 FDP1
+- Supports various data formats
+  - Input: YCbCr444/422/420
+  - Output: YCbCr444/422/420 and RGB/αRGB
+- 8190 pixels x 8190 lines video processing performance
+- High image quality de-interlacing algorithm
+  - Motion adaptive de-interlacing
+  - Accurate still detection
+  - Diagonal line interpolation (DLI)
+- Visual near lossless image compression supported and 50% of bandwidth is diminished
 
 
 
