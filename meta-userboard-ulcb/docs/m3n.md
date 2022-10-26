@@ -697,6 +697,59 @@ CMT2 and CMT3 were the same as CMT1.
 - Interrupt request
 - 2 channels for input capture
 
+### Peripheral Module
+
+#### Secure Engine
+
+- 3 Cores (1 Core for secure world operation, 1 Core for normal world operation and 1 Core for PKA acceleration)
+- PKA Engine (RSA, ECC)
+- Hash Engine (SHA1, SHA2, MD5)
+- Bulk Encryption Engine (DES, 3DES, AES)
+- Internal RAM for Secure Engine
+
+#### IIC Bus Interface for DVFS (IIC for DVFS)
+
+- 1 DVFS channel for dedicated buffer.
+- Supports single master transmission/reception
+- Interrupt request
+- Automatic transfer by wakeup / DVFS control 
+
+#### I2C Bus Interface
+
+- 7 channels
+- 4 channels for buffers with a slew rate (channel 0, 3, 4, 5 for dedicated buffers)
+- 3 channels for LVTTL buffers (channels 1, 2, 6 for ordinary buffers)
+- NXP I2C bus interface method supported
+- Master/slave functions
+- Multi-master functions
+- Transfer rate up to 400 kbps supported
+- Programmable clock generation from the system clock
+- Master and Slave function DMA supported
+
+#### Serial communication interface with FIFO (SCIF)
+
+- 6 channels
+- Asynchronous, clock-synchronized modes
+- Asynchronous serial communication mode: The SCIF performs serial data communication based on a characterby-character asynchronous system. This feature enables serial data communication with standard asynchronous communication chips that support Universal Asynchronous Receiver/Transmitter (UART) or Asynchronous Communication Interface Adapter (ACIA). There is a choice of eight serial data transfer formats. 
+  - Data length: 7 bits or 8 bits
+  - Stop bits: 1 bit or 2 bits
+  - Parity: Even/odd/none
+  - Receive error detection: Parity, framing, and overrun errors
+  - Break detection: A break is detected when a framing error lasts for more than 1 frame length at Space 0 (low level). When a framing error occurs, a break can also be detected by reading the RX pin level directly from the serial port register (SCSPTR).
+- Clock synchronous serial communication mode: The SCIF performs serial data communication synchronized with a
+clock. This feature enables serial data communication with other LSIs that support synchronous communication. There is a single serial data communication format for clock synchronous serial communication.
+  - Data length: 8 bits
+  - Receive error detection: Overrun errors
+- Full-duplex communication capability: The SCIF has an independent transmitter and receiver that enable simultaneous transmission and reception. The transmitter and
+receiver both have a 16-stage FIFO buffer structure, enabling continuous serial data transmission and reception.
+- On-chip baud rate generator, enabling any bit rate to be selected. The SCIF enables choice of a clock source for transmission/reception:
+  - a clock from the on-chip baud rate generator based on the internal clock or an external clock.
+- Eight interrupt sources: The SCIF has eight types of interrupt sources. receive-data-ready, receive-FIFO-data-full, break, transmit-FIFO-data-empty, transmitend, receive-error, overrun-error and time-out and enables any of them to be requested independently. 
+
+
+
+
+
 
 
 
