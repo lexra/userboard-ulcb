@@ -376,7 +376,7 @@ on the basis of multiple video coding schemes, e.g., H.265/HEVC, H.264/AVC, MPEG
 This IP (Intellectual Property) is a multi codec that processes the frame or each field by
 controlling software for VCP4 executed on host CPU. 
 
-- The VCP4 has the following features: Support for multiple codecs
+- The VCP4 supported for multiple codecs: 
   - H.265/HEVC MP (Main Profile) decoding
   - H.264/MPEG-4 AVC HP (High Profile) and MVC SHP (Stereo High Profile) encoding and decoding
   - H.262/MPEG-2 MP (Main Profile) decoding
@@ -387,7 +387,7 @@ controlling software for VCP4 executed on host CPU.
   - RealVideo8/9/10 decoding
   - VP8 encoding and decoding
   - VP9 (Profile 0) decoding 
-- Support for up to 4K resolutions (H.265, H.264 and VP9)
+- Supported for up to 4K resolutions (H.265, H.264 and VP9)
   - Multiple channel processing:
     - (H.264/H.265 1920 × 1080p × 120 fps),
     - or (H.264/H.265 1920 × 1080p x 30 fps) + (RealVideo8/9/10 1920 × 1080p × 30 fps),
