@@ -334,8 +334,24 @@ for Dual QSPI (QSPI0+QSPI1).
 - Visual near lossless image compression supported
   - 50% of bandwidth is diminished 
 
+##### Video Signal Processor (VSPD)
 
-
+- VSPD has the following features. 
+  - 1 set of VSPD is integrated
+  - Supports 4K (3840 pixels × 2160 lines) resolution
+- Supports Various Data Formats and Conversion
+  - Supports YCbCr444/422/420, RGB, αRGB, αplane
+  - Color space conversion and changes to the number of colors by dithering
+  - Color keying
+  - Supports combination between pixel alpha and global alpha
+  - Supports generating pre multiplied alpha.
+- Video processing
+  - Blending of 5 picture layers and raster operations (ROPs)
+  - Vertical flipping in case of output to memory
+- Direct connection to display module
+  - Supports 4096 pixels in horizontal direction
+  - Writing back image data which is transferred to Display Unit (DU) to memory
+- Supports DISCOM function
 
 
 
