@@ -38,12 +38,12 @@ clearoktext = b"Clear OK?(y/n)"
 flasherfile = "AArch64_Flash_writer_SCIF_DUMMY_CERT_E6300400_ULCB.mot"
 
 bootloadermap = [
-	{"part": "1", "sector": "0", "address": "E6320000", "slave" : "000000", "file": "bootparam_sa0-4x2g.srec"},
-	{"part": "1", "sector": "1E", "address": "E6304000", "slave" : "040000", "file": "bl2-h3ulcb-4x2g.srec"},
-	{"part": "1", "sector": "180", "address": "E6320000", "slave" : "180000", "file": "cert_header_sa6-4x2g.srec"},
-	{"part": "1", "sector": "200", "address": "44000000", "slave" : "1C0000", "file": "bl31-h3ulcb-4x2g.srec"},
-	{"part": "1", "sector": "220", "address": "44100000", "slave" : "200000", "file": "tee-h3ulcb.srec"},
-	{"part": "2", "sector": "0", "address": "50000000", "slave" : "640000", "file": "u-boot-elf-h3ulcb.srec"},
+       {"part": "1", "sector": "0", "address": "E6320000", "slave" : "000000", "file": "bootparam_sa0-4x2g.srec"},
+       {"part": "1", "sector": "1E", "address": "E6304000", "slave" : "040000", "file": "bl2-h3ulcb-4x2g.srec"},
+       {"part": "1", "sector": "180", "address": "E6320000", "slave" : "180000", "file": "cert_header_sa6-4x2g.srec"},
+       {"part": "1", "sector": "200", "address": "44000000", "slave" : "1C0000", "file": "bl31-h3ulcb-4x2g.srec"},
+       {"part": "1", "sector": "220", "address": "44100000", "slave" : "200000", "file": "tee-h3ulcb.srec"},
+       {"part": "2", "sector": "0", "address": "50000000", "slave" : "640000", "file": "u-boot-elf-h3ulcb.srec"},
 ]
 
 if len(sport) == 0:
@@ -126,13 +126,13 @@ while True:
         break
 
 ###########################################################
-
 sp.write(b'\r\n')
 while True:
     rdata = sp.read(4096)
     if flasherreadytext in rdata:
         break
 
+###########################################################
 for i in range(0, (len(bootloadermap) - 0)):
     print("XLS2: %s         " % bootloadermap[i]['file'])
     sp.write(b'XLS2\r\n')
@@ -190,6 +190,88 @@ for i in range(0, (len(bootloadermap) - 0)):
         rdata = sp.read(4096)
         if flasherreadytext in rdata:
             break
+print("")
+
+###########################################################
+print("")
+#for i in range(3):
+#    sp.write(b'EM_E\r\n')
+#    while True:
+#        rdata = sp.read(8192)
+#        if flasherreadytext in rdata:
+#            break
+#    print("EM_E: %d" % i)
+#    cmd = str("%d\r\n" % i)
+#    sp.write(cmd.encode())
+#    while True:
+#        rdata = sp.read(8192)
+#        if flasherreadytext in rdata:
+#            break
+sp.write(b'EM_SECSD\r\n')
+while True:
+    rdata = sp.read(8192)
+    if b'Please Input EXT_CSD Index' in rdata:
+        break
+print("EXT_CSD Index: b1")
+sp.write(b'b1\r\n')
+while True:
+    rdata = sp.read(8192)
+    if b'Please Input Value' in rdata:
+        break
+print("EXT_CSD[b1]: a")
+sp.write(b'a\r\n')
+while True:
+    rdata = sp.read(8192)
+    if flasherreadytext in rdata:
+        break
+print("")
+
+###########################################################
+for i in range(0, (len(bootloadermap) - 0)):
+    print("EM_W: %s         " % bootloadermap[i]['file'])
+    sp.write(b'EM_W\r\n')
+    while True:
+        rdata = sp.read(4096)
+        if flasherreadytext in rdata:
+            break
+    print("PART: %s " % bootloadermap[i]['part'])
+    cmd = str("%s\r\n" % bootloadermap[i]['part'])
+    sp.write(cmd.encode())
+    while True:
+        rdata = sp.read(8192)
+        if b'Please Input Start Address in sector :' in rdata:
+            break
+    print("SECTOR: %s " % bootloadermap[i]['sector'])
+    cmd = str("%s\r\n" % bootloadermap[i]['sector'])
+    sp.write(cmd.encode())
+    while True:
+        rdata = sp.read(8192)
+        if b'Please Input Program Start Address :' in rdata:
+            break
+    print("START: %s " % bootloadermap[i]['address'])
+    cmd = str("%s\r\n" % bootloadermap[i]['address'])
+    sp.write(cmd.encode())
+    while True:
+        rdata = sp.read(8192)
+        if sendrequesttext in rdata:
+            break
+    f = open(bootloadermap[i]['file'], "rb")
+    tlen = 0
+    while True:
+        fdata = f.read(8192)
+        fdatalen = len(fdata)
+        if fdatalen == 0:
+            break;
+        sp.write(fdata)
+        tlen += fdatalen
+        print('\r%d bytes completed.\r' % tlen, end='')
+    f.close()
+    sp.write(b'.\r\n')
+    for i in range(16):
+        rdata = sp.read(4096)
+        if flasherreadytext in rdata:
+            break
+print("")
 
 sp.close()
 print("")

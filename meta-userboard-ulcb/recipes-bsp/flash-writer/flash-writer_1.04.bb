@@ -52,7 +52,8 @@ do_deploy() {
 	install -m 644 ${S}/AArch64_output/*.mot ${DEPLOYDIR}
 	if [ "${MACHINE}" == "h3ulcb" ]; then
 		cp -Rpfv ${WORKDIR}/h3-hyperFlash-writer-helper ${DEPLOYDIR}/hyperFlash-writer-helper
-	else
+	fi
+	if [ "${MACHINE}" == "m3ulcb" ]; then
 		cp -Rpfv ${WORKDIR}/hyperFlash-writer-helper ${DEPLOYDIR}/hyperFlash-writer-helper
 	fi
 }
