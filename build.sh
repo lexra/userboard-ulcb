@@ -8,7 +8,7 @@ WORK=`pwd`/${TARGET_BOARD}
 
 POKY_COMMIT=74b22db6879b388d700f61e08cb3f239cf940d18
 META_OE_COMMIT=814eec96c2a29172da57a425a3609f8b6fcc6afe
-META_RENESAS_COMMIT=13fd24957b9acc29a235ee0c7f398fd867f38b47
+META_RENESAS_COMMIT=db07324cef9f09cfccafb36f05b8159421057af5
 META_RCAR_COMMIT=v5.9.0
 
 META_PYTHON2_COMMIT=07dca1e54f82a06939df9b890c6d1ce1e3197f75
@@ -101,7 +101,10 @@ cd ${WORK}/build
 cp conf/local-wayland.conf conf/local.conf
 
 bitbake-layers show-layers
+bitbake arm-trusted-firmware -c cleansstate
+bitbake flash-writer -c cleansstate
 bitbake core-image-weston -v
+#bitbake core-image-weston -v -c populate_sdk
 
 ##############################
 cd ${SCRIPT_DIR}
