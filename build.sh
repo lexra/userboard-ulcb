@@ -101,7 +101,7 @@ cd ${WORK}/build
 cp conf/local-wayland.conf conf/local.conf
 
 bitbake-layers show-layers
-bitbake flash-writer -c cleansstate
+#bitbake flash-writer -c cleansstate
 #bitbake arm-trusted-firmware -c cleansstate
 bitbake core-image-weston -v
 #bitbake core-image-weston -v -c populate_sdk
