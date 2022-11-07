@@ -133,37 +133,63 @@ while True:
         break
 
 ###########################################################
+print("")
+#for i in range(3):
+#    sp.write(b'EM_E\r\n')
+#    while True:
+#        rdata = sp.read(8192)
+#        if flasherreadytext in rdata:
+#            break
+#    print("EM_E: %d" % i)
+#    cmd = str("%d\r\n" % i)
+#    sp.write(cmd.encode())
+#    while True:
+#        rdata = sp.read(8192)
+#        if flasherreadytext in rdata:
+#            break
+sp.write(b'EM_SECSD\r\n')
+while True:
+    rdata = sp.read(8192)
+    if b'Please Input EXT_CSD Index' in rdata:
+        break
+print("EXT_CSD Index: b1")
+sp.write(b'b1\r\n')
+while True:
+    rdata = sp.read(8192)
+    if b'Please Input Value' in rdata:
+        break
+print("EXT_CSD[b1]: a")
+sp.write(b'a\r\n')
+while True:
+    rdata = sp.read(8192)
+    if flasherreadytext in rdata:
+        break
+print("")
+
+###########################################################
 for i in range(0, (len(bootloadermap) - 0)):
-    print("XLS2: %s         " % bootloadermap[i]['file'])
-    sp.write(b'XLS2\r\n')
+    print("EM_W: %s         " % bootloadermap[i]['file'])
+    sp.write(b'EM_W\r\n')
     while True:
         rdata = sp.read(4096)
         if flasherreadytext in rdata:
             break
-    sp.write(b'3\r\n')
-    while True:
-        rdata = sp.read(8192)
-        if pushytext in rdata:
-            break
-    sp.write(b'y\r\n')
-    while True:
-        rdata = sp.read(8192)
-        if pushytext in rdata:
-            break
-    sp.write(b'y\r\n')
-    while True:
-        rdata = sp.read(8192)
-        if inputtext in rdata:
-            break
-    print("TOP: %s " % bootloadermap[i]['address'])
-    cmd = str("%s\r\n" % bootloadermap[i]['address'])
+    print("PART: %s " % bootloadermap[i]['part'])
+    cmd = str("%s\r\n" % bootloadermap[i]['part'])
     sp.write(cmd.encode())
     while True:
         rdata = sp.read(8192)
-        if inputtext in rdata:
+        if b'Please Input Start Address in sector :' in rdata:
             break
-    print("SLAVE: %s " % bootloadermap[i]['slave'])
-    cmd = str("%s\r\n" % bootloadermap[i]['slave'])
+    print("SECTOR: %s " % bootloadermap[i]['sector'])
+    cmd = str("%s\r\n" % bootloadermap[i]['sector'])
+    sp.write(cmd.encode())
+    while True:
+        rdata = sp.read(8192)
+        if b'Please Input Program Start Address :' in rdata:
+            break
+    print("START: %s " % bootloadermap[i]['address'])
+    cmd = str("%s\r\n" % bootloadermap[i]['address'])
     sp.write(cmd.encode())
     while True:
         rdata = sp.read(8192)
@@ -181,11 +207,6 @@ for i in range(0, (len(bootloadermap) - 0)):
         print('\r%d bytes completed.\r' % tlen, end='')
     f.close()
     sp.write(b'.\r\n')
-    for i in range(16):
-        rdata = sp.read(8192)
-        if clearoktext in rdata:
-            break
-    sp.write(b'y\r\n')
     for i in range(16):
         rdata = sp.read(4096)
         if flasherreadytext in rdata:

@@ -38,12 +38,12 @@ clearoktext = b"Clear OK?(y/n)"
 flasherfile = "AArch64_Flash_writer_SCIF_DUMMY_CERT_E6300400_ULCB.mot"
 
 bootloadermap = [
-       {"part": "1", "sector": "0", "address": "E6320000", "slave" : "000000", "file": "bootparam_sa0-4x2g.srec"},
-       {"part": "1", "sector": "1E", "address": "E6304000", "slave" : "040000", "file": "bl2-h3ulcb-4x2g.srec"},
-       {"part": "1", "sector": "180", "address": "E6320000", "slave" : "180000", "file": "cert_header_sa6-4x2g.srec"},
-       {"part": "1", "sector": "200", "address": "44000000", "slave" : "1C0000", "file": "bl31-h3ulcb-4x2g.srec"},
-       {"part": "1", "sector": "220", "address": "44100000", "slave" : "200000", "file": "tee-h3ulcb.srec"},
-       {"part": "2", "sector": "0", "address": "50000000", "slave" : "640000", "file": "u-boot-elf-h3ulcb.srec"},
+	{"part": "1", "sector": "0", "address": "E6320000", "slave" : "000000", "file": "bootparam_sa0.srec"},
+	{"part": "1", "sector": "1E", "address": "E6304000", "slave" : "040000", "file": "bl2-m3nulcb.srec"},
+	{"part": "1", "sector": "180", "address": "E6320000", "slave" : "180000", "file": "cert_header_sa6.srec"},
+	{"part": "1", "sector": "200", "address": "44000000", "slave" : "1C0000", "file": "bl31-m3nulcb.srec"},
+	{"part": "1", "sector": "1000", "address": "44100000", "slave" : "200000", "file": "tee-m3nulcb.srec"},
+	{"part": "2", "sector": "0", "address": "50000000", "slave" : "640000", "file": "u-boot-elf-m3nulcb.srec"},
 ]
 
 if len(sport) == 0:

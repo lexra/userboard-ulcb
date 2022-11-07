@@ -133,66 +133,6 @@ while True:
         break
 
 ###########################################################
-for i in range(0, (len(bootloadermap) - 0)):
-    print("XLS2: %s         " % bootloadermap[i]['file'])
-    sp.write(b'XLS2\r\n')
-    while True:
-        rdata = sp.read(4096)
-        if flasherreadytext in rdata:
-            break
-    sp.write(b'3\r\n')
-    while True:
-        rdata = sp.read(8192)
-        if pushytext in rdata:
-            break
-    sp.write(b'y\r\n')
-    while True:
-        rdata = sp.read(8192)
-        if pushytext in rdata:
-            break
-    sp.write(b'y\r\n')
-    while True:
-        rdata = sp.read(8192)
-        if inputtext in rdata:
-            break
-    print("TOP: %s " % bootloadermap[i]['address'])
-    cmd = str("%s\r\n" % bootloadermap[i]['address'])
-    sp.write(cmd.encode())
-    while True:
-        rdata = sp.read(8192)
-        if inputtext in rdata:
-            break
-    print("SLAVE: %s " % bootloadermap[i]['slave'])
-    cmd = str("%s\r\n" % bootloadermap[i]['slave'])
-    sp.write(cmd.encode())
-    while True:
-        rdata = sp.read(8192)
-        if sendrequesttext in rdata:
-            break
-    f = open(bootloadermap[i]['file'], "rb")
-    tlen = 0
-    while True:
-        fdata = f.read(8192)
-        fdatalen = len(fdata)
-        if fdatalen == 0:
-            break;
-        sp.write(fdata)
-        tlen += fdatalen
-        print('\r%d bytes completed.\r' % tlen, end='')
-    f.close()
-    sp.write(b'.\r\n')
-    for i in range(16):
-        rdata = sp.read(8192)
-        if clearoktext in rdata:
-            break
-    sp.write(b'y\r\n')
-    for i in range(16):
-        rdata = sp.read(4096)
-        if flasherreadytext in rdata:
-            break
-print("")
-
-###########################################################
 print("")
 #for i in range(3):
 #    sp.write(b'EM_E\r\n')

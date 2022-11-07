@@ -14,8 +14,12 @@ SRC_URI[md5sum] = "e89158cba035b5ab11b04440291dadc4"
 SRC_URI[sha256sum] = "3171fa74ab5a8780cd05ac18c9dae75fe769c4a74d6612bcdc45aee0e07cf0ee"
 
 SRC_URI_append = " \
-	file://hyperFlash-writer-helper \
+	file://m3-hyperFlash-writer-helper \
+	file://m3n-hyperFlash-writer-helper \
 	file://h3-hyperFlash-writer-helper \
+	file://m3-eMMC-writer-helper \
+	file://m3n-eMMC-writer-helper \
+	file://h3-eMMC-writer-helper \
 "
 
 #DEPENDS += " libunistring"
@@ -52,9 +56,15 @@ do_deploy() {
 	install -m 644 ${S}/AArch64_output/*.mot ${DEPLOYDIR}
 	if [ "${MACHINE}" == "h3ulcb" ]; then
 		cp -Rpfv ${WORKDIR}/h3-hyperFlash-writer-helper ${DEPLOYDIR}/hyperFlash-writer-helper
+		cp -Rpfv ${WORKDIR}/h3-eMMC-writer-helper ${DEPLOYDIR}/eMMC-writer-helper
 	fi
 	if [ "${MACHINE}" == "m3ulcb" ]; then
-		cp -Rpfv ${WORKDIR}/hyperFlash-writer-helper ${DEPLOYDIR}/hyperFlash-writer-helper
+		cp -Rpfv ${WORKDIR}/m3-hyperFlash-writer-helper ${DEPLOYDIR}/hyperFlash-writer-helper
+		cp -Rpfv ${WORKDIR}/m3-eMMC-writer-helper ${DEPLOYDIR}/eMMC-writer-helper
+	fi
+	if [ "${MACHINE}" == "m3nulcb" ]; then
+		cp -Rpfv ${WORKDIR}/m3n-hyperFlash-writer-helper ${DEPLOYDIR}/hyperFlash-writer-helper
+		cp -Rpfv ${WORKDIR}/m3n-eMMC-writer-helper ${DEPLOYDIR}/eMMC-writer-helper
 	fi
 }
 PARALLEL_MAKE = "-j 1"
