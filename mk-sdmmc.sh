@@ -86,7 +86,7 @@ EOF
 sudo losetup -Pf ${SDDEV}
 
 LOOP=$(losetup | grep SDMMC | awk '{print $1}')
-echo y | sudo mkfs.ext4 -E lazy_itable_init=0,lazy_journal_init=1 ${LOOP}p1 -L boot -jDv
+echo y | sudo mkfs.ext4 -E lazy_itable_init=0,lazy_journal_init=1 ${LOOP}p1 -L boot -U 391bec0c-e584-4282-b0ee-6f65b00fbde6 -jDv
 sudo mount ${LOOP}p1 mnt
 sudo cp -Rpf ${WORK}/build/tmp/deploy/images/${TARGET_BOARD}/Image* mnt
 sudo cp -Rpf ${WORK}/build/tmp/deploy/images/${TARGET_BOARD}/*.dtb mnt
@@ -94,7 +94,7 @@ sudo cp -Rpf ${WORK}/build/tmp/deploy/images/${TARGET_BOARD}/core-image-weston-$
 sudo cp -Rpf ${WORK}/build/tmp/deploy/images/${TARGET_BOARD}/modules-*.tgz mnt
 sudo umount mnt
 
-echo y | sudo mkfs.ext4 -E lazy_itable_init=0,lazy_journal_init=1 ${LOOP}p2 -L rootfs -U 614e0000-0000-4b53-8000-1d28000054a9 -jDv
+echo y | sudo mkfs.ext4 -E lazy_itable_init=0,lazy_journal_init=1 ${LOOP}p2 -L root -U 614e0000-0000-4b53-8000-1d28000054a9 -jDv
 sudo mount ${LOOP}p2 mnt
 sudo tar zxf ${WORK}/build/tmp/deploy/images/${TARGET_BOARD}/core-image-weston-${TARGET_BOARD}.tar.gz -C mnt
 sudo tar zxf ${WORK}/build/tmp/deploy/images/${TARGET_BOARD}/modules-${TARGET_BOARD}.tgz -C mnt
