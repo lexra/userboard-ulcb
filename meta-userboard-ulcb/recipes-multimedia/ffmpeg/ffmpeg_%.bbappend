@@ -4,7 +4,9 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 DEPENDS += " \
 	gles-user-module \
 	omx-user-module \
-	${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'libsdl2', '', d)} \
+	${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'libsdl2 libsdl2-image libsdl2-mixer', '', d)} \
+	alsa-lib \
+	openssl \
 "
 
 EXTRA_OEMAKE_append = " V=1"
