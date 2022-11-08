@@ -10,8 +10,8 @@ SCRIPT_DIR=`pwd`
 WORK=`pwd`/${TARGET_BOARD}
 
 SDDEV=${WORK}/build/tmp/deploy/images/${TARGET_BOARD}/SDMMC.img
-TOTAL=5120
-PART1=1280
+TOTAL=6144
+PART1=1536
 
 function print_boot_example() {
         echo ""
