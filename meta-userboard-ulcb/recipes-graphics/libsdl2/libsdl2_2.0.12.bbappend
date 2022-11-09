@@ -39,8 +39,8 @@ do_install_append () {
 
 do_compile_tests () {
 	#cp ${WORKDIR}/makefile.test ${S}/test/Makefile
-	cp ${WORKDIR}/makefile.test ${S}/test/
-	oe_runmake -C ${S}/test -f makefile.test
+	cp ${WORKDIR}/makefile.test ${S}/test/Makefile
+	oe_runmake -C ${S}/test
 }
 addtask compile_tests after do_compile before do_install
 
