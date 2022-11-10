@@ -5,9 +5,18 @@ SRC_URI_append = " \
 "
 
 PACKAGECONFIG[opengl]     = "--enable-video-opengl,--disable-video-opengl"
-PREFERRED_PROVIDER_virtual/libgles2 ?= "gles-user-module"
-PACKAGECONFIG_GL = ""
+PREFERRED_PROVIDER_virtual/libgles2 = "gles-user-module"
+PACKAGECONFIG_GL = "${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'gles2 egl', '', d)}"
 EXTRA_OEMAKE_append = " V=1"
+
+PACKAGECONFIG = " \
+	${PACKAGECONFIG_GL} \
+	${@bb.utils.filter('DISTRO_FEATURES', 'alsa directfb pulseaudio x11', d)} \
+	${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland gles2 egl', '', d)} \
+	${@bb.utils.contains("TUNE_FEATURES", "neon","arm-neon","",d)} \
+	alsa \
+	tslib \
+"
 
 PACKAGECONFIG[gles2]      = "--enable-video-opengles,--disable-video-opengles,virtual/libgles2"
 PACKAGECONFIG[wayland]    = "--enable-video-wayland,--disable-video-wayland,wayland-native wayland wayland-protocols libxkbcommon"
@@ -38,7 +47,6 @@ do_install_append () {
 }
 
 do_compile_tests () {
-	#cp ${WORKDIR}/makefile.test ${S}/test/Makefile
 	cp ${WORKDIR}/makefile.test ${S}/test/Makefile
 	oe_runmake -C ${S}/test
 }

@@ -2,10 +2,9 @@
 
 srcdir  = .
 
-CC      = aarch64-poky-linux-gcc  -march=armv8-a -mtune=cortex-a57.cortex-a53 -fstack-protector-strong  -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security --sysroot=/work/userboard-ulcb/m3ulcb/build/tmp/work/aarch64-poky-linux/libsdl2/2.0.12-r0/recipe-sysroot
 EXE	= 
-CFLAGS  =  -O2 -pipe -g -feliminate-unused-debug-types -fmacro-prefix-map=/work/userboard-ulcb/m3ulcb/build/tmp/work/aarch64-poky-linux/libsdl2/2.0.12-r0=/usr/src/debug/libsdl2/2.0.12-r0                      -fdebug-prefix-map=/work/userboard-ulcb/m3ulcb/build/tmp/work/aarch64-poky-linux/libsdl2/2.0.12-r0=/usr/src/debug/libsdl2/2.0.12-r0                      -fdebug-prefix-map=/work/userboard-ulcb/m3ulcb/build/tmp/work/aarch64-poky-linux/libsdl2/2.0.12-r0/recipe-sysroot=                      -fdebug-prefix-map=/work/userboard-ulcb/m3ulcb/build/tmp/work/aarch64-poky-linux/libsdl2/2.0.12-r0/recipe-sysroot-native=  -I../include -D_REENTRANT -DHAVE_OPENGLES2 -g
-LIBS	=  -L../../build/build/.libs -lSDL2_test -lSDL2
+CFLAGS  =  -O2 -pipe -g -feliminate-unused-debug-types -D_REENTRANT -DHAVE_OPENGLES2 -g -I../include -I../../recipe-sysroot/usr/include
+LIBS	=  -L../../build/build/.libs -L../../recipe-sysroot/usr/lib -lSDL2_test -lSDL2
 
 TARGETS = \
 	checkkeys$(EXE) \
@@ -67,8 +66,7 @@ TARGETS = \
 	torturethread$(EXE) \
 
 	
-#TARGETS += testgl2$(EXE) testshader$(EXE)
-#TARGETS += testgl2$(EXE)
+UNUSED += testgl2$(EXE) testshader$(EXE)
 UNUSED += testgles$(EXE)
 TARGETS += testgles2$(EXE)
 
