@@ -13,8 +13,12 @@ IMAGE_INSTALL_append = " \
 	mpg123 libexif giflib \
 "
 
+#IMAGE_INSTALL_append = " \
+#	packagegroup-opencv-sdk \
+#"
+
 IMAGE_INSTALL_append = " \
-	i2c-tools spitools ethtool usbutils pciutils can-utils mtd-utils \
+	glmark2 i2c-tools spitools ethtool usbutils pciutils can-utils mtd-utils \
 	mkfs-helper \
 	vspfilter-init \
 	flash-writer \
