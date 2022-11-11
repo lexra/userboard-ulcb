@@ -33,8 +33,14 @@ fi
 if [[ ( ! -e proprietary/${GFX_MMP_LIB} || ! -e proprietary/${GFX_MMP_DRIVER} ) && ! -e proprietary/${GEN3E_V590_SOFTWARE} ]]; then
 	Usage
 fi
-sudo chown -R ${USER}.${USER} *.sh meta-userboard-ulcb proprietary
-sudo find meta-userboard-ulcb -name "*.conf" | xargs chmod -x
+sudo chown -R ${USER}.${USER} *.sh meta-userboard* proprietary
+sudo find meta-userboard* -name "*.conf" | xargs chmod -x
+
+sudo apt-get install -y gawk wget git-core diffstat unzip texinfo gcc-multilib \
+        build-essential chrpath socat libsdl1.2-dev xterm python-crypto cpio python python3 \
+        python3-pip python3-pexpect xz-utils debianutils iputils-ping libssl-dev p7zip-full libyaml-dev \
+        nfs-kernel-server parted ffmpeg
+echo ""
 
 mkdir -p ${WORK}
 cd ${WORK}
