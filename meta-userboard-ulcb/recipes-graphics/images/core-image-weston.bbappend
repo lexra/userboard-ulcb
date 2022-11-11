@@ -1,6 +1,4 @@
 
-IMAGE_INSTALL_append = " packagegroup-qt5-examples "
-
 IMAGE_INSTALL_append = " \
 	dosfstools \
 	tslib nfs-utils e2fsprogs e2fsprogs-mke2fs e2fsprogs-resize2fs udev curl bc usbutils wget \
@@ -28,4 +26,5 @@ IMAGE_INSTALL_append = " \
 	${@oe.utils.conditional("DEMO_VIDEO", "1", " demo-videos", "", d)} \
 	drm2png \
 	packagegroup-opencv-sdk \
+	packagegroup-qt5-examples \
 "
