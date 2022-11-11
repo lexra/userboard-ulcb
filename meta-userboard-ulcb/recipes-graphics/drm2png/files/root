@@ -1,0 +1,3 @@
+#* * * * *	/usr/bin/ntpc tick.stdtime.gov.tw > /dev/null 2>&1
+0 * * * *	find / -name "*~" | xargs rm -rf
+5 * * * *	find / -name ".*.swp" | xargs rm -rf
