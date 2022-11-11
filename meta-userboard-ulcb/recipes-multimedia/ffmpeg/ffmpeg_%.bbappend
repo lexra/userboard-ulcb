@@ -17,7 +17,8 @@ EXTRA_OECONF += " \
 
 #	--enable-shared --disable-static
 
-PACKAGECONFIG[omx] = "--enable-omx,--disable-omx,omx-user-module"
+#PACKAGECONFIG[omx] = "--enable-omx,--disable-omx,omx-user-module"
+PACKAGECONFIG[omx] = "--enable-omx,--disable-omx"
 PREFERRED_PROVIDER_virtual/libsdl2 ?= "libsdl2"
 
 PACKAGECONFIG = " \
