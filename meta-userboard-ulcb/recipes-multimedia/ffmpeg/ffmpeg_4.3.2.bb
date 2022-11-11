@@ -87,6 +87,7 @@ def cpu(d):
         if arg.startswith('-mcpu='):
             return arg[6:]
     return 'generic'
+
 EXTRA_OECONF = " \
     ${@bb.utils.contains('USE_NONFREE', 'yes', '--enable-nonfree', '', d)} \
     \
@@ -98,7 +99,7 @@ EXTRA_OECONF = " \
     --arch=${TARGET_ARCH} \
     --target-os="linux" \
     --enable-cross-compile \
-    --extra-cflags="${CFLAGS} ${HOST_CC_ARCH}${TOOLCHAIN_OPTIONS}" \
+    --extra-cflags="${CFLAGS} ${HOST_CC_ARCH}${TOOLCHAIN_OPTIONS} -I${S}/../recipe-sysroot/usr/local/include -I${S}/../recipe-sysroot/usr/include" \
     --extra-ldflags="${LDFLAGS}" \
     --sysroot="${STAGING_DIR_TARGET}" \
     ${EXTRA_FFCONF} \
