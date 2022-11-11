@@ -29,7 +29,6 @@ PACKAGECONFIG = " \
 	mp3lame \
 	speex \
 	openssl \
-	vidstab \
 "
 
 PACKAGECONFIG += " gpl"
