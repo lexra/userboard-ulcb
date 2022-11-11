@@ -13,10 +13,6 @@ IMAGE_INSTALL_append = " \
 	mpg123 libexif giflib \
 "
 
-#IMAGE_INSTALL_append = " \
-#	packagegroup-opencv-sdk \
-#"
-
 IMAGE_INSTALL_append = " \
 	glmark2 i2c-tools spitools ethtool usbutils pciutils can-utils mtd-utils \
 	mkfs-helper \
@@ -27,6 +23,9 @@ IMAGE_INSTALL_append = " \
 	ffmpeg \
 "
 
-IMAGE_INSTALL_append = " ${@oe.utils.conditional("CHROMIUM", "1", " \
-				chromium-ozone-wayland \
-				", "", d)}"
+IMAGE_INSTALL_append = " \
+	${@oe.utils.conditional("CHROMIUM", "1", " chromium-ozone-wayland", "", d)} \
+	${@oe.utils.conditional("DEMO_VIDEO", "1", " demo-videos", "", d)} \
+	drm2png \
+	packagegroup-opencv-sdk \
+"
