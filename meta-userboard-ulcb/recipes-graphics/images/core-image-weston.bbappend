@@ -25,6 +25,5 @@ IMAGE_INSTALL_append = " \
 	${@oe.utils.conditional("CHROMIUM", "1", " chromium-ozone-wayland", "", d)} \
 	${@oe.utils.conditional("DEMO_VIDEOS", "1", " demo-videos", "", d)} \
 	drm2png \
-	packagegroup-opencv-sdk \
 	packagegroup-qt5-examples \
 "
