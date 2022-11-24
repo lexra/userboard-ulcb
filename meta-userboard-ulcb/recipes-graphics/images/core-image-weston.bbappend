@@ -26,4 +26,6 @@ IMAGE_INSTALL_append = " \
 	${@oe.utils.conditional("DEMO_VIDEOS", "1", " demo-videos", "", d)} \
 	drm2png \
 	packagegroup-qt5-examples \
+	utest-cam-imr-drm \
+	imr-sv \
 "
