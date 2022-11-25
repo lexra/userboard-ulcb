@@ -22,10 +22,13 @@ IMAGE_INSTALL_append = " \
 "
 
 IMAGE_INSTALL_append = " \
-	${@oe.utils.conditional("CHROMIUM", "1", " chromium-ozone-wayland", "", d)} \
-	${@oe.utils.conditional("DEMO_VIDEOS", "1", " demo-videos", "", d)} \
+	${@oe.utils.conditional("CHROMIUM", "1", "chromium-ozone-wayland", "", d)} \
+	${@oe.utils.conditional("DEMO_VIDEOS", "1", "demo-videos", "", d)} \
 	drm2png \
 	packagegroup-qt5-examples \
-	utest-cam-imr-drm \
-	imr-sv \
+"
+
+IMAGE_INSTALL_append = " \
+	${@bb.utils.contains('DISTRO_FEATURES', 'surroundview', 'imr-sv', '', d)} \ 
+	${@bb.utils.contains('DISTRO_FEATURES', 'surroundview', 'utest-cam-imr-drm', '', d)} \ 
 "
