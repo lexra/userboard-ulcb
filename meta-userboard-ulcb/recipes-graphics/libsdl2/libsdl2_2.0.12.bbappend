@@ -4,7 +4,7 @@ SRC_URI_append = " \
 	file://makefile.test \
 "
 
-PACKAGECONFIG[opengl] = "--enable-video-opengl,--disable-video-opengl,virtual/libgl"
+PACKAGECONFIG[opengl] = "--enable-video-opengl,--disable-video-opengl"
 EXTRA_OEMAKE_append = " V=1"
 
 PACKAGECONFIG = " \
