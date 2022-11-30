@@ -4,9 +4,7 @@ SRC_URI_append = " \
 	file://makefile.test \
 "
 
-PACKAGECONFIG[opengl]     = "--enable-video-opengl,--disable-video-opengl"
-PREFERRED_PROVIDER_virtual/libgles2 = "gles-user-module"
-PACKAGECONFIG_GL = "${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'gles2 egl', '', d)}"
+PACKAGECONFIG[opengl] = "--enable-video-opengl,--disable-video-opengl,virtual/libgl"
 EXTRA_OEMAKE_append = " V=1"
 
 PACKAGECONFIG = " \
