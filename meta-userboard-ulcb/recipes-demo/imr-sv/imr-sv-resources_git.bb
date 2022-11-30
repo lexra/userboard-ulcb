@@ -12,6 +12,7 @@ do_install () {
 	install ${S}/*.png ${D}/home/root/imr-sv
 	install ${S}/*.obj ${D}/home/root/imr-sv
 	install ${S}/data/*.png ${D}/home/root/imr-sv/data
+	chmod -x ${D}/home/root/imr-sv/*.png ${D}/home/root/imr-sv/data/*.png
 }
 
 do_configure[noexec] = "1"
