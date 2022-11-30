@@ -1,0 +1,19 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 918d0da..1141265 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -76,10 +76,10 @@ find_package(Wayland REQUIRED)
+ find_package(ZLIB REQUIRED)
+ find_package(Spnav QUIET)
+ 
+-if (${PC_GSTREAMER_VERSION} VERSION_LESS "1.6.0")
+-    message(WARNING "Using old GStreamer!")
+-    add_definitions(-DGST_PAD_PROBE_HANDLED=GST_PAD_PROBE_DROP)
+-endif()
++#if (${PC_GSTREAMER_VERSION} VERSION_LESS "1.6.0")
++#    message(WARNING "Using old GStreamer!")
++#    add_definitions(-DGST_PAD_PROBE_HANDLED=GST_PAD_PROBE_DROP)
++#endif()
+ 
+ #find_package(libsv REQUIRED CONFIG)
+ 

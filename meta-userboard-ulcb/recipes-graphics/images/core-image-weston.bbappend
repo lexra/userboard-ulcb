@@ -29,6 +29,10 @@ IMAGE_INSTALL_append = " \
 "
 
 IMAGE_INSTALL_append = " \
+	${@bb.utils.contains('DISTRO_FEATURES', 'surroundview', 'sv', '', d)} \
 	${@bb.utils.contains('DISTRO_FEATURES', 'surroundview', 'imr-sv', '', d)} \ 
 	${@bb.utils.contains('DISTRO_FEATURES', 'surroundview', 'utest-cam-imr-drm', '', d)} \ 
 "
+
+# Kernel modules of CMEMDRV
+# IMAGE_INSTALL_append = " kernel-module-cmemdrv-dev"
