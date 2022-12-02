@@ -33,6 +33,7 @@ function make_rootfs_dir () {
 	sudo cp -Rpf ${1}/build/tmp/deploy/images/${1}/Image* rootfs/boot
 	sudo cp -Rpf ${1}/build/tmp/deploy/images/${1}/core-image-weston-*${1}*.tar.gz rootfs/boot
 	sudo cp -Rpf ${1}/build/tmp/deploy/images/${1}/modules-*${1}*.tgz rootfs/boot
+	sudo chmod go+rwx rootfs/home/root
 }
 
 # Check Param.
