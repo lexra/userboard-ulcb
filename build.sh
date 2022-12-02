@@ -75,6 +75,8 @@ git clone https://github.com/kraj/meta-clang || true
 git -C meta-clang checkout -b develop ${META_CLANG_COMMIT} || true
 git clone https://github.com/OSSystems/meta-browser || true
 git -C meta-browser checkout -b develop ${META_BROWSER_COMMIT} || true
+git clone https://github.com/lexra/meta-rcar-xbmc.git || true
+git -C meta-rcar-xbmc checkout -b develop master || true
 
 # Populate meta-renesas with proprietary software packages
 cd ${WORK}
