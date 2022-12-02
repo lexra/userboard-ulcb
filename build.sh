@@ -20,10 +20,19 @@ GFX_MMP_DRIVER=R-Car_Gen3_Series_Evaluation_Software_Package_of_Linux_Drivers-20
 GEN3E_V590_SOFTWARE=Gen3e_v590_Software.zip
 
 function Usage () {
-    echo "Usage: $0 \${TARGET_BOARD_NAME}"
-    echo "BOARD_NAME list: "
-    for i in ${BOARD_LIST[@]}; do echo "  - $i"; done
-    exit 0
+	echo "Usage: $0 \${TARGET_BOARD_NAME}"
+	echo "BOARD_NAME list: "
+	for i in ${BOARD_LIST[@]}; do echo "  - $i"; done
+	exit 0
+}
+function make_rootfs_dir () {
+	sudo rm -rf rootfs && mkdir -p rootfs
+	sudo tar zxf ${1}/build/tmp/deploy/images/${1}/core-image-weston-${1}.tar.gz -C rootfs
+	sudo tar zxf ${1}/build/tmp/deploy/images/${1}/modules-${1}.tgz -C rootfs
+	sudo cp -Rpf ${1}/build/tmp/deploy/images/${1}/*.dtb rootfs/boot
+	sudo cp -Rpf ${1}/build/tmp/deploy/images/${1}/Image* rootfs/boot
+	sudo cp -Rpf ${1}/build/tmp/deploy/images/${1}/core-image-weston-*${1}*.tar.gz rootfs/boot
+	sudo cp -Rpf ${1}/build/tmp/deploy/images/${1}/modules-*${1}*.tgz rootfs/boot
 }
 
 # Check Param.
@@ -84,8 +93,6 @@ WORK_PROP_DIR=${WORK}/proprietary
 mkdir -p ${WORK_PROP_DIR}
 unzip -qo ${PROPRIETARY_DIR}/${GFX_MMP_LIB} -d ${WORK_PROP_DIR}
 unzip -qo ${PROPRIETARY_DIR}/${GFX_MMP_DRIVER} -d ${WORK_PROP_DIR}
-
-cd ${WORK}
 WORK_PROP_DIR=${WORK}/proprietary
 mkdir -p ${WORK_PROP_DIR}
 if [ -e ../proprietary/${GEN3E_V590_SOFTWARE} ]; then
@@ -101,28 +108,17 @@ sh meta-rcar-gen3/docs/sample/copyscript/copy_proprietary_softwares.sh -f ${WORK
 ##############################
 cd ${WORK}
 source poky/oe-init-build-env ${WORK}/build
-
 cp ${WORK}/../meta-userboard-ulcb/docs/sample/conf/${TARGET_BOARD}/poky-gcc/mmp/*.conf ./conf/
 cp ${WORK}/../meta-userboard-ulcb/conf/machine/${TARGET_BOARD}.conf ../meta-renesas/meta-rcar-gen3/conf/machine/
-
 cd ${WORK}/build
 cp conf/local-wayland.conf conf/local.conf
-
 bitbake-layers show-layers
-#bitbake flash-writer -c cleansstate
-#bitbake arm-trusted-firmware -c cleansstate
 bitbake core-image-weston -v
 #bitbake core-image-weston -v -c populate_sdk
 
 ##############################
 cd ${SCRIPT_DIR}
-sudo rm -rf rootfs && mkdir -p rootfs
-sudo tar zxf ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/core-image-weston-${TARGET_BOARD}.tar.gz -C rootfs
-sudo tar zxf ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/modules-${TARGET_BOARD}.tgz -C rootfs
-sudo cp -Rpf ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/*.dtb rootfs/boot
-sudo cp -Rpf ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/Image* rootfs/boot
-sudo cp -Rpf ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/core-image-weston-*${TARGET_BOARD}*.tar.gz rootfs/boot
-sudo cp -Rpf ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/modules-*${TARGET_BOARD}*.tgz rootfs/boot
+#make_rootfs_dir ${TARGET_BOARD}
 
 ##############################
 cd ${SCRIPT_DIR}
