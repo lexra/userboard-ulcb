@@ -1,5 +1,5 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 918d0da..1141265 100644
+index 918d0da..a687f4c 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -76,10 +76,10 @@ find_package(Wayland REQUIRED)
@@ -17,3 +17,11 @@ index 918d0da..1141265 100644
  
  #find_package(libsv REQUIRED CONFIG)
  
+@@ -157,6 +157,7 @@ set(
+     m
+     rt
+     mediactl-v4l2
++    dl
+ )
+ 
+ if (SPNAV_FOUND)
