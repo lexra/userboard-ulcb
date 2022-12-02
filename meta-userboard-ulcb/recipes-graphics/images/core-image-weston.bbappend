@@ -20,6 +20,7 @@ IMAGE_INSTALL_append = " \
 	omxh264-decode-test \
 	vsp2driver-tp vsp-tests fdp1test kms-tests \
 	ffmpeg \
+	openpano \
 "
 
 IMAGE_INSTALL_append = " \
