@@ -56,8 +56,8 @@ mkdir -p ${WORK}
 cd ${WORK}
 
 # Clone basic Yocto layers in parallel
-(git clone git://git.yoctoproject.org/poky || true) &
-(git clone git://git.openembedded.org/meta-openembedded || true) &
+(git clone git://git.yoctoproject.org/poky.git || true) &
+(git clone git://git.openembedded.org/meta-openembedded.git || true) &
 (git clone https://github.com/renesas-rcar/meta-renesas.git || true) &
 (git clone https://github.com/CogentEmbedded/meta-rcar.git || true) &
 (git clone https://github.com/meta-qt5/meta-qt5.git || true) &
@@ -67,26 +67,26 @@ wait
 
 # Switch to proper branches/commits
 cd ${WORK}/poky
-git checkout -b tmp ${POKY_COMMIT} || true
+git checkout -b mydevelop ${POKY_COMMIT} || true
 cd ${WORK}/meta-openembedded
-git checkout -b tmp ${META_OE_COMMIT} || true
+git checkout -b mydevelop ${META_OE_COMMIT} || true
 cd ${WORK}/meta-renesas
-git checkout -b tmp ${META_RENESAS_COMMIT} || true
+git checkout -b mydevelop ${META_RENESAS_COMMIT} || true
 cd $WORK/meta-rcar
-git checkout -b ${META_RCAR_COMMIT} remotes/origin/${META_RCAR_COMMIT} || true
+git checkout -b mydevelop remotes/origin/${META_RCAR_COMMIT} || true
 cd $WORK/meta-qt5
-git checkout -b tmp c1b0c9f546289b1592d7a895640de103723a0305 || true
+git checkout -b mydevelop c1b0c9f546289b1592d7a895640de103723a0305 || true
 
 # meta-python2, meta-clang, meta-browser
 cd ${WORK}
 git clone git://git.openembedded.org/meta-python2 || true
-git -C meta-python2 checkout -b develop ${META_PYTHON2_COMMIT} || true
+git -C meta-python2 checkout -b mydevelop ${META_PYTHON2_COMMIT} || true
 git clone https://github.com/kraj/meta-clang || true
-git -C meta-clang checkout -b develop ${META_CLANG_COMMIT} || true
+git -C meta-clang checkout -b mydevelop ${META_CLANG_COMMIT} || true
 git clone https://github.com/OSSystems/meta-browser || true
-git -C meta-browser checkout -b develop ${META_BROWSER_COMMIT} || true
+git -C meta-browser checkout -b mydevelop ${META_BROWSER_COMMIT} || true
 git clone https://github.com/lexra/meta-rcar-xbmc.git || true
-git -C meta-rcar-xbmc checkout -b develop master || true
+git -C meta-rcar-xbmc checkout -b mydevelop master || true
 
 # Populate meta-renesas with proprietary software packages
 cd ${WORK}
