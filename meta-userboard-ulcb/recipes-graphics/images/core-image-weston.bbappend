@@ -13,6 +13,7 @@ IMAGE_INSTALL_append = " \
 
 IMAGE_INSTALL_append = " \
 	glmark2 i2c-tools spitools ethtool usbutils pciutils can-utils mtd-utils \
+	bayer2raw \
 	mkfs-helper \
 	vspfilter-init \
 	flash-writer \
@@ -34,5 +35,10 @@ IMAGE_INSTALL_append = " \
 	${@bb.utils.contains('DISTRO_FEATURES', 'surroundview', 'utest-cam-imr-drm', '', d)} \ 
 "
 
+IMAGE_INSTALL_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'xbmc', 'kodi-addon-pvr-hts', '', d)} "
+#IMAGE_INSTALL_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'xbmc', 'kodi-addon-inputstream-adaptive', '', d)} "
+#IMAGE_INSTALL_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'xbmc', 'kodi-addon-peripheral-joystick', '', d)} "
+
 # Kernel modules of CMEMDRV
-# IMAGE_INSTALL_append = " kernel-module-cmemdrv-dev"
+# IMAGE_INSTALL_remove = " kernel-module-cmemdrv"
+# IMAGE_INSTALL_remove = " kernel-module-cmemdrv-dev"
