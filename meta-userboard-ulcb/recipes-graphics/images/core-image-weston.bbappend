@@ -36,6 +36,7 @@ IMAGE_INSTALL_append = " \
 	${@bb.utils.contains('DISTRO_FEATURES', 'surroundview', 'utest-cam-imr-drm', '', d)} \ 
 	${@bb.utils.contains('DISTRO_FEATURES', 'vivid', 'samsung-utils', '', d)} \
 	${@bb.utils.contains('DISTRO_FEATURES', 'opencv-sdk', 'qr-reader', '', d)} \
+	${@bb.utils.contains('DISTRO_FEATURES', 'darknet', 'darknet', '', d)} \
 "
 
 IMAGE_INSTALL_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'xbmc', 'kodi-addon-pvr-hts', '', d)} "
