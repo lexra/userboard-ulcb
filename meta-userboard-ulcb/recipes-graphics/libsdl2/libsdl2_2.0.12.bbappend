@@ -21,17 +21,17 @@ PACKAGECONFIG[wayland]    = "--enable-video-wayland,--disable-video-wayland,wayl
 
 do_install_append () {
 	install -d ${D}/home/root/sdl-tests/shapes
-	install ${S}/test/shapes/* ${D}/home/root/sdl-tests/shapes
+	install ${S}/test/shapes/* ${D}/home/root/sdl-tests/shapes || true
 	install -d ${D}/home/root/sdl-tests/nacl
-	install ${S}/test/nacl/* ${D}/home/root/sdl-tests/nacl
+	install ${S}/test/nacl/* ${D}/home/root/sdl-tests/nacl || true
 	install -d ${D}/home/root/sdl-tests/emscripten
-	install ${S}/test/emscripten/* ${D}/home/root/sdl-tests/emscripten
+	install ${S}/test/emscripten/* ${D}/home/root/sdl-tests/emscripten || true
 
-	install ${S}/test/*.bmp ${D}/home/root/sdl-tests
-	install ${S}/test/*.dat ${D}/home/root/sdl-tests
-	install ${S}/test/*.xbm ${D}/home/root/sdl-tests
-	install ${S}/test/*.markdown ${D}/home/root/sdl-tests
-	install ${S}/test/*.wav ${D}/home/root/sdl-tests
+	install ${S}/test/*.bmp ${D}/home/root/sdl-tests || true
+	install ${S}/test/*.dat ${D}/home/root/sdl-tests || true
+	install ${S}/test/*.xbm ${D}/home/root/sdl-tests || true
+	install ${S}/test/*.markdown ${D}/home/root/sdl-tests || true
+	install ${S}/test/*.wav ${D}/home/root/sdl-tests || true
 
 	cd ${S}/test
 	install checkkeys controllermap loopwave loopwavequeue testatomic testaudiocapture testaudiohotplug testaudioinfo testautomation \
@@ -40,15 +40,12 @@ do_install_append () {
 		testjoystick testkeys testloadso testlock testmessage testmultiaudio testnative testoverlay2 testplatform testqsort testrelative testrendercopyex \
 		testrendertarget testresample testrumble testscale testsem testsensor testshape testsprite2 testspriteminimal teststreaming \
 		testthread testtimer testver testviewport testvulkan testwm2 testyuv torturethread \
-		${D}/home/root/sdl-tests
+		${D}/home/root/sdl-tests || true
 	cd -
 }
 
-do_compile_tests () {
-	cp ${WORKDIR}/makefile.test ${S}/test/Makefile
-	oe_runmake -C ${S}/test
-}
-addtask compile_tests after do_compile before do_install
+#do_compile_tests () { cp ${WORKDIR}/makefile.test ${S}/test/Makefile || true; oe_runmake -C ${S}/test || true }
+#addtask compile_tests after do_compile before do_install
 
 FILES_${PN} += " \
         /home/root/sdl-tests \
