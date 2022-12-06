@@ -7,9 +7,6 @@ SRC_URI = "git://github.com/CogentEmbedded/sv-utest.git;branch=master;protocol=h
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
-# patchelf --replace-needed libopencv_calib3d.so.2.4 libopencv_calib3d.so libsv.so
-# ld-linux-aarch64.so.1
-
 SRC_URI_append = " \
 	file://libopencv_calib3d.so.2.4.11 \
 	file://libopencv_core.so.2.4.11 \
@@ -18,7 +15,7 @@ SRC_URI_append = " \
 	file://libopencv_imgproc.so.2.4.11 \
 	file://libopencv_flann.so.2.4.11 \
 	file://CMakeLists.patch \
-	file://libmediactl-v4l2.so.0.0.0 \
+	file://libmediactl-v4l2.so.0.0.1 \
 "
 
 DEPENDS = " \
@@ -61,8 +58,8 @@ EXTRA_OECMAKE = " -DCMAKE_SYSROOT=${STAGING_DIR_TARGET} -DSV_TARGET_PLATFORM=GEN
 "
 
 do_configure_prepend() {
-	mv -f ${STAGING_DIR_TARGET}${libdir}/libmediactl-v4l2.so.0.0.0 ${STAGING_DIR_TARGET}${libdir}/libmediactl-v4l2.so.0.0.1
-	cp -f ${WORKDIR}/libmediactl-v4l2.so.0.0.0 ${STAGING_DIR_TARGET}${libdir}
+	cp -f ${WORKDIR}/libmediactl-v4l2.so.0.0.1 ${STAGING_DIR_TARGET}${libdir}
+	ln -sf libmediactl-v4l2.so.0.0.1 ${STAGING_DIR_TARGET}${libdir}/libmediactl-v4l2.so
 	cp -Rpfv ${WORKDIR}/libopencv_*.so.2.4.11 ${STAGING_DIR_TARGET}${libdir}
 	ln -sf libopencv_calib3d.so.2.4.11 ${STAGING_DIR_TARGET}${libdir}/libopencv_calib3d.so
 	ln -sf libopencv_calib3d.so.2.4.11 ${STAGING_DIR_TARGET}${libdir}/libopencv_calib3d.so.2.4
@@ -84,17 +81,11 @@ do_install() {
 	install -d ${D}${includedir}
 	install -d ${D}${includedir}/sv
 	install ${S}/libs/gen3/libsv.so ${D}${libdir}
-	install ${STAGING_DIR_TARGET}${libdir}/libopencv_calib3d.so.2.4 ${D}${libdir}
 	install ${STAGING_DIR_TARGET}${libdir}/libopencv_calib3d.so.2.4.11 ${D}${libdir}
-	install ${STAGING_DIR_TARGET}${libdir}/libopencv_core.so.2.4 ${D}${libdir}
 	install ${STAGING_DIR_TARGET}${libdir}/libopencv_core.so.2.4.11 ${D}${libdir}
-	install ${STAGING_DIR_TARGET}${libdir}/libopencv_features2d.so.2.4 ${D}${libdir}
 	install ${STAGING_DIR_TARGET}${libdir}/libopencv_features2d.so.2.4.11 ${D}${libdir}
-	install ${STAGING_DIR_TARGET}${libdir}/libopencv_highgui.so.2.4 ${D}${libdir}
 	install ${STAGING_DIR_TARGET}${libdir}/libopencv_highgui.so.2.4.11 ${D}${libdir}
-	install ${STAGING_DIR_TARGET}${libdir}/libopencv_imgproc.so.2.4 ${D}${libdir}
 	install ${STAGING_DIR_TARGET}${libdir}/libopencv_imgproc.so.2.4.11 ${D}${libdir}
-	install ${STAGING_DIR_TARGET}${libdir}/libopencv_flann.so.2.4 ${D}${libdir}
 	install ${STAGING_DIR_TARGET}${libdir}/libopencv_flann.so.2.4.11 ${D}${libdir}
 	install -d ${D}/home/root/sv
 	cp -rfv ${S}/include/sv/svlib.h ${D}${includedir}/sv
@@ -103,11 +94,13 @@ do_install() {
 	cp -rfv ${S}/include/sv/types.h ${D}${includedir}/sv
 	cp -rfv ${S}/resources/* ${D}/home/root/sv
 	cp -rfv ${S}/bin ${D}/home/root/sv
-	mv -f ${STAGING_DIR_TARGET}${libdir}/libmediactl-v4l2.so.0.0.1 ${STAGING_DIR_TARGET}${libdir}/libmediactl-v4l2.so.0.0.0
-	cp -f ${WORKDIR}/libmediactl-v4l2.so.0.0.0 ${STAGING_DIR_TARGET}${libdir}/libmediactl-v4l2.so.0.0.1
+	install ${STAGING_DIR_TARGET}${libdir}/libmediactl-v4l2.so.0.0.1 ${D}${libdir}
+	/usr/bin/patchelf --replace-needed libmediactl-v4l2.so.0 libmediactl-v4l2.so.0.0.1 ${D}/home/root/sv/bin/sv-utest
+	/usr/bin/patchelf --replace-needed libopencv_calib3d.so.2.4 libopencv_calib3d.so.2.4.11 ${D}${libdir}/libsv.so
 }
 
 FILES_${PN} += " \
+	${libdir}/libmediactl-v4l2.so.0.0.1 \
 	${libdir}/libopencv_*.so.2.4* \
 	/home/root/sv \
 	${includedir}/sv \
