@@ -30,8 +30,8 @@ IMAGE_INSTALL_append = " \
 	packagegroup-qt5-examples \
 "
 
+IMAGE_INSTALL_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'sv', 'sv', '', d)} "
 IMAGE_INSTALL_append = " \
-	${@bb.utils.contains('DISTRO_FEATURES', 'surroundview', 'sv', '', d)} \
 	${@bb.utils.contains('DISTRO_FEATURES', 'surroundview', 'imr-sv', '', d)} \ 
 	${@bb.utils.contains('DISTRO_FEATURES', 'surroundview', 'utest-cam-imr-drm', '', d)} \ 
 	${@bb.utils.contains('DISTRO_FEATURES', 'vivid', 'samsung-utils', '', d)} \
