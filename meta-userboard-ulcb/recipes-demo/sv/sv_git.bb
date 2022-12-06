@@ -19,11 +19,11 @@ SRC_URI_append = " \
 "
 
 DEPENDS = " \
-	glibc \
 	libmediactl-v4l2 \
 	mmngr-user-module \
 	mmngrbuf-user-module \
-	gles-user-module \
+	virtual/libgles2 \
+	virtual/egl \
 	libpcap \
 	glib-2.0 \
 	libegl \
@@ -58,8 +58,7 @@ EXTRA_OECMAKE = " -DCMAKE_SYSROOT=${STAGING_DIR_TARGET} -DSV_TARGET_PLATFORM=GEN
 "
 
 do_configure_prepend() {
-	cp -f ${WORKDIR}/libmediactl-v4l2.so.0.0.1 ${STAGING_DIR_TARGET}${libdir}
-	ln -sf libmediactl-v4l2.so.0.0.1 ${STAGING_DIR_TARGET}${libdir}/libmediactl-v4l2.so
+	cp -f ${WORKDIR}/libmediactl-v4l2.so.0.0.1 ${STAGING_DIR_TARGET}${libdir}/libmediactl-v4l2.so.0.0.0
 	cp -Rpfv ${WORKDIR}/libopencv_*.so.2.4.11 ${STAGING_DIR_TARGET}${libdir}
 	ln -sf libopencv_calib3d.so.2.4.11 ${STAGING_DIR_TARGET}${libdir}/libopencv_calib3d.so
 	ln -sf libopencv_calib3d.so.2.4.11 ${STAGING_DIR_TARGET}${libdir}/libopencv_calib3d.so.2.4
@@ -77,6 +76,7 @@ do_configure_prepend() {
 
 do_install() {
 	${HOST_PREFIX}strip ${S}/bin/sv-utest
+	${HOST_PREFIX}strip ${S}/libs/gen3/libsv.so
 	install -d ${D}${libdir}
 	install -d ${D}${includedir}
 	install -d ${D}${includedir}/sv
@@ -87,21 +87,25 @@ do_install() {
 	install ${STAGING_DIR_TARGET}${libdir}/libopencv_highgui.so.2.4.11 ${D}${libdir}
 	install ${STAGING_DIR_TARGET}${libdir}/libopencv_imgproc.so.2.4.11 ${D}${libdir}
 	install ${STAGING_DIR_TARGET}${libdir}/libopencv_flann.so.2.4.11 ${D}${libdir}
-	install -d ${D}/home/root/sv
-	cp -rfv ${S}/include/sv/svlib.h ${D}${includedir}/sv
-	cp -rfv ${S}/include/sv/time.h ${D}${includedir}/sv
-	cp -rfv ${S}/include/sv/trace.h ${D}${includedir}/sv
-	cp -rfv ${S}/include/sv/types.h ${D}${includedir}/sv
-	cp -rfv ${S}/resources/* ${D}/home/root/sv
-	cp -rfv ${S}/bin ${D}/home/root/sv
-	install ${STAGING_DIR_TARGET}${libdir}/libmediactl-v4l2.so.0.0.1 ${D}${libdir}
-	/usr/bin/patchelf --replace-needed libmediactl-v4l2.so.0 libmediactl-v4l2.so.0.0.1 ${D}/home/root/sv/bin/sv-utest
-	/usr/bin/patchelf --replace-needed libopencv_calib3d.so.2.4 libopencv_calib3d.so.2.4.11 ${D}${libdir}/libsv.so
+	install -d ${D}/home/root/sv/bin
+	install -d ${D}/home/root/sv/calib
+	install ${S}/include/sv/svlib.h ${D}${includedir}/sv
+	install ${S}/include/sv/time.h ${D}${includedir}/sv
+	install ${S}/include/sv/trace.h ${D}${includedir}/sv
+	install ${S}/include/sv/types.h ${D}${includedir}/sv
+	install ${S}/resources/calib/* ${D}/home/root/sv/calib
+	install ${S}/resources/*.bmp ${D}/home/root/sv
+	install ${S}/resources/*.yaml ${D}/home/root/sv
+	install ${S}/resources/Car.obj ${D}/home/root/sv
+	install ${S}/resources/Car.mtl ${D}/home/root/sv
+	install ${S}/bin/* ${D}/home/root/sv/bin
+	#install ${WORKDIR}/libmediactl-v4l2.so.0.0.1 ${D}${libdir}
+	#/usr/bin/patchelf --replace-needed libmediactl-v4l2.so.0 libmediactl-v4l2.so.0.0.1 ${D}/home/root/sv/bin/sv-utest
+	#/usr/bin/patchelf --replace-needed libopencv_calib3d.so.2.4 libopencv_calib3d.so.2.4.11 ${D}${libdir}/libsv.so
 }
 
 FILES_${PN} += " \
-	${libdir}/libmediactl-v4l2.so.0.0.1 \
-	${libdir}/libopencv_*.so.2.4* \
+	${libdir}/lib*.so* \
 	/home/root/sv \
 	${includedir}/sv \
 "

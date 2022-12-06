@@ -68,6 +68,10 @@ wait
 # Switch to proper branches/commits
 cd ${WORK}/poky
 git checkout -b mydevelop ${POKY_COMMIT} || true
+
+echo "attempt_only = True"
+sed 's|def install(self, pkgs, attempt_only = False):|def install(self, pkgs, attempt_only = True):|' -i meta/lib/oe/package_manager.py
+
 cd ${WORK}/meta-openembedded
 git checkout -b mydevelop ${META_OE_COMMIT} || true
 cd ${WORK}/meta-renesas
@@ -119,7 +123,7 @@ bitbake core-image-weston -v
 
 ##############################
 cd ${SCRIPT_DIR}
-#make_rootfs_dir ${TARGET_BOARD}
+make_rootfs_dir ${TARGET_BOARD}
 
 ##############################
 cd ${SCRIPT_DIR}
