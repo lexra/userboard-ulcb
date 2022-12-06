@@ -11,7 +11,7 @@ DEPENDS = " \
 	gstreamer1.0 \
 	mmngr-user-module \
 	mmngrbuf-user-module \
-	gles-user-module \
+	virtual/libgles2 \
 	libpcap \
 	glib-2.0 \
 	opencv \
@@ -31,7 +31,7 @@ inherit cmake
 
 TARGET_CC_ARCH += "${LDFLAGS}"
 
-EXTRA_OECMAKE = " -DCMAKE_FIND_ROOT_PATH=${STAGING_DIR_TARGET} -DIMR_TARGET_PLATFORM=GEN3 -DCMAKE_SKIP_RPATH=TRUE -DGSTREAMER_INCLUDE_DIRS=${STAGING_DIR_TARGET}/usr/include/gstreamer-1.0"
+EXTRA_OECMAKE = " -DCMAKE_FIND_ROOT_PATH=${STAGING_DIR_TARGET} -DIMR_TARGET_PLATFORM=GEN3 -DCMAKE_SKIP_RPATH=TRUE -DGSTREAMER_INCLUDE_DIRS=${STAGING_INCDIR}/gstreamer-1.0"
 
 do_install() {
 	${HOST_PREFIX}strip ${S}/bin/imr-wl
