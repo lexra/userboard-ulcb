@@ -18,9 +18,11 @@ SRC_URI_append = " \
 	file://libopencv_imgproc.so.2.4.11 \
 	file://libopencv_flann.so.2.4.11 \
 	file://CMakeLists.patch \
+	file://libmediactl-v4l2.so.0.0.0 \
 "
 
 DEPENDS = " \
+	glibc \
 	libmediactl-v4l2 \
 	mmngr-user-module \
 	mmngrbuf-user-module \
@@ -51,6 +53,7 @@ RDEPENDS_${PN} = " \
 
 S = "${WORKDIR}/git"
 inherit cmake
+OECMAKE_GENERATOR = "Unix Makefiles"
 
 EXTRA_OECMAKE = " -DCMAKE_SYSROOT=${STAGING_DIR_TARGET} -DSV_TARGET_PLATFORM=GEN3 -DCMAKE_SKIP_RPATH=TRUE \
 	-DGSTREAMER_INCLUDE_DIRS=${STAGING_DIR_TARGET}${includedir}/gstreamer-1.0 \
@@ -58,6 +61,8 @@ EXTRA_OECMAKE = " -DCMAKE_SYSROOT=${STAGING_DIR_TARGET} -DSV_TARGET_PLATFORM=GEN
 "
 
 do_configure_prepend() {
+	mv -f ${STAGING_DIR_TARGET}${libdir}/libmediactl-v4l2.so.0.0.0 ${STAGING_DIR_TARGET}${libdir}/libmediactl-v4l2.so.0.0.1
+	cp -f ${WORKDIR}/libmediactl-v4l2.so.0.0.0 ${STAGING_DIR_TARGET}${libdir}
 	cp -Rpfv ${WORKDIR}/libopencv_*.so.2.4.11 ${STAGING_DIR_TARGET}${libdir}
 	ln -sf libopencv_calib3d.so.2.4.11 ${STAGING_DIR_TARGET}${libdir}/libopencv_calib3d.so
 	ln -sf libopencv_calib3d.so.2.4.11 ${STAGING_DIR_TARGET}${libdir}/libopencv_calib3d.so.2.4
@@ -98,6 +103,8 @@ do_install() {
 	cp -rfv ${S}/include/sv/types.h ${D}${includedir}/sv
 	cp -rfv ${S}/resources/* ${D}/home/root/sv
 	cp -rfv ${S}/bin ${D}/home/root/sv
+	mv -f ${STAGING_DIR_TARGET}${libdir}/libmediactl-v4l2.so.0.0.1 ${STAGING_DIR_TARGET}${libdir}/libmediactl-v4l2.so.0.0.0
+	cp -f ${WORKDIR}/libmediactl-v4l2.so.0.0.0 ${STAGING_DIR_TARGET}${libdir}/libmediactl-v4l2.so.0.0.1
 }
 
 FILES_${PN} += " \
