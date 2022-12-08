@@ -39,8 +39,9 @@ IMAGE_INSTALL_append = " \
 	${@bb.utils.contains('DISTRO_FEATURES', 'darknet', 'darknet', '', d)} \
 "
 
+IMAGE_INSTALL_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'xbmc', 'kodi', '', d)} "
 IMAGE_INSTALL_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'xbmc', 'kodi-addon-pvr-hts', '', d)} "
-#IMAGE_INSTALL_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'xbmc', 'kodi-addon-inputstream-adaptive', '', d)} "
+IMAGE_INSTALL_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'xbmc', 'kodi-addon-inputstream-adaptive', '', d)} "
 #IMAGE_INSTALL_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'xbmc', 'kodi-addon-peripheral-joystick', '', d)} "
 
 # Kernel modules of CMEMDRV
