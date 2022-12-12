@@ -1,0 +1,56 @@
+diff --git a/modules/contrib/src/chamfermatching.cpp b/modules/contrib/src/chamfermatching.cpp
+index 64d77cf0d5..c0c27f580c 100644
+--- a/modules/contrib/src/chamfermatching.cpp
++++ b/modules/contrib/src/chamfermatching.cpp
+@@ -956,7 +956,6 @@ void ChamferMatcher::Matching::computeDistanceTransform(Mat& edges_img, Mat& dis
+             {-1,0},          { 1,0},
+             {-1,1}, { 0,1}, { 1,1} };
+ 
+-
+     Size s = edges_img.size();
+     int w = s.width;
+     int h = s.height;
+@@ -966,10 +965,10 @@ void ChamferMatcher::Matching::computeDistanceTransform(Mat& edges_img, Mat& dis
+     for (int y=0;y<h;++y) {
+         for (int x=0;x<w;++x) {
+             // initialize
+-            if (&annotate_img!=NULL) {
++            //if (&annotate_img!=NULL) {
+                 annotate_img.at<Vec2i>(y,x)[0]=x;
+                 annotate_img.at<Vec2i>(y,x)[1]=y;
+-            }
++            //}
+ 
+             uchar edge_val = edges_img.at<uchar>(y,x);
+             if( (edge_val!=0) ) {
+@@ -1013,10 +1012,10 @@ void ChamferMatcher::Matching::computeDistanceTransform(Mat& edges_img, Mat& dis
+                 dist_img.at<float>(ny,nx) = dist;
+                 q.push(std::make_pair(nx,ny));
+ 
+-                if (&annotate_img!=NULL) {
++                //if (&annotate_img!=NULL) {
+                     annotate_img.at<Vec2i>(ny,nx)[0]=annotate_img.at<Vec2i>(y,x)[0];
+                     annotate_img.at<Vec2i>(ny,nx)[1]=annotate_img.at<Vec2i>(y,x)[1];
+-                }
++                //}
+             }
+         }
+     }
+@@ -1108,7 +1107,7 @@ ChamferMatcher::Match* ChamferMatcher::Matching::localChamferDistance(Point offs
+     float cost = (sum_distance/truncate_)/addr.size();
+ 
+ 
+-    if (&orientation_img!=NULL) {
++    //if (&orientation_img!=NULL) {
+         float* optr = orientation_img.ptr<float>(y)+x;
+         float sum_orientation = 0;
+         int cnt_orientation = 0;
+@@ -1127,7 +1126,7 @@ ChamferMatcher::Match* ChamferMatcher::Matching::localChamferDistance(Point offs
+                         cost = (float)(beta*cost+alpha*(sum_orientation/(2*CV_PI))/cnt_orientation);
+         }
+ 
+-    }
++    //}
+ 
+     if(cost > 0){
+         ChamferMatcher::Match* istance = new ChamferMatcher::Match();
