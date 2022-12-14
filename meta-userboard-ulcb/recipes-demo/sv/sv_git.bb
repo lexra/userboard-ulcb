@@ -19,6 +19,8 @@ SRC_URI_append = " \
 "
 
 DEPENDS = " \
+	tiff \
+	v4l-utils \
 	libmediactl-v4l2 \
 	mmngr-user-module \
 	mmngrbuf-user-module \
@@ -58,6 +60,14 @@ EXTRA_OECMAKE = " -DCMAKE_SYSROOT=${STAGING_DIR_TARGET} -DSV_TARGET_PLATFORM=GEN
 "
 
 do_configure_prepend() {
+	export CFLAGS=" --sysroot=${STAGING_DIR_TARGET}"
+	export CC="aarch64-poky-linux-gcc --sysroot=${STAGING_DIR_TARGET}"
+	export CXXFLAGS=" --sysroot=${STAGING_DIR_TARGET}"
+	export CCLD="aarch64-poky-linux-gcc --sysroot=${STAGING_DIR_TARGET}"
+	export FC="aarch64-poky-linux-gfortran --sysroot=${STAGING_DIR_TARGET}"
+	export CXX="aarch64-poky-linux-g++ --sysroot=${STAGING_DIR_TARGET}"
+	export CPP="aarch64-poky-linux-gcc -E --sysroot=${STAGING_DIR_TARGET}"
+
 	cp -f ${WORKDIR}/libmediactl-v4l2.so.0.0.1 ${STAGING_DIR_TARGET}${libdir}/libmediactl-v4l2.so.0.0.0
 	cp -Rpfv ${WORKDIR}/libopencv_*.so.2.4.11 ${STAGING_DIR_TARGET}${libdir}
 	ln -sf libopencv_calib3d.so.2.4.11 ${STAGING_DIR_TARGET}${libdir}/libopencv_calib3d.so
