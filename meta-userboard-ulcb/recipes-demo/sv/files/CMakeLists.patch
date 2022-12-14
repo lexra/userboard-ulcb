@@ -21,7 +21,7 @@ index 918d0da..a687f4c 100644
      m
      rt
      mediactl-v4l2
-+    dl
++    dl v4l2 tiff
  )
  
  if (SPNAV_FOUND)
