@@ -49,7 +49,7 @@ sudo find meta-userboard* -name "*.conf" | xargs chmod -x
 sudo apt-get install -y gawk wget git-core diffstat unzip texinfo gcc-multilib \
 	build-essential chrpath socat libsdl1.2-dev xterm python-crypto cpio python python3 \
 	python3-pip python3-pexpect xz-utils debianutils iputils-ping libssl-dev p7zip-full libyaml-dev \
-	nfs-kernel-server parted ffmpeg patchelf
+	nfs-kernel-server parted ffmpeg patchelf default-jdk
 echo ""
 
 mkdir -p ${WORK}
@@ -69,8 +69,9 @@ wait
 cd ${WORK}/poky
 git checkout -b mydevelop ${POKY_COMMIT} || true
 
-echo "attempt_only = True"
-sed 's|def install(self, pkgs, attempt_only = False):|def install(self, pkgs, attempt_only = True):|' -i meta/lib/oe/package_manager.py
+#echo "attempt_only = True"
+#git checkout meta/lib/oe/package_manager.py
+#sed 's|def install(self, pkgs, attempt_only = False):|def install(self, pkgs, attempt_only = True):|' -i meta/lib/oe/package_manager.py
 
 cd ${WORK}/meta-openembedded
 git checkout -b mydevelop ${META_OE_COMMIT} || true
@@ -123,7 +124,7 @@ bitbake core-image-weston -v
 
 ##############################
 cd ${SCRIPT_DIR}
-make_rootfs_dir ${TARGET_BOARD}
+#make_rootfs_dir ${TARGET_BOARD}
 
 ##############################
 cd ${SCRIPT_DIR}
