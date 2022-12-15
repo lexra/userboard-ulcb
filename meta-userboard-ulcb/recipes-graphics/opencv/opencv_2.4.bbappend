@@ -4,7 +4,6 @@ SRC_URI_append = " \
 	file://chamfermatching.patch \
 "
 
-
 DEPENDS = " \
 	python3 \
 	python3-numpy \
@@ -15,6 +14,7 @@ DEPENDS = " \
 	zlib \
 	glib-2.0 \
 "
+
 RDEPENDS_python-opencv = "python3-core python3-numpy"
 OECMAKE_GENERATOR = "Unix Makefiles"
 
@@ -37,25 +37,24 @@ EXTRA_OECMAKE = " \
 	-DBUILD_SHARED_LIBS=ON \
 "
 
-addtask libpng_link after do_patch before do_configure
+addtask header_fix after do_patch before do_configure
 
-do_libpng_link () {
+do_header_fix () {
 	cd ${STAGING_DIR_TARGET}/usr/include
 	[ -e libpng16 ] && ln -sf libpng16 libpng
 	[ -e libv4l1-videodev.h ] && cp -fv libv4l1-videodev.h linux/videodev.h
 	cd -
-
 }
 
-do_configure_prepend () {
-	export CFLAGS=" --sysroot=${STAGING_DIR_TARGET}"
-	export CC="aarch64-poky-linux-gcc --sysroot=${STAGING_DIR_TARGET}"
-	export CXXFLAGS=" --sysroot=${STAGING_DIR_TARGET}"
-	export CCLD="aarch64-poky-linux-gcc --sysroot=${STAGING_DIR_TARGET}"
-	export FC="aarch64-poky-linux-gfortran --sysroot=${STAGING_DIR_TARGET}"
-	export CXX="aarch64-poky-linux-g++ --sysroot=${STAGING_DIR_TARGET}"
-	export CPP="aarch64-poky-linux-gcc -E --sysroot=${STAGING_DIR_TARGET}" 
-}
+#do_configure_prepend () {
+#	export CFLAGS=" --sysroot=${STAGING_DIR_TARGET}"
+#	export CC="aarch64-poky-linux-gcc --sysroot=${STAGING_DIR_TARGET}"
+#	export CXXFLAGS=" --sysroot=${STAGING_DIR_TARGET}"
+#	export CCLD="aarch64-poky-linux-gcc --sysroot=${STAGING_DIR_TARGET}"
+#	export FC="aarch64-poky-linux-gfortran --sysroot=${STAGING_DIR_TARGET}"
+#	export CXX="aarch64-poky-linux-g++ --sysroot=${STAGING_DIR_TARGET}"
+#	export CPP="aarch64-poky-linux-gcc -E --sysroot=${STAGING_DIR_TARGET}" 
+#}
 
 do_configure_append () {
 	mkdir -p ${S}/../build
