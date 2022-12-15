@@ -1,0 +1,12 @@
+diff --git a/libmediactl.c b/libmediactl.c
+index f15b1a3..165a31c 100644
+--- a/libmediactl.c
++++ b/libmediactl.c
+@@ -21,6 +21,7 @@
+ 
+ #include "config.h"
+ 
++#include <sys/sysmacros.h>
+ #include <sys/ioctl.h>
+ #include <sys/stat.h>
+ #include <sys/types.h>
