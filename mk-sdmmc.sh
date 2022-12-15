@@ -3,6 +3,7 @@
 RED='\033[0;31m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
+IP_ADDR=$(ip address | grep 192.168 | head -1 | awk '{print $2}' | awk -F '/' '{print $1}')
 
 BOARD_LIST=("h3ulcb" "m3ulcb" "m3nulcb" "ebisu" "salvator-x")
 TARGET_BOARD=$1
@@ -20,7 +21,7 @@ function print_boot_example() {
 	if [ "${TARGET_BOARD}" == "h3ulcb" ]; then
 		echo -e "${YELLOW} => setenv bootcmd 'ext4load mmc 0:1 0x48080000 Image; ext4load mmc 0:1 0x48000000 r8a779m1-ulcb-kf.dtb; booti 0x48080000 - 0x48000000' ${NC}"
 	elif [ "${TARGET_BOARD}" == "m3ulcb" ]; then
-		echo -e "${YELLOW} => setenv bootcmd 'ext4load mmc 0:1 0x48080000 Image; ext4load mmc 0:1 0x48000000 r8a77961-ulcb-kf.dtb; booti 0x48080000 - 0x48000000' ${NC}"
+		echo -e "${YELLOW} => setenv bootcmd 'ext4load mmc 0:1 0x48080000 Image; ext4load mmc 0:1 0x48000000 r8a77960-ulcb-kf.dtb; booti 0x48080000 - 0x48000000' ${NC}"
 	elif [ "${TARGET_BOARD}" == "m3nulcb" ]; then
 		echo -e "${YELLOW} => setenv bootcmd 'ext4load mmc 0:1 0x48080000 Image; ext4load mmc 0:1 0x48000000 r8a77965-ulcb-kf.dtb; booti 0x48080000 - 0x48000000' ${NC}"
 	elif [ "${TARGET_BOARD}" == "ebisu" ]; then
@@ -29,7 +30,30 @@ function print_boot_example() {
 		echo -e "${YELLOW} => setenv bootcmd 'ext4load mmc 0:1 0x48080000 Image; ext4load mmc 0:1 0x48000000 r8a779m1-salvator-xs.dtb; booti 0x48080000 - 0x48000000' ${NC}"
 	fi
 	echo -e "${YELLOW} => saveenv ${NC}"
+	echo -e "${YELLOW} => boot ${NC}"
 	echo ""
+
+        echo ">> FOR NFS BOOT"
+	echo -e "${YELLOW} => setenv ethact ravb ${NC}"
+	echo -e "${YELLOW} => setenv ethaddr 2E:09:0A:00:BE:11 ${NC}"
+	echo -e "${YELLOW} => setenv ipaddr $(echo ${IP_ADDR} | grep 192.168 | head -1 | awk -F '.' '{print $1 "." $2 "." $3}').133 ${NC}"
+	echo -e "${YELLOW} => setenv serverip ${IP_ADDR} ${NC}"
+	echo -e "${YELLOW} => setenv NFSROOT \${serverip}:/work/userboard-ulcb/rootfs,tcp,v3 ${NC}"
+	echo -e "${YELLOW} => setenv bootnfs 'nfs 0x48080000 \${NFSROOT}/boot/Image; nfs 0x48000000 \${NFSROOT}/boot/r8a77960-ulcb-kf.dtb; setenv bootargs rw rootwait earlycon root=/dev/nfs nfsroot=\${NFSROOT} ip=dhcp; booti 0x48080000 - 0x48000000' ${NC}"
+	echo -e "${YELLOW} => saveenv ${NC}"
+	echo -e "${YELLOW} => run bootnfs ${NC}"
+	echo ""
+}
+
+function make_rootfs_dir () {
+        sudo rm -rf rootfs && mkdir -p rootfs
+        sudo tar zxvf ${1}/build/tmp/deploy/images/${1}/core-image-weston-${1}.tar.gz -C rootfs
+        sudo tar zxvf ${1}/build/tmp/deploy/images/${1}/modules-${1}.tgz -C rootfs
+        sudo cp -Rpf ${1}/build/tmp/deploy/images/${1}/*.dtb rootfs/boot
+        sudo cp -Rpf ${1}/build/tmp/deploy/images/${1}/Image* rootfs/boot
+        sudo cp -Rpf ${1}/build/tmp/deploy/images/${1}/core-image-weston-*${1}*.tar.gz rootfs/boot
+        sudo cp -Rpf ${1}/build/tmp/deploy/images/${1}/modules-*${1}*.tgz rootfs/boot
+        sudo chmod go+rwx rootfs/home/root
 }
 
 function Usage () {
@@ -56,6 +80,11 @@ fi
 ##############################
 sudo umount mnt || true
 sudo rm -rfv mnt && mkdir -p mnt
+
+##############################
+make_rootfs_dir ${TARGET_BOARD}
+
+##############################
 sudo losetup -D
 PART1=$(echo "${PART1} - 1" | bc)
 
