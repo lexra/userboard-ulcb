@@ -25,16 +25,6 @@ function Usage () {
 	for i in ${BOARD_LIST[@]}; do echo "  - $i"; done
 	exit 0
 }
-function make_rootfs_dir () {
-	sudo rm -rf rootfs && mkdir -p rootfs
-	sudo tar zxf ${1}/build/tmp/deploy/images/${1}/core-image-weston-${1}.tar.gz -C rootfs
-	sudo tar zxf ${1}/build/tmp/deploy/images/${1}/modules-${1}.tgz -C rootfs
-	sudo cp -Rpf ${1}/build/tmp/deploy/images/${1}/*.dtb rootfs/boot
-	sudo cp -Rpf ${1}/build/tmp/deploy/images/${1}/Image* rootfs/boot
-	sudo cp -Rpf ${1}/build/tmp/deploy/images/${1}/core-image-weston-*${1}*.tar.gz rootfs/boot
-	sudo cp -Rpf ${1}/build/tmp/deploy/images/${1}/modules-*${1}*.tgz rootfs/boot
-	sudo chmod go+rwx rootfs/home/root
-}
 
 # Check Param.
 if ! `IFS=$'\n'; echo "${BOARD_LIST[*]}" | grep -qx "${TARGET_BOARD}"`; then
@@ -49,7 +39,7 @@ sudo find meta-userboard* -name "*.conf" | xargs chmod -x
 sudo apt-get install -y gawk wget git-core diffstat unzip texinfo gcc-multilib \
 	build-essential chrpath socat libsdl1.2-dev xterm python-crypto cpio python python3 \
 	python3-pip python3-pexpect xz-utils debianutils iputils-ping libssl-dev p7zip-full libyaml-dev \
-	nfs-kernel-server parted ffmpeg patchelf default-jdk
+	nfs-kernel-server parted ffmpeg patchelf default-jdk iproute2
 echo ""
 
 mkdir -p ${WORK}
@@ -121,10 +111,6 @@ cp conf/local-wayland.conf conf/local.conf
 bitbake-layers show-layers
 bitbake core-image-weston -v
 #bitbake core-image-weston -v -c populate_sdk
-
-##############################
-cd ${SCRIPT_DIR}
-#make_rootfs_dir ${TARGET_BOARD}
 
 ##############################
 cd ${SCRIPT_DIR}
