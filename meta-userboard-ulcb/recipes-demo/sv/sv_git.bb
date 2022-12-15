@@ -8,14 +8,13 @@ SRC_URI = "git://github.com/CogentEmbedded/sv-utest.git;branch=master;protocol=h
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 SRC_URI_append = " \
-	file://libopencv_calib3d.so.2.4.11 \
-	file://libopencv_core.so.2.4.11 \
-	file://libopencv_features2d.so.2.4.11 \
-	file://libopencv_highgui.so.2.4.11 \
-	file://libopencv_imgproc.so.2.4.11 \
-	file://libopencv_flann.so.2.4.11 \
+	file://libopencv_calib3d.so.2.4 \
+	file://libopencv_core.so.2.4 \
+	file://libopencv_features2d.so.2.4 \
+	file://libopencv_highgui.so.2.4 \
+	file://libopencv_imgproc.so.2.4 \
+	file://libopencv_flann.so.2.4 \
 	file://CMakeLists.patch \
-	file://libmediactl-v4l2.so.0.0.1 \
 "
 
 DEPENDS = " \
@@ -28,7 +27,6 @@ DEPENDS = " \
 	virtual/egl \
 	libpcap \
 	glib-2.0 \
-	libegl \
 	glm \
 	zlib \
 	cairo \
@@ -60,28 +58,13 @@ EXTRA_OECMAKE = " -DCMAKE_SYSROOT=${STAGING_DIR_TARGET} -DSV_TARGET_PLATFORM=GEN
 "
 
 do_configure_prepend() {
-	export CFLAGS=" --sysroot=${STAGING_DIR_TARGET}"
-	export CC="aarch64-poky-linux-gcc --sysroot=${STAGING_DIR_TARGET}"
-	export CXXFLAGS=" --sysroot=${STAGING_DIR_TARGET}"
-	export CCLD="aarch64-poky-linux-gcc --sysroot=${STAGING_DIR_TARGET}"
-	export FC="aarch64-poky-linux-gfortran --sysroot=${STAGING_DIR_TARGET}"
-	export CXX="aarch64-poky-linux-g++ --sysroot=${STAGING_DIR_TARGET}"
-	export CPP="aarch64-poky-linux-gcc -E --sysroot=${STAGING_DIR_TARGET}"
-
-	cp -f ${WORKDIR}/libmediactl-v4l2.so.0.0.1 ${STAGING_DIR_TARGET}${libdir}/libmediactl-v4l2.so.0.0.0
-	cp -Rpfv ${WORKDIR}/libopencv_*.so.2.4.11 ${STAGING_DIR_TARGET}${libdir}
-	ln -sf libopencv_calib3d.so.2.4.11 ${STAGING_DIR_TARGET}${libdir}/libopencv_calib3d.so
-	ln -sf libopencv_calib3d.so.2.4.11 ${STAGING_DIR_TARGET}${libdir}/libopencv_calib3d.so.2.4
-	ln -sf libopencv_core.so.2.4.11 ${STAGING_DIR_TARGET}${libdir}/libopencv_core.so
-	ln -sf libopencv_core.so.2.4.11 ${STAGING_DIR_TARGET}${libdir}/libopencv_core.so.2.4
-	ln -sf libopencv_features2d.so.2.4.11 ${STAGING_DIR_TARGET}${libdir}/libopencv_features2d.so
-	ln -sf libopencv_features2d.so.2.4.11 ${STAGING_DIR_TARGET}${libdir}/libopencv_features2d.so.2.4
-	ln -sf libopencv_highgui.so.2.4.11 ${STAGING_DIR_TARGET}${libdir}/libopencv_highgui.so
-	ln -sf libopencv_highgui.so.2.4.11 ${STAGING_DIR_TARGET}${libdir}/libopencv_highgui.so.2.4
-	ln -sf libopencv_imgproc.so.2.4.11 ${STAGING_DIR_TARGET}${libdir}/libopencv_imgproc.so
-	ln -sf libopencv_imgproc.so.2.4.11 ${STAGING_DIR_TARGET}${libdir}/libopencv_imgproc.so.2.4
-	ln -sf libopencv_flann.so.2.4.11 ${STAGING_DIR_TARGET}${libdir}/libopencv_flann.so
-	ln -sf libopencv_flann.so.2.4.11 ${STAGING_DIR_TARGET}${libdir}/libopencv_flann.so.2.4
+	cp -Rpfv ${WORKDIR}/libopencv_*.so.2.4 ${STAGING_DIR_TARGET}${libdir}
+	ln -sf libopencv_calib3d.so.2.4 ${STAGING_DIR_TARGET}${libdir}/libopencv_calib3d.so
+	ln -sf libopencv_core.so.2.4 ${STAGING_DIR_TARGET}${libdir}/libopencv_core.so
+	ln -sf libopencv_features2d.so.2.4 ${STAGING_DIR_TARGET}${libdir}/libopencv_features2d.so
+	ln -sf libopencv_highgui.so.2.4 ${STAGING_DIR_TARGET}${libdir}/libopencv_highgui.so
+	ln -sf libopencv_imgproc.so.2.4 ${STAGING_DIR_TARGET}${libdir}/libopencv_imgproc.so
+	ln -sf libopencv_flann.so.2.4 ${STAGING_DIR_TARGET}${libdir}/libopencv_flann.so
 }
 
 do_install() {
@@ -91,12 +74,12 @@ do_install() {
 	install -d ${D}${includedir}
 	install -d ${D}${includedir}/sv
 	install ${S}/libs/gen3/libsv.so ${D}${libdir}
-	install ${STAGING_DIR_TARGET}${libdir}/libopencv_calib3d.so.2.4.11 ${D}${libdir}
-	install ${STAGING_DIR_TARGET}${libdir}/libopencv_core.so.2.4.11 ${D}${libdir}
-	install ${STAGING_DIR_TARGET}${libdir}/libopencv_features2d.so.2.4.11 ${D}${libdir}
-	install ${STAGING_DIR_TARGET}${libdir}/libopencv_highgui.so.2.4.11 ${D}${libdir}
-	install ${STAGING_DIR_TARGET}${libdir}/libopencv_imgproc.so.2.4.11 ${D}${libdir}
-	install ${STAGING_DIR_TARGET}${libdir}/libopencv_flann.so.2.4.11 ${D}${libdir}
+	install ${STAGING_DIR_TARGET}${libdir}/libopencv_calib3d.so.2.4 ${D}${libdir}
+	install ${STAGING_DIR_TARGET}${libdir}/libopencv_core.so.2.4 ${D}${libdir}
+	install ${STAGING_DIR_TARGET}${libdir}/libopencv_features2d.so.2.4 ${D}${libdir}
+	install ${STAGING_DIR_TARGET}${libdir}/libopencv_highgui.so.2.4 ${D}${libdir}
+	install ${STAGING_DIR_TARGET}${libdir}/libopencv_imgproc.so.2.4 ${D}${libdir}
+	install ${STAGING_DIR_TARGET}${libdir}/libopencv_flann.so.2.4 ${D}${libdir}
 	install -d ${D}/home/root/sv/bin
 	install -d ${D}/home/root/sv/calib
 	install ${S}/include/sv/svlib.h ${D}${includedir}/sv
@@ -109,9 +92,7 @@ do_install() {
 	install ${S}/resources/Car.obj ${D}/home/root/sv
 	install ${S}/resources/Car.mtl ${D}/home/root/sv
 	install ${S}/bin/* ${D}/home/root/sv/bin
-	#install ${WORKDIR}/libmediactl-v4l2.so.0.0.1 ${D}${libdir}
-	#/usr/bin/patchelf --replace-needed libmediactl-v4l2.so.0 libmediactl-v4l2.so.0.0.1 ${D}/home/root/sv/bin/sv-utest
-	#/usr/bin/patchelf --replace-needed libopencv_calib3d.so.2.4 libopencv_calib3d.so.2.4.11 ${D}${libdir}/libsv.so
+	#/usr/bin/patchelf --replace-needed libopencv_calib3d.so.2.4 libopencv_calib3d.so.2.4.11 ${D}${libdir}/libsv.so || true
 }
 
 FILES_${PN} += " \
