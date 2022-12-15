@@ -11,6 +11,7 @@ SDMMCBLK=/dev/mmcblk1
 [ ! -e /boot/modules-${MACHINE}.tgz ] && exit 0
 [ ! -e /boot/Image ] && exit 0
 
+wipefs -a -f ${EMMCBLK} || true
 umount ${EMMCBLK}p1 || true
 umount ${EMMCBLK}p2 || true
 umount ${EMMCBLK}p3 || true
