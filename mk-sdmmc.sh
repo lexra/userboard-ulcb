@@ -15,25 +15,25 @@ TOTAL=8192
 PART1=2560
 
 function print_boot_example() {
-        echo ""
-        echo ">> FOR SD BOOT"
+	echo ""
+	echo ">> FOR SD BOOT"
 	echo -e "${YELLOW} => setenv bootargs rw rootwait ipv6.disable=1 earlycon root=/dev/mmcblk1p2 ${NC}"
-	if [ "${TARGET_BOARD}" == "h3ulcb" ]; then
+	if [ "${1}" == "h3ulcb" ]; then
 		echo -e "${YELLOW} => setenv bootcmd 'ext4load mmc 0:1 0x48080000 Image; ext4load mmc 0:1 0x48000000 r8a779m1-ulcb-kf.dtb; booti 0x48080000 - 0x48000000' ${NC}"
-	elif [ "${TARGET_BOARD}" == "m3ulcb" ]; then
+	elif [ "${1}" == "m3ulcb" ]; then
 		echo -e "${YELLOW} => setenv bootcmd 'ext4load mmc 0:1 0x48080000 Image; ext4load mmc 0:1 0x48000000 r8a77960-ulcb-kf.dtb; booti 0x48080000 - 0x48000000' ${NC}"
-	elif [ "${TARGET_BOARD}" == "m3nulcb" ]; then
+	elif [ "${1}" == "m3nulcb" ]; then
 		echo -e "${YELLOW} => setenv bootcmd 'ext4load mmc 0:1 0x48080000 Image; ext4load mmc 0:1 0x48000000 r8a77965-ulcb-kf.dtb; booti 0x48080000 - 0x48000000' ${NC}"
-	elif [ "${TARGET_BOARD}" == "ebisu" ]; then
+	elif [ "${1}" == "ebisu" ]; then
 		echo -e "${YELLOW} => setenv bootcmd 'ext4load mmc 0:1 0x48080000 Image; ext4load mmc 0:1 0x48000000 r8a77990-ebisu-4d.dtb; booti 0x48080000 - 0x48000000' ${NC}"
-	elif [ "${TARGET_BOARD}" == "salvator-x" ]; then
+	elif [ "${1}" == "salvator-x" ]; then
 		echo -e "${YELLOW} => setenv bootcmd 'ext4load mmc 0:1 0x48080000 Image; ext4load mmc 0:1 0x48000000 r8a779m1-salvator-xs.dtb; booti 0x48080000 - 0x48000000' ${NC}"
 	fi
 	echo -e "${YELLOW} => saveenv ${NC}"
 	echo -e "${YELLOW} => boot ${NC}"
 	echo ""
 
-        echo ">> FOR NFS BOOT"
+	echo ">> FOR NFS BOOT"
 	echo -e "${YELLOW} => setenv ethact ravb ${NC}"
 	echo -e "${YELLOW} => setenv ethaddr 2E:09:0A:00:BE:11 ${NC}"
 	echo -e "${YELLOW} => setenv ipaddr $(echo ${IP_ADDR} | grep 192.168 | head -1 | awk -F '.' '{print $1 "." $2 "." $3}').133 ${NC}"
@@ -46,14 +46,14 @@ function print_boot_example() {
 }
 
 function make_rootfs_dir () {
-        sudo rm -rf rootfs && mkdir -p rootfs
-        sudo tar zxvf ${1}/build/tmp/deploy/images/${1}/core-image-weston-${1}.tar.gz -C rootfs
-        sudo tar zxvf ${1}/build/tmp/deploy/images/${1}/modules-${1}.tgz -C rootfs
-        sudo cp -Rpf ${1}/build/tmp/deploy/images/${1}/*.dtb rootfs/boot
-        sudo cp -Rpf ${1}/build/tmp/deploy/images/${1}/Image* rootfs/boot
-        sudo cp -Rpf ${1}/build/tmp/deploy/images/${1}/core-image-weston-*${1}*.tar.gz rootfs/boot
-        sudo cp -Rpf ${1}/build/tmp/deploy/images/${1}/modules-*${1}*.tgz rootfs/boot
-        sudo chmod go+rwx rootfs/home/root
+	sudo rm -rf rootfs && mkdir -p rootfs
+	sudo tar zxvf ${1}/build/tmp/deploy/images/${1}/core-image-weston-${1}.tar.gz -C rootfs
+	sudo tar zxvf ${1}/build/tmp/deploy/images/${1}/modules-${1}.tgz -C rootfs
+	sudo cp -Rpf ${1}/build/tmp/deploy/images/${1}/*.dtb rootfs/boot
+	sudo cp -Rpf ${1}/build/tmp/deploy/images/${1}/Image* rootfs/boot
+	sudo cp -Rpf ${1}/build/tmp/deploy/images/${1}/core-image-weston-*${1}*.tar.gz rootfs/boot
+	sudo cp -Rpf ${1}/build/tmp/deploy/images/${1}/modules-*${1}*.tgz rootfs/boot
+	sudo chmod go+rwx rootfs/home/root
 }
 
 function Usage () {
@@ -133,5 +133,5 @@ sudo losetup -D
 
 ##############################
 ls -l --color ${SDDEV}
-print_boot_example
+print_boot_example ${TARGET_BOARD}
 exit 0
