@@ -15,8 +15,8 @@ SRC_URI = "git://code.qt.io/qt-labs/qml-presentation-system.git"
 S = "${WORKDIR}/git"
 
 do_install() {
-     install -d ${D}${libdir}/qt5/qml/Qt/labs/presentation
-     install -m 644 ${S}/src/* ${D}${libdir}/qt5/qml/Qt/labs/presentation/
+	install -d ${D}${libdir}/qt5/qml/Qt/labs/presentation
+	install -m 644 ${S}/src/* ${D}${libdir}/qt5/qml/Qt/labs/presentation
 }
 
 #FILES_${PN}-dbg += "${datadir}/${P}/.debug"
