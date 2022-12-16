@@ -40,7 +40,10 @@ PACKAGECONFIG[wayland]    = "--enable-video-wayland,--disable-video-wayland,wayl
 # testthread testtimer testver testviewport testvulkan testwm2 testyuv torturethread ${D}/home/root/sdl-tests || true
 # cd -
 #}
-#do_compile_tests () { cp ${WORKDIR}/makefile.test ${S}/test/Makefile || true; oe_runmake -C ${S}/test || true }
+#do_compile_tests () {
+# cp ${WORKDIR}/makefile.test ${S}/test/Makefile || true
+# oe_runmake -C ${S}/test || true 
+#}
 #addtask compile_tests after do_compile before do_install
 #FILES_${PN} += " /home/root/sdl-tests "
 
