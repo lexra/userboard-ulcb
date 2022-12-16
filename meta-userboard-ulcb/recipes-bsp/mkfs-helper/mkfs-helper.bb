@@ -9,7 +9,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 S = "${WORKDIR}"
 
-do_install () {
+do_install_class-target () {
 	install -d ${D}/home/root
 	install -m 755 ${WORKDIR}/mkfs-helper.sh ${D}/home/root
 	sed "s/MACHINE=m3ulcb/MACHINE=${MACHINE}/" -i ${D}/home/root/mkfs-helper.sh
