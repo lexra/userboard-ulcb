@@ -13,7 +13,7 @@ S = "${WORKDIR}/git"
 
 PARALLEL_MAKE = "-j 1"
 
-do_install () {
+do_install_class-target () {
 	install -d ${D}/usr/bin
 	make INSTALL_DIR=${D}/usr/bin -C ${S} install
 }

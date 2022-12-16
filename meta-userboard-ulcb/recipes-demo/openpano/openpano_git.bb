@@ -19,7 +19,7 @@ do_configure_append () {
 	sed 's|-march=native||g' -i ${S}/CMakeLists.txt
 }
 
-do_install() {
+do_install_class-target () {
 	${HOST_PREFIX}strip ${WORKDIR}/build/src/image-stitching
 	install -d ${D}/home/root/openpano
 	install -m 755 ${WORKDIR}/build/src/image-stitching ${D}/home/root/openpano

@@ -19,7 +19,7 @@ do_compile () {
 	${CC} omxh264-decode-test.c -o omxh264-decode-test -lomxr_mc_h264d -lomxr_core -lpthread
 }
 
-do_install () {
+do_install_class-target () {
         install -d ${D}/usr/bin
         install -d ${D}/usr/share/tests
 	install -m 755 ${WORKDIR}/omxh264-decode-test ${D}/usr/bin

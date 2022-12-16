@@ -33,7 +33,7 @@ TARGET_CC_ARCH += "${LDFLAGS}"
 
 EXTRA_OECMAKE = " -DCMAKE_FIND_ROOT_PATH=${STAGING_DIR_TARGET} -DIMR_TARGET_PLATFORM=GEN3 -DCMAKE_SKIP_RPATH=TRUE -DGSTREAMER_INCLUDE_DIRS=${STAGING_INCDIR}/gstreamer-1.0"
 
-do_install() {
+do_install_class-target () {
 	${HOST_PREFIX}strip ${S}/bin/imr-wl
 	${HOST_PREFIX}strip ${S}/prebuilt/GEN3/gen
 	install -d ${D}/home/root/imr-sv

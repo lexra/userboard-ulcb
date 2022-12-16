@@ -20,7 +20,7 @@ do_compile () {
 	${HOST_PREFIX}strip ${WORKDIR}/build/monotonic-ts
 }
 
-do_install () {
+do_install_class-target () {
 	install -d ${D}${DEST_DIR}/frames
 	install -m 755 ${WORKDIR}/build/gen-image ${D}${DEST_DIR}
 	install -m 755 ${WORKDIR}/build/monotonic-ts ${D}${DEST_DIR}

@@ -67,7 +67,7 @@ do_configure_prepend() {
 	ln -sf libopencv_flann.so.2.4 ${STAGING_DIR_TARGET}${libdir}/libopencv_flann.so
 }
 
-do_install() {
+do_install_class-target () {
 	${HOST_PREFIX}strip ${S}/bin/sv-utest
 	${HOST_PREFIX}strip ${S}/libs/gen3/libsv.so
 	install -d ${D}${libdir}

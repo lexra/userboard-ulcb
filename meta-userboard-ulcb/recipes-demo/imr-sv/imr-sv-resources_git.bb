@@ -7,7 +7,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 S = "${WORKDIR}/git"
 
-do_install () {
+do_install_class-target () {
 	install -d ${D}/home/root/imr-sv/data
 	install ${S}/*.png ${D}/home/root/imr-sv
 	install ${S}/*.obj ${D}/home/root/imr-sv

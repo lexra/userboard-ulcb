@@ -25,7 +25,7 @@ do_compile () {
 	cd -
 }
 
-do_install () {
+do_install_class-target () {
         install -d ${D}/home/root/darknet
         install -d ${D}${includedir}
         install -d ${D}${libdir}

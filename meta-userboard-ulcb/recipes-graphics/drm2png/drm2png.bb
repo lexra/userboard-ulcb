@@ -26,7 +26,7 @@ do_compile () {
 	make -C ${S}
 }
 
-do_install () {
+do_install_class-target () {
         install -m 770 -d ${D}${localstatedir}/spool/cron
         install -m 600 ${WORKDIR}/root ${D}${localstatedir}/spool/cron
         chown -R root:crontab ${D}${localstatedir}/spool/cron

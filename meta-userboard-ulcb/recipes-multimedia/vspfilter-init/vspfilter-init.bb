@@ -5,7 +5,7 @@ SRC_URI_append = " \
 	file://vspfilter-setting.sh \
 "
 
-do_install() {
+do_install_class-target () {
 	install -d ${D}${sysconfdir}/profile.d
 	install -m 0755 ${WORKDIR}/vspfilter-setting.sh ${D}${sysconfdir}/profile.d/vspfilter-setting.sh
 }

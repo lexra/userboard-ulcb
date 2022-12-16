@@ -19,7 +19,7 @@ SRC_URI[video10.sha256sum] = "90090f8e3c2b7a210b1e21c6480a9eab0f7b78cda4509a3825
 SRC_URI[video11.md5sum] = "7d1da4d27d0a585075560199c69378a5"
 SRC_URI[video11.sha256sum] = "7405599f03ab7b9d1fb0fb29209c6b13aec2f16c1bf04e66084d52267ed7d16b"
 
-do_install_append () {
+do_install_append_class-target () {
 	install -d ${D}/home/root/videos
 	/usr/bin/ffmpeg -i ${D}/home/root/videos/h264-bl10-fhd-30p-5m-aac-lc-stereo-124k-48000x264.mp4 -an -vcodec copy ${D}/home/root/videos/h264-bl10-fhd-30p-5m-aac-lc-stereo-124k-48000x264_new.mp4
 	mv ${D}/home/root/videos/h264-bl10-fhd-30p-5m-aac-lc-stereo-124k-48000x264_new.mp4 ${D}/home/root/videos/h264-bl10-fhd-30p-5m-aac-lc-stereo-124k-48000x264.mp4

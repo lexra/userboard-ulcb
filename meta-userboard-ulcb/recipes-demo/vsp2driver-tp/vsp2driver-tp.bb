@@ -27,7 +27,7 @@ do_compile () {
 	make -C uds
 }
 
-do_install () {
+do_install_class-target () {
 	install -d ${D}${prefix}/bin
 	install -d ${D}${prefix}/share/tests
 	install ${S}/bru/v4l2_bru_tp ${D}${prefix}/bin

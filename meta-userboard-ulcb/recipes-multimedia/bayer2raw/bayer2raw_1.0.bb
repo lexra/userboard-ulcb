@@ -26,7 +26,7 @@ FILES_${PN}-dbg = " \
 	${libdir}/.debug \
 "
 
-do_install() {
+do_install_class-target () {
 	install -d ${D}${libdir}
 	install -m 755 ${S}/*.so ${D}${libdir}
 

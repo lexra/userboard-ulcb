@@ -30,7 +30,7 @@ do_configure_append() {
 	sed 's|-Werror ||' -i utest/CMakeLists.txt
 	cd -
 }
-do_install() {
+do_install_class-target () {
 	${HOST_PREFIX}strip ${WORKDIR}/build/utest/utest-cam-imr-drm
 	install -d ${D}/usr/bin
 	install -m 755 ${WORKDIR}/build/utest/utest-cam-imr-drm ${D}/usr/bin

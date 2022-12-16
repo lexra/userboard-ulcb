@@ -22,7 +22,7 @@ do_compile () {
 	oe_runmake -C ${S}
 }
 
-do_install () {
+do_install_class-target () {
 	install -d ${D}/usr/bin
 	install -m 755 ${WORKDIR}/QR-reader-master/build/bin/QRapp ${D}/usr/bin
 }

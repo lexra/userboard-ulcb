@@ -19,7 +19,7 @@ SRC_URI[video4.sha256sum] = "a37db801fa8b7edbcfa9c1dfeeee9c1504dd0bd8c67f83b5497
 SRC_URI[video5.md5sum] = "619825b0713dc39f7689c85750f136a7"
 SRC_URI[video5.sha256sum] = "12f283bafefc7f43050b2bee3025245902943131ae496a46c8e79ea4e102fe65"
 
-do_install () {
+do_install_class-target () {
     install -d ${D}/home/root/videos
     cp -RPfv ${WORKDIR}/h264-*.mp4 ${D}/home/root/videos
 }

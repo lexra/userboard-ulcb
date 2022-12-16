@@ -26,7 +26,7 @@ do_compile () {
 	cd -
 }
 
-do_install () {
+do_install_class-target () {
 	install -d ${D}/home/root/samsung-utils
 	install -m 755 ${S}/v4l2-dmabuf-test/v4l2-dbuf ${D}/home/root/samsung-utils
 	install -m 755 ${S}/v4l2-drm-example/dmabuf-sharing ${D}/home/root/samsung-utils

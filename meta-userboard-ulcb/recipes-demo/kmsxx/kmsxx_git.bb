@@ -41,7 +41,7 @@ do_configure_prepend () {
 	cd -
 }
 
-do_install () {
+do_install_class-target () {
 	cd ${WORKDIR}/build
 	install -d ${D}
 	make DESTDIR=${D} install
