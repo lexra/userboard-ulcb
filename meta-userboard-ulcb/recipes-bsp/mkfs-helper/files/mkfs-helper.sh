@@ -11,7 +11,6 @@ SDMMCBLK=/dev/mmcblk1
 [ ! -e /boot/modules-${MACHINE}.tgz ] && exit 0
 [ ! -e /boot/Image ] && exit 0
 
-wipefs -a -f ${EMMCBLK} || true
 umount ${EMMCBLK}p1 || true
 umount ${EMMCBLK}p2 || true
 umount ${EMMCBLK}p3 || true
@@ -20,6 +19,9 @@ umount ${EMMCBLK}p5 || true
 umount ${EMMCBLK}p6 || true
 umount ${EMMCBLK}p7 || true
 umount ${EMMCBLK}p8 || true
+
+wipefs -a -f ${EMMCBLK} || true
+
 sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk ${EMMCBLK}
  d
 
