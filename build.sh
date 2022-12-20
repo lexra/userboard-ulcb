@@ -39,7 +39,7 @@ sudo find meta-userboard* -name "*.conf" | xargs chmod -x
 sudo apt-get install -y gawk wget git-core diffstat unzip texinfo gcc-multilib \
 	build-essential chrpath socat libsdl1.2-dev xterm python-crypto cpio python python3 \
 	python3-pip python3-pexpect xz-utils debianutils iputils-ping libssl-dev p7zip-full libyaml-dev \
-	nfs-kernel-server parted ffmpeg patchelf default-jdk iproute2
+	nfs-kernel-server parted ffmpeg patchelf default-jdk iproute2 python3-serial
 echo ""
 
 mkdir -p ${WORK}
