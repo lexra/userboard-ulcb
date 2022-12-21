@@ -13,7 +13,7 @@ PACKAGECONFIG = " \
 	${PACKAGECONFIG_GL} \
 	${@bb.utils.filter('DISTRO_FEATURES', 'alsa directfb pulseaudio x11', d)} \
 	${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland gles2 egl', '', d)} \
-	${@bb.utils.contains("TUNE_FEATURES", "neon","arm-neon","",d)} \
+	${@bb.utils.contains('TUNE_FEATURES', 'neon', 'arm-neon', '',d)} \
 	alsa \
 	tslib \
 "
