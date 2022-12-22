@@ -67,9 +67,9 @@ cd ${WORK}/meta-openembedded
 git checkout -b mydevelop ${META_OE_COMMIT} || true
 cd ${WORK}/meta-renesas
 git checkout -b mydevelop ${META_RENESAS_COMMIT} || true
-cd $WORK/meta-rcar
+cd ${WORK}/meta-rcar
 git checkout -b mydevelop remotes/origin/${META_RCAR_COMMIT} || true
-cd $WORK/meta-qt5
+cd ${WORK}/meta-qt5
 git checkout -b mydevelop c1b0c9f546289b1592d7a895640de103723a0305 || true
 
 # meta-python2, meta-clang, meta-browser
@@ -114,12 +114,12 @@ bitbake core-image-weston -v
 
 ##############################
 cd ${SCRIPT_DIR}
-ls -l --color ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/Image
-ls -l --color ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/core-image-weston-${TARGET_BOARD}.tar.gz
-ls -l --color ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/modules-${TARGET_BOARD}.tgz
+ls -l --color ${WORK}/build/tmp/deploy/images/${TARGET_BOARD}/Image
+ls -l --color ${WORK}/build/tmp/deploy/images/${TARGET_BOARD}/core-image-weston-${TARGET_BOARD}.tar.gz
+ls -l --color ${WORK}/build/tmp/deploy/images/${TARGET_BOARD}/modules-${TARGET_BOARD}.tgz
 echo ""
-ls -l --color ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/*.dtb
+ls -l --color ${WORK}/build/tmp/deploy/images/${TARGET_BOARD}/*.dtb
 echo ""
-ls -l --color ${TARGET_BOARD}/build/tmp/deploy/images/${TARGET_BOARD}/*.srec
+ls -l --color ${WORK}/build/tmp/deploy/images/${TARGET_BOARD}/*.srec
 echo ""
 exit 0
