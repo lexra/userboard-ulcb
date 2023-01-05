@@ -86,12 +86,13 @@ Calibration options:
 	         length between circles centers for 3-circles pattern
 ```
 
-Example:
+See the manual for instructions [R-Car Surround View manual](https://github.com/CogentEmbedded/sv-utest/blob/master/docs/cogente_sv_manual_public.pdf) on how to run and use SurroundView application. In short:
 
 ```bash
-# Cameras
 sv-utest -v /dev/video0,/dev/video1,/dev/video2,/dev/video3
 ```
+
+By default 1280x800 resolution is used for cameras, but you can change it with --camres option:
 
 ```
 sv-utest -v /dev/video0,/dev/video1,/dev/video2,/dev/video3 --camres 1280x1080
