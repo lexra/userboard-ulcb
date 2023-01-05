@@ -1,10 +1,10 @@
 # Surround View unit test application
 
-<img src="/assets/sv-kit.jpg" width="640" height="360" />
+<img src="https://raw.githubusercontent.com/lexra/userboard-rcar/master/assets/sv-kit.jpg?token=GHSAT0AAAAAABKXS7QT5NLHRPIJX67SESC6Y5WPKPQ" width="640" height="360" />
 
 The [ADAS Surround View Kit add-on board](/assets/adas-sv-kit.pdf) is designed to support development of an automotive surround-view camera system. It can be used to connect to peripherals required for capturing video data. The ADAS Surround View Kit add-on board cannot be used stand-alone. It is intended to be used in combination with the ADAS Starter Kit.
 
-<img src="/assets/sv.png"  width="640" height="360" />
+<img src="https://raw.githubusercontent.com/lexra/userboard-rcar/master/assets/sv.png?token=GHSAT0AAAAAABKXS7QTPYAVT47A66V56JTSY5WPL5A"  width="640" height="360" />
 
 And the `Surround View unit test application` demonstrates Surround View on M3, H3, H2, V2H boards. 
 
