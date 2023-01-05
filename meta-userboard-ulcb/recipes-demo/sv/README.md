@@ -93,6 +93,10 @@ Example:
 sv-utest -v /dev/video0,/dev/video1,/dev/video2,/dev/video3
 ```
 
+```
+sv-utest -v /dev/video0,/dev/video1,/dev/video2,/dev/video3 --camres 1280x1080
+```
+
 ```bash
 # Video files
 sv-utest -f nv12 -c tracks.cfg
