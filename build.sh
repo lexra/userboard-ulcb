@@ -83,18 +83,20 @@ cd ${WORK}
 WORK_PROP_DIR=${WORK}/proprietary
 mkdir -p ${WORK_PROP_DIR}
 if [ "${TARGET_BOARD}" == "m3ulcb" -o "${TARGET_BOARD}" == "h3ulcb" -o "${TARGET_BOARD}" == "salvator-x" ]; then
-	unzip -o ${PROPRIETARY_DIR}/${GFX_MMP_LIB} -d ${WORK_PROP_DIR}
-	unzip -o ${PROPRIETARY_DIR}/${GFX_MMP_DRIVER} -d ${WORK_PROP_DIR}
+	unzip -qo ${PROPRIETARY_DIR}/${GFX_MMP_LIB} -d ${WORK_PROP_DIR}
+	unzip -qo ${PROPRIETARY_DIR}/${GFX_MMP_DRIVER} -d ${WORK_PROP_DIR}
+	#[ -e ${WORK_PROP_DIR}/INFRTM8RC7795ZG300Q10JPL3E_4_2_1.zip -a -e ${WORK_PROP_DIR}/INFRTM8RC7795ZG300Q10JPL3E_4_1_1.zip ] && rm -rfv ${WORK_PROP_DIR}/INFRTM8RC7795ZG300Q10JPL3E_4_1_1.zip
+	#[ -e ${WORK_PROP_DIR}/INFRTM8RC7796ZG300Q10JPL3E_4_2_1.zip -a -e ${WORK_PROP_DIR}/INFRTM8RC7796ZG300Q10JPL3E_4_1_1.zip ] && rm -rfv ${WORK_PROP_DIR}/INFRTM8RC7796ZG300Q10JPL3E_4_1_1.zip
 fi
 if [ "${TARGET_BOARD}" == "m3nulcb" ]; then
-	unzip -o ${PROPRIETARY_DIR}/${GEN3E_V590_SOFTWARE} -d ${WORK_PROP_DIR}
+	unzip -qo ${PROPRIETARY_DIR}/${GEN3E_V590_SOFTWARE} -d ${WORK_PROP_DIR}
 	mv ${WORK_PROP_DIR}/Software/* ${WORK_PROP_DIR}
-	rm -rfv ${WORK_PROP_DIR}/Software
+	rm -rf ${WORK_PROP_DIR}/Software
 fi
 if [ "${TARGET_BOARD}" == "ebisu" ]; then
-	unzip -o ${PROPRIETARY_DIR}/Ebisu_v590_Software.zip -d ${WORK_PROP_DIR}
+	unzip -qo ${PROPRIETARY_DIR}/Ebisu_v590_Software.zip -d ${WORK_PROP_DIR}
 	mv ${WORK_PROP_DIR}/Software/* ${WORK_PROP_DIR}
-	rm -rfv ${WORK_PROP_DIR}/Software
+	rm -rf ${WORK_PROP_DIR}/Software
 fi
 cd ${WORK}/meta-renesas
 sh meta-rcar-gen3/docs/sample/copyscript/copy_proprietary_softwares.sh -f ${WORK_PROP_DIR}
