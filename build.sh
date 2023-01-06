@@ -58,11 +58,6 @@ wait
 # Switch to proper branches/commits
 cd ${WORK}/poky
 git checkout -b mydevelop ${POKY_COMMIT} || true
-
-#echo "attempt_only = True"
-#git checkout meta/lib/oe/package_manager.py
-#sed 's|def install(self, pkgs, attempt_only = False):|def install(self, pkgs, attempt_only = True):|' -i meta/lib/oe/package_manager.py
-
 cd ${WORK}/meta-openembedded
 git checkout -b mydevelop ${META_OE_COMMIT} || true
 cd ${WORK}/meta-renesas
@@ -87,16 +82,19 @@ git -C meta-rcar-xbmc checkout -b mydevelop master || true
 cd ${WORK}
 WORK_PROP_DIR=${WORK}/proprietary
 mkdir -p ${WORK_PROP_DIR}
-unzip -qo ${PROPRIETARY_DIR}/${GFX_MMP_LIB} -d ${WORK_PROP_DIR}
-unzip -qo ${PROPRIETARY_DIR}/${GFX_MMP_DRIVER} -d ${WORK_PROP_DIR}
-WORK_PROP_DIR=${WORK}/proprietary
-mkdir -p ${WORK_PROP_DIR}
-if [ -e ../proprietary/${GEN3E_V590_SOFTWARE} ]; then
-	unzip -o ../proprietary/${GEN3E_V590_SOFTWARE} -d ${WORK_PROP_DIR}
+if [ "${TARGET_BOARD}" == "m3ulcb" -o "${TARGET_BOARD}" == "h3ulcb" -o "${TARGET_BOARD}" == "salvator-x" ]; then
+	unzip -o ${PROPRIETARY_DIR}/${GFX_MMP_LIB} -d ${WORK_PROP_DIR}
+	unzip -o ${PROPRIETARY_DIR}/${GFX_MMP_DRIVER} -d ${WORK_PROP_DIR}
+fi
+if [ "${TARGET_BOARD}" == "m3nulcb" ]; then
+	unzip -o ${PROPRIETARY_DIR}/${GEN3E_V590_SOFTWARE} -d ${WORK_PROP_DIR}
 	mv ${WORK_PROP_DIR}/Software/* ${WORK_PROP_DIR}
 	rm -rfv ${WORK_PROP_DIR}/Software
-	[ -e ${WORK_PROP_DIR}/INFRTM8RC7795ZG300Q10JPL3E_4_2_1.zip -a -e ${WORK_PROP_DIR}/INFRTM8RC7795ZG300Q10JPL3E_4_1_1.zip ] && rm -rfv ${WORK_PROP_DIR}/INFRTM8RC7795ZG300Q10JPL3E_4_1_1.zip
-	[ -e ${WORK_PROP_DIR}/INFRTM8RC7796ZG300Q10JPL3E_4_2_1.zip -a -e ${WORK_PROP_DIR}/INFRTM8RC7796ZG300Q10JPL3E_4_1_1.zip ] && rm -rfv ${WORK_PROP_DIR}/INFRTM8RC7796ZG300Q10JPL3E_4_1_1.zip
+fi
+if [ "${TARGET_BOARD}" == "ebisu" ]; then
+	unzip -o ${PROPRIETARY_DIR}/Ebisu_v590_Software.zip -d ${WORK_PROP_DIR}
+	mv ${WORK_PROP_DIR}/Software/* ${WORK_PROP_DIR}
+	rm -rfv ${WORK_PROP_DIR}/Software
 fi
 cd ${WORK}/meta-renesas
 sh meta-rcar-gen3/docs/sample/copyscript/copy_proprietary_softwares.sh -f ${WORK_PROP_DIR}
