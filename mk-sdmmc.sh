@@ -39,7 +39,7 @@ function print_boot_example() {
 	echo -e "${YELLOW} => setenv ipaddr $(echo ${IP_ADDR} | grep 192.168 | head -1 | awk -F '.' '{print $1 "." $2 "." $3}').133 ${NC}"
 	echo -e "${YELLOW} => setenv serverip ${IP_ADDR} ${NC}"
 	echo -e "${YELLOW} => setenv NFSROOT \${serverip}:/work/userboard-ulcb/rootfs,tcp,v3 ${NC}"
-	echo -e "${YELLOW} => setenv bootnfs 'nfs 0x48080000 \${NFSROOT}/boot/Image; nfs 0x48000000 \${NFSROOT}/boot/r8a77960-ulcb-kf.dtb; setenv bootargs rw rootwait earlycon root=/dev/nfs nfsroot=\${NFSROOT} ip=dhcp; booti 0x48080000 - 0x48000000' ${NC}"
+	echo -e "${YELLOW} => setenv bootnfs 'tftp 0x48080000 Image; tftp 0x48000000 r8a77960-ulcb-kf.dtb; setenv bootargs rw rootwait earlycon root=/dev/nfs nfsroot=\${NFSROOT} ip=dhcp; booti 0x48080000 - 0x48000000' ${NC}"
 	echo -e "${YELLOW} => saveenv ${NC}"
 	echo -e "${YELLOW} => run bootnfs ${NC}"
 	echo ""
@@ -54,6 +54,11 @@ function make_rootfs_dir () {
 	sudo cp -Rpf ${1}/build/tmp/deploy/images/${1}/core-image-weston-*${1}*.tar.gz rootfs/boot
 	sudo cp -Rpf ${1}/build/tmp/deploy/images/${1}/modules-*${1}*.tgz rootfs/boot
 	sudo chmod go+rwx rootfs/home/root
+
+	if [ -d /tftpboot ]; then
+		cp -Rpfv build_${1}/tmp/deploy/images/${1}/Image* /tftpboot
+		cp -Rpfv build_${1}/tmp/deploy/images/${1}/*.dtb /tftpboot
+	fi
 }
 
 function Usage () {
