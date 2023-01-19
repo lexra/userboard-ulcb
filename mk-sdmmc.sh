@@ -56,8 +56,8 @@ function make_rootfs_dir () {
 	sudo chmod go+rwx rootfs/home/root
 
 	if [ -d /tftpboot ]; then
-		cp -Rpfv build_${1}/tmp/deploy/images/${1}/Image* /tftpboot
-		cp -Rpfv build_${1}/tmp/deploy/images/${1}/*.dtb /tftpboot
+		cp -Rpfv ${1}/build/tmp/deploy/images/${1}/Image* /tftpboot
+		cp -Rpfv ${1}/build/tmp/deploy/images/${1}/*.dtb /tftpboot
 	fi
 }
 
