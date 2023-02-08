@@ -17,13 +17,15 @@ SRC_URI_append = " \
 	file://m3-hyperFlash-writer-helper \
 	file://m3n-hyperFlash-writer-helper \
 	file://h3-hyperFlash-writer-helper \
+	file://e3-hyperFlash-writer-helper \
 	file://m3-eMMC-writer-helper \
 	file://m3n-eMMC-writer-helper \
 	file://h3-eMMC-writer-helper \
+	file://e3-eMMC-writer-helper \
 "
 
-#DEPENDS += " libunistring"
 inherit deploy
+
 ALLOW_EMPTY_${PN} = "1"
 
 S = "${WORKDIR}/git"
@@ -38,6 +40,7 @@ do_compile() {
 	elif [ "${MACHINE}" == "m3ulcb" -o "${MACHINE}" == "h3ulcb" -o "${MACHINE}" == "m3nulcb" ]; then
 		BOARD="ULCB";
 	fi
+
 	cd ${S}
 
 	git checkout makefile
@@ -47,6 +50,8 @@ do_compile() {
 	else
 		oe_runmake BOARD=${BOARD} AArch=64 CROSS_COMPILE=${TARGET_PREFIX} clean all
 	fi
+
+	cd -
 }
 
 do_install[noexec] = "1"
@@ -54,6 +59,7 @@ do_install[noexec] = "1"
 do_deploy() {
 	install -d ${DEPLOYDIR}
 	install -m 644 ${S}/AArch64_output/*.mot ${DEPLOYDIR}
+
 	if [ "${MACHINE}" == "h3ulcb" ]; then
 		cp -Rpfv ${WORKDIR}/h3-hyperFlash-writer-helper ${DEPLOYDIR}/hyperFlash-writer-helper
 		cp -Rpfv ${WORKDIR}/h3-eMMC-writer-helper ${DEPLOYDIR}/eMMC-writer-helper
@@ -66,6 +72,10 @@ do_deploy() {
 		cp -Rpfv ${WORKDIR}/m3n-hyperFlash-writer-helper ${DEPLOYDIR}/hyperFlash-writer-helper
 		cp -Rpfv ${WORKDIR}/m3n-eMMC-writer-helper ${DEPLOYDIR}/eMMC-writer-helper
 	fi
+	if [ "${MACHINE}" = "ebisu" ]; then
+		cp -Rpfv ${WORKDIR}/e3-hyperFlash-writer-helper ${DEPLOYDIR}/hyperFlash-writer-helper
+		cp -Rpfv ${WORKDIR}/e3-eMMC-writer-helper ${DEPLOYDIR}/eMMC-writer-helper
+	fi
 }
-PARALLEL_MAKE = "-j 1"
+
 addtask deploy after do_compile
