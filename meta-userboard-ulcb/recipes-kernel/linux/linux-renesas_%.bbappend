@@ -3,7 +3,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 SRC_URI_append = " \
 	file://nfsd.cfg \
 	${@bb.utils.contains('DISTRO_FEATURES', 'vivid', 'file://vivid.cfg', '', d)} \
-	file://0001-drm-rcar-du-Add-DU-CMM-support.patch \
+	${@bb.utils.contains('DISTRO_FEATURES', 'CMM', 'file://0001-drm-rcar-du-Add-DU-CMM-support.patch', '', d)} \
 "
 
 PARALLEL_MAKE = "-j 8"
