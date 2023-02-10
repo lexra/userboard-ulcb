@@ -37,6 +37,7 @@ IMAGE_INSTALL_append = " \
 	${@bb.utils.contains('DISTRO_FEATURES', 'vivid', 'samsung-utils', '', d)} \
 	${@bb.utils.contains('DISTRO_FEATURES', 'opencv-sdk', 'qr-reader', '', d)} \
 	${@bb.utils.contains('DISTRO_FEATURES', 'darknet', 'darknet', '', d)} \
+	${@bb.utils.contains('DISTRO_FEATURES', 'CMM', 'du-cmm-tp', '', d)} \
 "
 
 IMAGE_INSTALL_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'xbmc', 'kodi', '', d)} "
