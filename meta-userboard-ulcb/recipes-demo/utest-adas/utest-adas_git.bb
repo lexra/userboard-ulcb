@@ -43,6 +43,7 @@ CFLAGS += " \
 "
 
 EXTRA_OECMAKE += " \
+	-DCMAKE_BUILD_TYPE=Debug \
 	-DCMAKE_FIND_ROOT_PATH=${STAGING_DIR_TARGET} \
 	-DGSTREAMER_INCLUDE_DIR=${STAGING_DIR_TARGET}${includedir}/gstreamer-1.0 \
 	-DGSTREAMER_LIBRARIES=${STAGING_DIR_TARGET}${libdir} \
@@ -54,8 +55,6 @@ EXTRA_OECMAKE += " \
 
 
 do_install_class-target () {
-	#install -d ${D}${bindir}
-	#install ${B}/utest/sview ${D}${bindir}
 	install -d ${D}/home/root/sv/bin
 	install ${B}/utest/sview ${D}/home/root/sv/bin
 }
