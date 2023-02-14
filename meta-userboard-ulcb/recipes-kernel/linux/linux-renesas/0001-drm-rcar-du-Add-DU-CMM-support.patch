@@ -1,5 +1,4 @@
 diff Naur a/arch/arm64/boot/dts/renesas/r8a77950-salvator-x.dts b/arch/arm64/boot/dts/renesas/r8a77950-salvator-x.dts
-index 1a1f2324dd6e..62344552e1b9 100644
 --- a/arch/arm64/boot/dts/renesas/r8a77950-salvator-x.dts
 +++ b/arch/arm64/boot/dts/renesas/r8a77950-salvator-x.dts
 @@ -92,11 +92,16 @@ &du {
@@ -20,7 +19,6 @@ index 1a1f2324dd6e..62344552e1b9 100644
  };
  
 diff Naur a/arch/arm64/boot/dts/renesas/r8a77951-salvator-x.dts b/arch/arm64/boot/dts/renesas/r8a77951-salvator-x.dts
-index ade33b2ee741..ec2a8a0cda49 100644
 --- a/arch/arm64/boot/dts/renesas/r8a77951-salvator-x.dts
 +++ b/arch/arm64/boot/dts/renesas/r8a77951-salvator-x.dts
 @@ -92,11 +92,16 @@ &du {
@@ -41,7 +39,6 @@ index ade33b2ee741..ec2a8a0cda49 100644
  };
  
 diff Naur a/arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dts b/arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dts
-index aa1ff538a4b6..57802ba40814 100644
 --- a/arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dts
 +++ b/arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dts
 @@ -92,11 +92,16 @@ &du {
@@ -62,7 +59,6 @@ index aa1ff538a4b6..57802ba40814 100644
  };
  
 diff Naur a/arch/arm64/boot/dts/renesas/r8a77951.dtsi b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
-index 869f1b3e2ca0..3ccae051a917 100644
 --- a/arch/arm64/boot/dts/renesas/r8a77951.dtsi
 +++ b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
 @@ -3902,17 +3902,27 @@ port@2 {
@@ -100,7 +96,6 @@ index 869f1b3e2ca0..3ccae051a917 100644
  			renesas,vsps = <&vspd0 0>, <&vspd1 0>, <&vspd2 0>,
  				       <&vspd0 1>;
 diff Naur a/arch/arm64/boot/dts/renesas/r8a77960-salvator-x.dts b/arch/arm64/boot/dts/renesas/r8a77960-salvator-x.dts
-index b3c741b37179..731d30f1b8c1 100644
 --- a/arch/arm64/boot/dts/renesas/r8a77960-salvator-x.dts
 +++ b/arch/arm64/boot/dts/renesas/r8a77960-salvator-x.dts
 @@ -81,10 +81,14 @@ &du {
@@ -119,7 +114,6 @@ index b3c741b37179..731d30f1b8c1 100644
  };
  
 diff Naur a/arch/arm64/boot/dts/renesas/r8a77960-salvator-xs.dts b/arch/arm64/boot/dts/renesas/r8a77960-salvator-xs.dts
-index ba8fa426e336..a63a19beb6ef 100644
 --- a/arch/arm64/boot/dts/renesas/r8a77960-salvator-xs.dts
 +++ b/arch/arm64/boot/dts/renesas/r8a77960-salvator-xs.dts
 @@ -76,10 +76,14 @@ &du {
@@ -138,7 +132,6 @@ index ba8fa426e336..a63a19beb6ef 100644
  };
  
 diff Naur a/arch/arm64/boot/dts/renesas/r8a77960.dtsi b/arch/arm64/boot/dts/renesas/r8a77960.dtsi
-index 655a95080667..906af02e74a2 100644
 --- a/arch/arm64/boot/dts/renesas/r8a77960.dtsi
 +++ b/arch/arm64/boot/dts/renesas/r8a77960.dtsi
 @@ -3591,19 +3591,26 @@ port@2 {
@@ -176,7 +169,6 @@ index 655a95080667..906af02e74a2 100644
  
  			ports {
 diff Naur a/arch/arm64/boot/dts/renesas/r8a77961-salvator-xs.dts b/arch/arm64/boot/dts/renesas/r8a77961-salvator-xs.dts
-index 63fe64c3e622..c5e92a33accb 100644
 --- a/arch/arm64/boot/dts/renesas/r8a77961-salvator-xs.dts
 +++ b/arch/arm64/boot/dts/renesas/r8a77961-salvator-xs.dts
 @@ -86,10 +86,14 @@ &du {
@@ -195,7 +187,6 @@ index 63fe64c3e622..c5e92a33accb 100644
  };
  
 diff Naur a/arch/arm64/boot/dts/renesas/r8a77961.dtsi b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-index 6d53e0a6c06b..32c6018b5de1 100644
 --- a/arch/arm64/boot/dts/renesas/r8a77961.dtsi
 +++ b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
 @@ -3405,15 +3405,24 @@ port@2 {
@@ -229,7 +220,6 @@ index 6d53e0a6c06b..32c6018b5de1 100644
  			renesas,vsps = <&vspd0 0>, <&vspd1 0>, <&vspd2 0>;
  			status = "disabled";
 diff Naur a/arch/arm64/boot/dts/renesas/r8a77965-salvator-x.dts b/arch/arm64/boot/dts/renesas/r8a77965-salvator-x.dts
-index 727cbc4a93cf..a2a4c71fe337 100644
 --- a/arch/arm64/boot/dts/renesas/r8a77965-salvator-x.dts
 +++ b/arch/arm64/boot/dts/renesas/r8a77965-salvator-x.dts
 @@ -76,10 +76,14 @@ &du {
@@ -248,7 +238,6 @@ index 727cbc4a93cf..a2a4c71fe337 100644
  };
  
 diff Naur a/arch/arm64/boot/dts/renesas/r8a77965-salvator-xs.dts b/arch/arm64/boot/dts/renesas/r8a77965-salvator-xs.dts
-index 670be4c04d72..242a03b389a2 100644
 --- a/arch/arm64/boot/dts/renesas/r8a77965-salvator-xs.dts
 +++ b/arch/arm64/boot/dts/renesas/r8a77965-salvator-xs.dts
 @@ -76,10 +76,14 @@ &du {
@@ -267,7 +256,6 @@ index 670be4c04d72..242a03b389a2 100644
  };
  
 diff Naur a/arch/arm64/boot/dts/renesas/r8a77965.dtsi b/arch/arm64/boot/dts/renesas/r8a77965.dtsi
-index 739ffdb18b28..e2dfdeb1ffac 100644
 --- a/arch/arm64/boot/dts/renesas/r8a77965.dtsi
 +++ b/arch/arm64/boot/dts/renesas/r8a77965.dtsi
 @@ -2903,15 +2903,24 @@ port@1 {
@@ -301,7 +289,6 @@ index 739ffdb18b28..e2dfdeb1ffac 100644
  			renesas,cmms = <&cmm0>, <&cmm1>, <&cmm3>;
  			renesas,vsps = <&vspd0 0>, <&vspd1 0>, <&vspd0 1>;
 diff Naur a/arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts b/arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts
-index d2110f529f61..c5d6ae6622b7 100644
 --- a/arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts
 +++ b/arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts
 @@ -436,8 +436,10 @@ &du {
@@ -318,7 +305,6 @@ index d2110f529f61..c5d6ae6622b7 100644
  	ports {
  		port@0 {
 diff Naur a/arch/arm64/boot/dts/renesas/r8a77990-es10-ebisu.dts b/arch/arm64/boot/dts/renesas/r8a77990-es10-ebisu.dts
-index da4a2ca0d151..717675c3e4be 100644
 --- a/arch/arm64/boot/dts/renesas/r8a77990-es10-ebisu.dts
 +++ b/arch/arm64/boot/dts/renesas/r8a77990-es10-ebisu.dts
 @@ -441,8 +441,10 @@ &du {
@@ -335,7 +321,6 @@ index da4a2ca0d151..717675c3e4be 100644
  	ports {
  		port@0 {
 diff Naur a/arch/arm64/boot/dts/renesas/r8a77990.dtsi b/arch/arm64/boot/dts/renesas/r8a77990.dtsi
-index 3c62992c536d..8902e3b50272 100644
 --- a/arch/arm64/boot/dts/renesas/r8a77990.dtsi
 +++ b/arch/arm64/boot/dts/renesas/r8a77990.dtsi
 @@ -2176,14 +2176,18 @@ csi40vin5: endpoint@1 {
@@ -364,7 +349,6 @@ index 3c62992c536d..8902e3b50272 100644
  			renesas,vsps = <&vspd0 0>, <&vspd1 0>;
  
 diff Naur a/arch/arm64/boot/dts/renesas/r8a779m1-salvator-x.dts b/arch/arm64/boot/dts/renesas/r8a779m1-salvator-x.dts
-index 4c8e7ad8e8c5..23e23dbe41e3 100644
 --- a/arch/arm64/boot/dts/renesas/r8a779m1-salvator-x.dts
 +++ b/arch/arm64/boot/dts/renesas/r8a779m1-salvator-x.dts
 @@ -93,11 +93,16 @@ &du {
@@ -385,7 +369,6 @@ index 4c8e7ad8e8c5..23e23dbe41e3 100644
  };
  
 diff Naur a/arch/arm64/boot/dts/renesas/r8a779m1-salvator-xs.dts b/arch/arm64/boot/dts/renesas/r8a779m1-salvator-xs.dts
-index fd8ee555d4da..e7eaa0df004c 100644
 --- a/arch/arm64/boot/dts/renesas/r8a779m1-salvator-xs.dts
 +++ b/arch/arm64/boot/dts/renesas/r8a779m1-salvator-xs.dts
 @@ -93,11 +93,16 @@ &du {
@@ -406,7 +389,6 @@ index fd8ee555d4da..e7eaa0df004c 100644
  };
  
 diff Naur a/arch/arm64/boot/dts/renesas/r8a779m3-salvator-xs.dts b/arch/arm64/boot/dts/renesas/r8a779m3-salvator-xs.dts
-index 7a7ee7b470a0..a841ed927d88 100644
 --- a/arch/arm64/boot/dts/renesas/r8a779m3-salvator-xs.dts
 +++ b/arch/arm64/boot/dts/renesas/r8a779m3-salvator-xs.dts
 @@ -87,10 +87,14 @@ &du {
@@ -425,7 +407,6 @@ index 7a7ee7b470a0..a841ed927d88 100644
  };
  
 diff Naur a/arch/arm64/boot/dts/renesas/r8a779m5-salvator-x.dts b/arch/arm64/boot/dts/renesas/r8a779m5-salvator-x.dts
-index a723cb4da6ff..34abe02f5078 100644
 --- a/arch/arm64/boot/dts/renesas/r8a779m5-salvator-x.dts
 +++ b/arch/arm64/boot/dts/renesas/r8a779m5-salvator-x.dts
 @@ -77,10 +77,14 @@ &du {
@@ -444,7 +425,6 @@ index a723cb4da6ff..34abe02f5078 100644
  };
  
 diff Naur a/arch/arm64/boot/dts/renesas/r8a779m5-salvator-xs.dts b/arch/arm64/boot/dts/renesas/r8a779m5-salvator-xs.dts
-index 466829b9c435..c3bb3bb6f866 100644
 --- a/arch/arm64/boot/dts/renesas/r8a779m5-salvator-xs.dts
 +++ b/arch/arm64/boot/dts/renesas/r8a779m5-salvator-xs.dts
 @@ -77,10 +77,14 @@ &du {
@@ -2468,7 +2448,6 @@ diff Naur a/drivers/gpu/drm/rcar-du/rcar_lvds.c b/drivers/gpu/drm/rcar-du/rcar_l
  		drm_panel_prepare(lvds->panel);
  		drm_panel_enable(lvds->panel);
 diff Naur a/drivers/gpu/drm/rcar-du/rcar_du_drv.c b/drivers/gpu/drm/rcar-du/rcar_du_drv.c
-index 7389bbbad896..17c6e5381093 100644
 --- a/drivers/gpu/drm/rcar-du/rcar_du_drv.c
 +++ b/drivers/gpu/drm/rcar-du/rcar_du_drv.c
 @@ -29,6 +29,7 @@
