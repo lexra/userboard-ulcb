@@ -1,3 +1,467 @@
+diff Naur a/arch/arm64/boot/dts/renesas/r8a77950-salvator-x.dts b/arch/arm64/boot/dts/renesas/r8a77950-salvator-x.dts
+index 1a1f2324dd6e..62344552e1b9 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77950-salvator-x.dts
++++ b/arch/arm64/boot/dts/renesas/r8a77950-salvator-x.dts
+@@ -92,11 +92,16 @@ &du {
+ 		 <&cpg CPG_MOD 723>,
+ 		 <&cpg CPG_MOD 722>,
+ 		 <&cpg CPG_MOD 721>,
++		 <&cpg CPG_MOD 711>,
++		 <&cpg CPG_MOD 710>,
++		 <&cpg CPG_MOD 709>,
++		 <&cpg CPG_MOD 708>,
+ 		 <&versaclock5 1>,
+ 		 <&x21_clk>,
+ 		 <&x22_clk>,
+ 		 <&versaclock5 2>;
+ 	clock-names = "du.0", "du.1", "du.2", "du.3",
++		      "cmm.0", "cmm.1", "cmm.2", "cmm.3",
+ 		      "dclkin.0", "dclkin.1", "dclkin.2", "dclkin.3";
+ };
+ 
+diff Naur a/arch/arm64/boot/dts/renesas/r8a77951-salvator-x.dts b/arch/arm64/boot/dts/renesas/r8a77951-salvator-x.dts
+index ade33b2ee741..ec2a8a0cda49 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77951-salvator-x.dts
++++ b/arch/arm64/boot/dts/renesas/r8a77951-salvator-x.dts
+@@ -92,11 +92,16 @@ &du {
+ 		 <&cpg CPG_MOD 723>,
+ 		 <&cpg CPG_MOD 722>,
+ 		 <&cpg CPG_MOD 721>,
++		 <&cpg CPG_MOD 711>,
++		 <&cpg CPG_MOD 710>,
++		 <&cpg CPG_MOD 709>,
++		 <&cpg CPG_MOD 708>,
+ 		 <&versaclock5 1>,
+ 		 <&x21_clk>,
+ 		 <&x22_clk>,
+ 		 <&versaclock5 2>;
+ 	clock-names = "du.0", "du.1", "du.2", "du.3",
++		      "cmm.0", "cmm.1", "cmm.2", "cmm.3",
+ 		      "dclkin.0", "dclkin.1", "dclkin.2", "dclkin.3";
+ };
+ 
+diff Naur a/arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dts b/arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dts
+index aa1ff538a4b6..57802ba40814 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dts
++++ b/arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dts
+@@ -92,11 +92,16 @@ &du {
+ 		 <&cpg CPG_MOD 723>,
+ 		 <&cpg CPG_MOD 722>,
+ 		 <&cpg CPG_MOD 721>,
++		 <&cpg CPG_MOD 711>,
++		 <&cpg CPG_MOD 710>,
++		 <&cpg CPG_MOD 709>,
++		 <&cpg CPG_MOD 708>,
+ 		 <&versaclock6 1>,
+ 		 <&x21_clk>,
+ 		 <&x22_clk>,
+ 		 <&versaclock6 2>;
+ 	clock-names = "du.0", "du.1", "du.2", "du.3",
++		      "cmm.0", "cmm.1", "cmm.2", "cmm.3",
+ 		      "dclkin.0", "dclkin.1", "dclkin.2", "dclkin.3";
+ };
+ 
+diff Naur a/arch/arm64/boot/dts/renesas/r8a77951.dtsi b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
+index 869f1b3e2ca0..3ccae051a917 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77951.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
+@@ -3902,17 +3902,27 @@ port@2 {
+ 
+ 		du: display@feb00000 {
+ 			compatible = "renesas,du-r8a7795";
+-			reg = <0 0xfeb00000 0 0x80000>;
++			reg = <0 0xfeb00000 0 0x80000>,
++			      <0 0xfea40000 0 0x00001000>,
++			      <0 0xfea50000 0 0x00001000>,
++			      <0 0xfea60000 0 0x00001000>,
++			      <0 0xfea70000 0 0x00001000>;
++			reg-names = "du", "cmm.0", "cmm.1", "cmm.2", "cmm.3";
+ 			interrupts = <GIC_SPI 256 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 269 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 270 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&cpg CPG_MOD 724>, <&cpg CPG_MOD 723>,
+-				 <&cpg CPG_MOD 722>, <&cpg CPG_MOD 721>;
+-			clock-names = "du.0", "du.1", "du.2", "du.3";
+-			resets = <&cpg 724>, <&cpg 722>;
+-			reset-names = "du.0", "du.2";
+-
++				 <&cpg CPG_MOD 722>, <&cpg CPG_MOD 721>,
++				 <&cpg CPG_MOD 711>, <&cpg CPG_MOD 710>,
++				 <&cpg CPG_MOD 709>, <&cpg CPG_MOD 708>;
++			clock-names = "du.0", "du.1", "du.2", "du.3",
++				      "cmm.0", "cmm.1", "cmm.2", "cmm.3";
++			resets = <&cpg 724>, <&cpg 722>,
++				 <&cpg 711>, <&cpg 710>,
++				 <&cpg 709>, <&cpg 708>;
++			reset-names = "du.0", "du.1", "du.2", "du.3",
++				      "cmm.0", "cmm.1", "cmm.2", "cmm.3";
+ 			renesas,cmms = <&cmm0>, <&cmm1>, <&cmm2>, <&cmm3>;
+ 			renesas,vsps = <&vspd0 0>, <&vspd1 0>, <&vspd2 0>,
+ 				       <&vspd0 1>;
+diff Naur a/arch/arm64/boot/dts/renesas/r8a77960-salvator-x.dts b/arch/arm64/boot/dts/renesas/r8a77960-salvator-x.dts
+index b3c741b37179..731d30f1b8c1 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77960-salvator-x.dts
++++ b/arch/arm64/boot/dts/renesas/r8a77960-salvator-x.dts
+@@ -81,10 +81,14 @@ &du {
+ 	clocks = <&cpg CPG_MOD 724>,
+ 		 <&cpg CPG_MOD 723>,
+ 		 <&cpg CPG_MOD 722>,
++		 <&cpg CPG_MOD 711>,
++		 <&cpg CPG_MOD 710>,
++		 <&cpg CPG_MOD 709>,
+ 		 <&versaclock5 1>,
+ 		 <&x21_clk>,
+ 		 <&versaclock5 2>;
+ 	clock-names = "du.0", "du.1", "du.2",
++		      "cmm.0", "cmm.1", "cmm.2",
+ 		      "dclkin.0", "dclkin.1", "dclkin.2";
+ };
+ 
+diff Naur a/arch/arm64/boot/dts/renesas/r8a77960-salvator-xs.dts b/arch/arm64/boot/dts/renesas/r8a77960-salvator-xs.dts
+index ba8fa426e336..a63a19beb6ef 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77960-salvator-xs.dts
++++ b/arch/arm64/boot/dts/renesas/r8a77960-salvator-xs.dts
+@@ -76,10 +76,14 @@ &du {
+ 	clocks = <&cpg CPG_MOD 724>,
+ 		 <&cpg CPG_MOD 723>,
+ 		 <&cpg CPG_MOD 722>,
++		 <&cpg CPG_MOD 711>,
++		 <&cpg CPG_MOD 710>,
++		 <&cpg CPG_MOD 709>,
+ 		 <&versaclock6 1>,
+ 		 <&x21_clk>,
+ 		 <&versaclock6 2>;
+ 	clock-names = "du.0", "du.1", "du.2",
++		      "cmm.0", "cmm.1", "cmm.2",
+ 		      "dclkin.0", "dclkin.1", "dclkin.2";
+ };
+ 
+diff Naur a/arch/arm64/boot/dts/renesas/r8a77960.dtsi b/arch/arm64/boot/dts/renesas/r8a77960.dtsi
+index 655a95080667..906af02e74a2 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77960.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a77960.dtsi
+@@ -3591,19 +3591,26 @@ port@2 {
+ 
+ 		du: display@feb00000 {
+ 			compatible = "renesas,du-r8a7796";
+-			reg = <0 0xfeb00000 0 0x70000>;
++			reg = <0 0xfeb00000 0 0x70000>,
++			      <0 0xfea40000 0 0x00001000>,
++			      <0 0xfea50000 0 0x00001000>,
++			      <0 0xfea60000 0 0x00001000>;
++			reg-names = "du", "cmm.0", "cmm.1", "cmm.2";
+ 			interrupts = <GIC_SPI 256 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 269 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&cpg CPG_MOD 724>, <&cpg CPG_MOD 723>,
+-				 <&cpg CPG_MOD 722>;
+-			clock-names = "du.0", "du.1", "du.2";
+-			resets = <&cpg 724>, <&cpg 722>;
+-			reset-names = "du.0", "du.2";
++				 <&cpg CPG_MOD 722>, <&cpg CPG_MOD 711>,
++				 <&cpg CPG_MOD 710>, <&cpg CPG_MOD 709>;
++			clock-names = "du.0", "du.1", "du.2",
++				      "cmm.0", "cmm.1", "cmm.2";
++			resets = <&cpg 724>, <&cpg 722>,
++				 <&cpg 711>, <&cpg 710>,
++				 <&cpg 709>;
++			reset-names = "du.0", "du.1", "du.2",
++				      "cmm.0", "cmm.1", "cmm.2";
+ 
+-			renesas,cmms = <&cmm0>, <&cmm1>, <&cmm2>;
+ 			renesas,vsps = <&vspd0 0>, <&vspd1 0>, <&vspd2 0>;
+-
+ 			status = "disabled";
+ 
+ 			ports {
+diff Naur a/arch/arm64/boot/dts/renesas/r8a77961-salvator-xs.dts b/arch/arm64/boot/dts/renesas/r8a77961-salvator-xs.dts
+index 63fe64c3e622..c5e92a33accb 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77961-salvator-xs.dts
++++ b/arch/arm64/boot/dts/renesas/r8a77961-salvator-xs.dts
+@@ -86,10 +86,14 @@ &du {
+ 	clocks = <&cpg CPG_MOD 724>,
+ 		 <&cpg CPG_MOD 723>,
+ 		 <&cpg CPG_MOD 722>,
++		 <&cpg CPG_MOD 711>,
++		 <&cpg CPG_MOD 710>,
++		 <&cpg CPG_MOD 709>,
+ 		 <&versaclock6 1>,
+ 		 <&x21_clk>,
+ 		 <&versaclock6 2>;
+ 	clock-names = "du.0", "du.1", "du.2",
++		      "cmm.0", "cmm.1", "cmm.2",
+ 		      "dclkin.0", "dclkin.1", "dclkin.2";
+ };
+ 
+diff Naur a/arch/arm64/boot/dts/renesas/r8a77961.dtsi b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
+index 6d53e0a6c06b..32c6018b5de1 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77961.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
+@@ -3405,15 +3405,24 @@ port@2 {
+ 
+ 		du: display@feb00000 {
+ 			compatible = "renesas,du-r8a77961";
+-			reg = <0 0xfeb00000 0 0x70000>;
++			reg = <0 0xfeb00000 0 0x70000>,
++			      <0 0xfea40000 0 0x00001000>,
++			      <0 0xfea50000 0 0x00001000>,
++			      <0 0xfea60000 0 0x00001000>;
++			reg-names = "du", "cmm.0", "cmm.1", "cmm.2";
+ 			interrupts = <GIC_SPI 256 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 269 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&cpg CPG_MOD 724>, <&cpg CPG_MOD 723>,
+-				 <&cpg CPG_MOD 722>;
+-			clock-names = "du.0", "du.1", "du.2";
+-			resets = <&cpg 724>, <&cpg 722>;
+-			reset-names = "du.0", "du.2";
++				 <&cpg CPG_MOD 722>, <&cpg CPG_MOD 711>,
++				 <&cpg CPG_MOD 710>, <&cpg CPG_MOD 709>;
++			clock-names = "du.0", "du.1", "du.2",
++				      "cmm.0", "cmm.1", "cmm.2";
++			resets = <&cpg 724>, <&cpg 722>,
++				 <&cpg 711>, <&cpg 710>,
++				 <&cpg 709>;
++			reset-names = "du.0", "du.1", "du.2",
++				      "cmm.0", "cmm.1", "cmm.2";
+ 
+ 			renesas,vsps = <&vspd0 0>, <&vspd1 0>, <&vspd2 0>;
+ 			status = "disabled";
+diff Naur a/arch/arm64/boot/dts/renesas/r8a77965-salvator-x.dts b/arch/arm64/boot/dts/renesas/r8a77965-salvator-x.dts
+index 727cbc4a93cf..a2a4c71fe337 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77965-salvator-x.dts
++++ b/arch/arm64/boot/dts/renesas/r8a77965-salvator-x.dts
+@@ -76,10 +76,14 @@ &du {
+ 	clocks = <&cpg CPG_MOD 724>,
+ 		 <&cpg CPG_MOD 723>,
+ 		 <&cpg CPG_MOD 721>,
++		 <&cpg CPG_MOD 711>,
++		 <&cpg CPG_MOD 710>,
++		 <&cpg CPG_MOD 708>,
+ 		 <&versaclock5 1>,
+ 		 <&x21_clk>,
+ 		 <&versaclock5 2>;
+ 	clock-names = "du.0", "du.1", "du.3",
++		      "cmm.0", "cmm.1", "cmm.3",
+ 		      "dclkin.0", "dclkin.1", "dclkin.3";
+ };
+ 
+diff Naur a/arch/arm64/boot/dts/renesas/r8a77965-salvator-xs.dts b/arch/arm64/boot/dts/renesas/r8a77965-salvator-xs.dts
+index 670be4c04d72..242a03b389a2 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77965-salvator-xs.dts
++++ b/arch/arm64/boot/dts/renesas/r8a77965-salvator-xs.dts
+@@ -76,10 +76,14 @@ &du {
+ 	clocks = <&cpg CPG_MOD 724>,
+ 		 <&cpg CPG_MOD 723>,
+ 		 <&cpg CPG_MOD 721>,
++		 <&cpg CPG_MOD 711>,
++		 <&cpg CPG_MOD 710>,
++		 <&cpg CPG_MOD 708>,
+ 		 <&versaclock6 1>,
+ 		 <&x21_clk>,
+ 		 <&versaclock6 2>;
+ 	clock-names = "du.0", "du.1", "du.3",
++		      "cmm.0", "cmm.1", "cmm.3",
+ 		      "dclkin.0", "dclkin.1", "dclkin.3";
+ };
+ 
+diff Naur a/arch/arm64/boot/dts/renesas/r8a77965.dtsi b/arch/arm64/boot/dts/renesas/r8a77965.dtsi
+index 739ffdb18b28..e2dfdeb1ffac 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77965.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a77965.dtsi
+@@ -2903,15 +2903,24 @@ port@1 {
+ 
+ 		du: display@feb00000 {
+ 			compatible = "renesas,du-r8a77965";
+-			reg = <0 0xfeb00000 0 0x80000>;
++			reg = <0 0xfeb00000 0 0x80000>,
++			      <0 0xfea40000 0 0x00001000>,
++			      <0 0xfea50000 0 0x00001000>,
++			      <0 0xfea70000 0 0x00001000>;
++			reg-names = "du", "cmm.0", "cmm.1", "cmm.3";
+ 			interrupts = <GIC_SPI 256 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 270 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&cpg CPG_MOD 724>, <&cpg CPG_MOD 723>,
+-				 <&cpg CPG_MOD 721>;
+-			clock-names = "du.0", "du.1", "du.3";
+-			resets = <&cpg 724>, <&cpg 722>;
+-			reset-names = "du.0", "du.3";
++				 <&cpg CPG_MOD 721>, <&cpg CPG_MOD 711>,
++				 <&cpg CPG_MOD 710>, <&cpg CPG_MOD 708>;
++			clock-names = "du.0", "du.1", "du.3",
++				      "cmm.0", "cmm.1", "cmm.3";
++			resets = <&cpg 724>, <&cpg 722>,
++				 <&cpg 711>, <&cpg 710>,
++				 <&cpg 708>;
++			reset-names = "du.0", "du.1", "du.3",
++				      "cmm.0", "cmm.1", "cmm.3";
+ 
+ 			renesas,cmms = <&cmm0>, <&cmm1>, <&cmm3>;
+ 			renesas,vsps = <&vspd0 0>, <&vspd1 0>, <&vspd0 1>;
+diff Naur a/arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts b/arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts
+index d2110f529f61..c5d6ae6622b7 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts
++++ b/arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts
+@@ -436,8 +436,10 @@ &du {
+ 
+ 	clocks = <&cpg CPG_MOD 724>,
+ 		 <&cpg CPG_MOD 723>,
+-		 <&x13_clk>;
+-	clock-names = "du.0", "du.1", "dclkin.0";
++		 <&x13_clk>,
++		 <&cpg CPG_MOD 711>,
++		 <&cpg CPG_MOD 710>;
++	clock-names = "du.0", "du.1", "dclkin.0", "cmm.0", "cmm.1";
+ 
+ 	ports {
+ 		port@0 {
+diff Naur a/arch/arm64/boot/dts/renesas/r8a77990-es10-ebisu.dts b/arch/arm64/boot/dts/renesas/r8a77990-es10-ebisu.dts
+index da4a2ca0d151..717675c3e4be 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77990-es10-ebisu.dts
++++ b/arch/arm64/boot/dts/renesas/r8a77990-es10-ebisu.dts
+@@ -441,8 +441,10 @@ &du {
+ 
+ 	clocks = <&cpg CPG_MOD 724>,
+ 		 <&cpg CPG_MOD 723>,
+-		 <&x13_clk>;
+-	clock-names = "du.0", "du.1", "dclkin.0";
++		 <&x13_clk>,
++		 <&cpg CPG_MOD 711>,
++		 <&cpg CPG_MOD 710>;
++	clock-names = "du.0", "du.1", "dclkin.0", "cmm.0", "cmm.1";
+ 
+ 	ports {
+ 		port@0 {
+diff Naur a/arch/arm64/boot/dts/renesas/r8a77990.dtsi b/arch/arm64/boot/dts/renesas/r8a77990.dtsi
+index 3c62992c536d..8902e3b50272 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77990.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a77990.dtsi
+@@ -2176,14 +2176,18 @@ csi40vin5: endpoint@1 {
+ 
+ 		du: display@feb00000 {
+ 			compatible = "renesas,du-r8a77990";
+-			reg = <0 0xfeb00000 0 0x40000>;
++			reg = <0 0xfeb00000 0 0x40000>,
++			      <0 0xfea40000 0 0x00001000>,
++			      <0 0xfea50000 0 0x00001000>;
++			reg-names = "du", "cmm.0", "cmm.1";
+ 			interrupts = <GIC_SPI 256 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH>;
+-			clocks = <&cpg CPG_MOD 724>, <&cpg CPG_MOD 723>;
+-			clock-names = "du.0", "du.1";
+-			resets = <&cpg 724>;
+-			reset-names = "du.0";
+-
++			clocks = <&cpg CPG_MOD 724>, <&cpg CPG_MOD 723>,
++				 <&cpg CPG_MOD 711>, <&cpg CPG_MOD 710>;
++			clock-names = "du.0", "du.1", "cmm.0", "cmm.1";
++			resets = <&cpg 724>, <&cpg 711>,
++				 <&cpg 710>;
++			reset-names = "du.0", "du.1", "cmm.0", "cmm.1";
+ 			renesas,cmms = <&cmm0>, <&cmm1>;
+ 			renesas,vsps = <&vspd0 0>, <&vspd1 0>;
+ 
+diff Naur a/arch/arm64/boot/dts/renesas/r8a779m1-salvator-x.dts b/arch/arm64/boot/dts/renesas/r8a779m1-salvator-x.dts
+index 4c8e7ad8e8c5..23e23dbe41e3 100644
+--- a/arch/arm64/boot/dts/renesas/r8a779m1-salvator-x.dts
++++ b/arch/arm64/boot/dts/renesas/r8a779m1-salvator-x.dts
+@@ -93,11 +93,16 @@ &du {
+ 		 <&cpg CPG_MOD 723>,
+ 		 <&cpg CPG_MOD 722>,
+ 		 <&cpg CPG_MOD 721>,
++		 <&cpg CPG_MOD 711>,
++		 <&cpg CPG_MOD 710>,
++		 <&cpg CPG_MOD 709>,
++		 <&cpg CPG_MOD 708>,
+ 		 <&versaclock5 1>,
+ 		 <&x21_clk>,
+ 		 <&x22_clk>,
+ 		 <&versaclock5 2>;
+ 	clock-names = "du.0", "du.1", "du.2", "du.3",
++		      "cmm.0", "cmm.1", "cmm.2", "cmm.3",
+ 		      "dclkin.0", "dclkin.1", "dclkin.2", "dclkin.3";
+ };
+ 
+diff Naur a/arch/arm64/boot/dts/renesas/r8a779m1-salvator-xs.dts b/arch/arm64/boot/dts/renesas/r8a779m1-salvator-xs.dts
+index fd8ee555d4da..e7eaa0df004c 100644
+--- a/arch/arm64/boot/dts/renesas/r8a779m1-salvator-xs.dts
++++ b/arch/arm64/boot/dts/renesas/r8a779m1-salvator-xs.dts
+@@ -93,11 +93,16 @@ &du {
+ 		 <&cpg CPG_MOD 723>,
+ 		 <&cpg CPG_MOD 722>,
+ 		 <&cpg CPG_MOD 721>,
++		 <&cpg CPG_MOD 711>,
++		 <&cpg CPG_MOD 710>,
++		 <&cpg CPG_MOD 709>,
++		 <&cpg CPG_MOD 708>,
+ 		 <&versaclock6 1>,
+ 		 <&x21_clk>,
+ 		 <&x22_clk>,
+ 		 <&versaclock6 2>;
+ 	clock-names = "du.0", "du.1", "du.2", "du.3",
++		      "cmm.0", "cmm.1", "cmm.2", "cmm.3",
+ 		      "dclkin.0", "dclkin.1", "dclkin.2", "dclkin.3";
+ };
+ 
+diff Naur a/arch/arm64/boot/dts/renesas/r8a779m3-salvator-xs.dts b/arch/arm64/boot/dts/renesas/r8a779m3-salvator-xs.dts
+index 7a7ee7b470a0..a841ed927d88 100644
+--- a/arch/arm64/boot/dts/renesas/r8a779m3-salvator-xs.dts
++++ b/arch/arm64/boot/dts/renesas/r8a779m3-salvator-xs.dts
+@@ -87,10 +87,14 @@ &du {
+ 	clocks = <&cpg CPG_MOD 724>,
+ 		 <&cpg CPG_MOD 723>,
+ 		 <&cpg CPG_MOD 722>,
++		 <&cpg CPG_MOD 711>,
++		 <&cpg CPG_MOD 710>,
++		 <&cpg CPG_MOD 709>,
+ 		 <&versaclock6 1>,
+ 		 <&x21_clk>,
+ 		 <&versaclock6 2>;
+ 	clock-names = "du.0", "du.1", "du.2",
++		      "cmm.0", "cmm.1", "cmm.2",
+ 		      "dclkin.0", "dclkin.1", "dclkin.2";
+ };
+ 
+diff Naur a/arch/arm64/boot/dts/renesas/r8a779m5-salvator-x.dts b/arch/arm64/boot/dts/renesas/r8a779m5-salvator-x.dts
+index a723cb4da6ff..34abe02f5078 100644
+--- a/arch/arm64/boot/dts/renesas/r8a779m5-salvator-x.dts
++++ b/arch/arm64/boot/dts/renesas/r8a779m5-salvator-x.dts
+@@ -77,10 +77,14 @@ &du {
+ 	clocks = <&cpg CPG_MOD 724>,
+ 		 <&cpg CPG_MOD 723>,
+ 		 <&cpg CPG_MOD 721>,
++		 <&cpg CPG_MOD 711>,
++		 <&cpg CPG_MOD 710>,
++		 <&cpg CPG_MOD 708>,
+ 		 <&versaclock5 1>,
+ 		 <&x21_clk>,
+ 		 <&versaclock5 2>;
+ 	clock-names = "du.0", "du.1", "du.3",
++		      "cmm.0", "cmm.1", "cmm.3",
+ 		      "dclkin.0", "dclkin.1", "dclkin.3";
+ };
+ 
+diff Naur a/arch/arm64/boot/dts/renesas/r8a779m5-salvator-xs.dts b/arch/arm64/boot/dts/renesas/r8a779m5-salvator-xs.dts
+index 466829b9c435..c3bb3bb6f866 100644
+--- a/arch/arm64/boot/dts/renesas/r8a779m5-salvator-xs.dts
++++ b/arch/arm64/boot/dts/renesas/r8a779m5-salvator-xs.dts
+@@ -77,10 +77,14 @@ &du {
+ 	clocks = <&cpg CPG_MOD 724>,
+ 		 <&cpg CPG_MOD 723>,
+ 		 <&cpg CPG_MOD 721>,
++		 <&cpg CPG_MOD 711>,
++		 <&cpg CPG_MOD 710>,
++		 <&cpg CPG_MOD 708>,
+ 		 <&versaclock6 1>,
+ 		 <&x21_clk>,
+ 		 <&versaclock6 2>;
+ 	clock-names = "du.0", "du.1", "du.3",
++		      "cmm.0", "cmm.1", "cmm.3",
+ 		      "dclkin.0", "dclkin.1", "dclkin.3";
+ };
+ 
 diff Naur a/drivers/gpu/drm/rcar-du/rcar_du_cmm.c b/drivers/gpu/drm/rcar-du/rcar_du_cmm.c
 --- /dev/null
 +++ b/drivers/gpu/drm/rcar-du/rcar_du_cmm.c

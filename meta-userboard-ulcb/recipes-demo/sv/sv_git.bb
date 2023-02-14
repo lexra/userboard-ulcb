@@ -47,11 +47,9 @@ RDEPENDS_${PN} = " \
 	mmngrbuf-user-module \
 	libspnav \
 "
-#gles-user-module 
 
 S = "${WORKDIR}/git"
-inherit cmake
-OECMAKE_GENERATOR = "Unix Makefiles"
+inherit cmake pkgconfig
 
 EXTRA_OECMAKE = " -DCMAKE_SYSROOT=${STAGING_DIR_TARGET} -DSV_TARGET_PLATFORM=GEN3 -DCMAKE_SKIP_RPATH=TRUE \
 	-DGSTREAMER_INCLUDE_DIRS=${STAGING_DIR_TARGET}${includedir}/gstreamer-1.0 \
