@@ -39,6 +39,7 @@ CFLAGS += " \
 	-Wno-incompatible-pointer-types \
 	-Wno-unused-result \
 	-Wno-discarded-qualifiers \
+	-Wno-int-conversion \
 "
 
 EXTRA_OECMAKE += " \
@@ -47,6 +48,8 @@ EXTRA_OECMAKE += " \
 	-DGSTREAMER_LIBRARIES=${STAGING_DIR_TARGET}${libdir} \
 	-DSV_INCLUDE_DIRS=${STAGING_DIR_TARGET}${includedir} \
 	-DSV_TRACE=1 \
+	-DENABLE_CAMERA_MJPEG=1 \
+	-DENABLE_OBJDET=1 \
 "
 
 
