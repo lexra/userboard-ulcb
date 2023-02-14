@@ -1,0 +1,57 @@
+diff --git a/include/sv/trace.h b/include/sv/trace.h
+index fc94036..5b5b60b 100644
+--- a/include/sv/trace.h
++++ b/include/sv/trace.h
+@@ -105,30 +105,28 @@ extern "C" {
+ 
+ extern int LOG_LEVEL;
+ 
+-enum
+-{
+-        LOG_1                   = 0,
+-        LOG_ERROR               = 0,
+-        LOG_INIT                = 1,
+-        LOG_INFO                = 2,
+-        LOG_WARNING             = 2,
+-        LOG_PROCESS             = 3,
+-        LOG_EVENT               = 4,
+-        LOG_PERFORMANCE         = 4,
+-        LOG_BUFFER              = 5,
+-        LOG_DEBUG               = 5,
+-        LOG_BMCA                = 6,
+-        LOG_RX                  = 6,
+-        LOG_SM                  = 6,
+-        LOG_TIME                = 6,
+-        LOG_TX                  = 6,
+-        LOG_SYNC                = 6,
+-        LOG_PDELAY              = 6,
+-        LOG_INFLIGHT            = 6,
+-        LOG_DUMP                = 6,
+-
+-        LOG_0                   = INT_MAX,
+-};
++#ifndef LOG_1
++ #define LOG_1                   0
++ #define LOG_ERROR               0
++ #define LOG_INIT                1
++ #define LOG_INFO                2
++ #define LOG_WARNING             2
++ #define LOG_PROCESS             3
++ #define LOG_EVENT               4
++ #define LOG_PERFORMANCE         4
++ #define LOG_BUFFER              5
++ #define LOG_DEBUG               5
++ #define LOG_BMCA                6
++ #define LOG_RX                  6
++ #define LOG_SM                  6
++ #define LOG_TIME                6
++ #define LOG_TX                  6
++ #define LOG_SYNC                6
++ #define LOG_PDELAY              6
++ #define LOG_INFLIGHT            6
++ #define LOG_DUMP                6
++ #define LOG_0                   INT_MAX
++#endif
+ 
+ /*******************************************************************************
+  * Functions

@@ -1,0 +1,147 @@
+diff --git a/utest/include/utest-display.h b/utest/include/utest-display.h
+index d832c83..7cd6479 100644
+--- a/utest/include/utest-display.h
++++ b/utest/include/utest-display.h
+@@ -168,7 +168,8 @@ struct texture_data
+     extern void window_frame_rate_reset(window_data_t *window);
+     extern float window_frame_rate_update(window_data_t *window);
+ 
+-    inline int __check_surface(cairo_surface_t *cs);
++    //inline int __check_surface(cairo_surface_t *cs);
++    extern int __check_surface(cairo_surface_t *cs);
+     
+     /* ...external textures handling */
+     extern texture_data_t * texture_create(int w, int h, void **pb, int format);
+diff --git a/utest/src/utest-main.c b/utest/src/utest-main.c
+index 2563193..79b8d2c 100644
+--- a/utest/src/utest-main.c
++++ b/utest/src/utest-main.c
+@@ -607,28 +607,28 @@ static int parse_cmdline(int argc, char **argv)
+ 		/*... beginning surround view cmd line parameters*/
+         case 1:
+ 			TRACE(INIT, _b("patternZoom: '%s'"), optarg);
+-			cfg->pattern_zoom = atof(optarg);
++			//cfg->pattern_zoom = atof(optarg);
+ 			break;
+ 
+ 		case 2:
+ 			TRACE(INIT, _b("patternStep: '%s'"), optarg);
+-			cfg->pattern_step = atoi(optarg);
++			//cfg->pattern_step = atoi(optarg);
+ 			break;
+ 
+ 		case 3:
+ 			TRACE(INIT, _b("patternRect: '%s'"), optarg);
+ 
+-			if(sscanf(optarg, "%dx%d", &cfg->pattern_rect_w, &cfg->pattern_rect_h)  != 2)
++			/*if(sscanf(optarg, "%dx%d", &cfg->pattern_rect_w, &cfg->pattern_rect_h)  != 2)
+ 			{
+ 				TRACE(ERROR, _x("Wrong patternRect format. Example: --patternRect 444x444"));
+ 				cfg->pattern_rect_w = cfg->pattern_rect_h = 0;
+-			}
++			}*/
+ 			break;
+ 
+ 		case 4:
+ 			TRACE(INIT, _b("patternSize: '%s'"), optarg);
+ 
+-			if(sscanf(optarg, "%dx%d", &cfg->pattern_circles_hor_w, &cfg->pattern_circles_hor_h)  != 2)
++			/*if(sscanf(optarg, "%dx%d", &cfg->pattern_circles_hor_w, &cfg->pattern_circles_hor_h)  != 2)
+ 			{
+ 				TRACE(ERROR, _x("Wrong patternSize format. Example: --patternSize 10x4"));
+ 				cfg->pattern_circles_hor_w = cfg->pattern_circles_hor_h = 0;
+@@ -637,40 +637,40 @@ static int parse_cmdline(int argc, char **argv)
+ 			{
+ 				cfg->pattern_circles_vert_w = cfg->pattern_circles_hor_w;
+ 				cfg->pattern_circles_vert_h = cfg->pattern_circles_hor_h;
+-			}
++			}*/
+ 			break;
+ 
+ 		case 5:
+ 			TRACE(INIT, _b("patternSizeW: '%s'"), optarg);
+ 
+-			if(sscanf(optarg, "%dx%d", &cfg->pattern_circles_hor_w, &cfg->pattern_circles_hor_h)  != 2)
++			/*if(sscanf(optarg, "%dx%d", &cfg->pattern_circles_hor_w, &cfg->pattern_circles_hor_h)  != 2)
+ 			{
+ 				TRACE(ERROR, _x("Wrong patternSizeW format. Example: --patternSizeW 10x4"));
+ 				cfg->pattern_circles_hor_w = cfg->pattern_circles_hor_h = 0;
+-			}
++			}*/
+ 			break;
+ 
+ 		case 6:
+ 			TRACE(INIT, _b("patternSizeH: '%s'"), optarg);
+ 
+-			if(sscanf(optarg, "%dx%d", &cfg->pattern_circles_vert_w, &cfg->pattern_circles_vert_h)  != 2)
++			/*if(sscanf(optarg, "%dx%d", &cfg->pattern_circles_vert_w, &cfg->pattern_circles_vert_h)  != 2)
+ 			{
+ 				TRACE(ERROR, _x("Wrong patternSizeH format. Example: --patternSizeH 10x4"));
+ 				cfg->pattern_circles_vert_w = cfg->pattern_circles_vert_h = 0;
+-			}
++			}*/
+ 			break;
+ 
+ 		case 7:
+ 			TRACE(INIT, _b("patternGap: '%s'"), optarg);
+ 
+-			if(sscanf(optarg, "%dx%d", &cfg->pattern_gap_w, &cfg->pattern_gap_h)  != 2)
++			/*if(sscanf(optarg, "%dx%d", &cfg->pattern_gap_w, &cfg->pattern_gap_h)  != 2)
+ 			{
+ 				TRACE(ERROR, _x("Wrong patternGap format. Example: "
+ 						"--patternGap 0x0 for solid pattern (default), "
+ 						"--patternGap 150x150 for separated patter"));
+ 
+ 				cfg->pattern_gap_w = cfg->pattern_gap_h = 0;
+-			}
++			}*/
+ 			break;
+ 
+ 		case 8:
+@@ -685,7 +685,7 @@ static int parse_cmdline(int argc, char **argv)
+ 
+ 		case 9:
+ 			TRACE(INIT, _b("calibSquare: '%s'"), optarg);
+-			cfg->calib_square = atof(optarg);
++			//cfg->calib_square = atof(optarg);
+ 			break;
+ 
+ 		case 10:
+@@ -704,7 +704,7 @@ static int parse_cmdline(int argc, char **argv)
+ 			break;
+ 		case 13:
+ 			TRACE (INIT, _b ("calibMode ON"));
+-			cfg->calibration_mode = 1;
++			//cfg->calibration_mode = 1;
+ 			break;
+ 
+ 		case 14:
+diff --git a/utest/src/utest-sv.c b/utest/src/utest-sv.c
+index 228edc3..f49cd3e 100644
+--- a/utest/src/utest-sv.c
++++ b/utest/src/utest-sv.c
+@@ -695,7 +695,23 @@ static void sview_redraw(display_data_t *display, void *data)
+         /* ...generate a single scene; acquire engine access lock */
+         pthread_mutex_lock(&app->access);
+         
+-        sview_engine_process(app->sv, tex, planes, cr, ts);
++/*
++        extern void sview_engine_process(sview_t *sv,
++                                         GLuint *texes,
++                                         const uint8_t **planes,
++                                         VehicleState *vehicle_info);
++
++	static inline int sview_pop_buffers(app_data_t *app,
++                                    GstBuffer **buf,
++                                    texture_data_t **tex,
++                                    GLuint *t,
++                                    void **planes,
++                                    s64 *ts,
++                                    char *need_tex_destroy,
++                                    GstMapInfo *buffer_maps)
++*/
++        //sview_engine_process(app->sv, tex, planes, cr, ts);
++        sview_engine_process(app->sv, tex, planes, ts);
+         
+         pthread_mutex_unlock(&app->access);
+ 

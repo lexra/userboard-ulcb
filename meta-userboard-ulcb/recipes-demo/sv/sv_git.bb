@@ -15,6 +15,7 @@ SRC_URI_append = " \
 	file://libopencv_imgproc.so.2.4 \
 	file://libopencv_flann.so.2.4 \
 	file://CMakeLists.patch \
+	file://trace.patch \
 "
 
 DEPENDS = " \
@@ -44,9 +45,9 @@ DEPENDS += "${@oe.utils.conditional("USE_OMX_COMMON", "1", "gstreamer1.0-omx", "
 RDEPENDS_${PN} = " \
 	mmngr-user-module \
 	mmngrbuf-user-module \
-	gles-user-module \
 	libspnav \
 "
+#gles-user-module 
 
 S = "${WORKDIR}/git"
 inherit cmake
@@ -82,7 +83,7 @@ do_install_class-target () {
 	install ${STAGING_DIR_TARGET}${libdir}/libopencv_flann.so.2.4 ${D}${libdir}
 	install -d ${D}/home/root/sv/bin
 	install -d ${D}/home/root/sv/calib
-	install ${S}/include/sv/svlib.h ${D}${includedir}/sv
+	install ${S}/include/sv/svlib.h ${D}${includedir}
 	install ${S}/include/sv/time.h ${D}${includedir}/sv
 	install ${S}/include/sv/trace.h ${D}${includedir}/sv
 	install ${S}/include/sv/types.h ${D}${includedir}/sv
