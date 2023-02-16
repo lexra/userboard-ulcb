@@ -24,26 +24,35 @@ IMAGE_INSTALL_append = " \
 "
 
 IMAGE_INSTALL_append = " \
+	${@'mkswap' if '${RZ_AI_LAYER}' == 'True' else ''} \
+	${@'qr-reader' if '${RZ_AI_LAYER}' == 'True' else ''} \
+"
+
+IMAGE_INSTALL_append = " \
 	${@oe.utils.conditional("CHROMIUM", "1", "chromium-ozone-wayland", "", d)} \
 	${@oe.utils.conditional("DEMO_VIDEOS", "1", "demo-videos", "", d)} \
 	drm2png \
 	packagegroup-qt5-examples \
 "
 
-IMAGE_INSTALL_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'sv', 'sv utest-adas', '', d)} "
 IMAGE_INSTALL_append = " \
+	${@bb.utils.contains('DISTRO_FEATURES', 'sv', 'sv utest-adas', '', d)} \ 
 	${@bb.utils.contains('DISTRO_FEATURES', 'surroundview', 'imr-sv', '', d)} \ 
 	${@bb.utils.contains('DISTRO_FEATURES', 'surroundview', 'utest-cam-imr-drm', '', d)} \ 
 	${@bb.utils.contains('DISTRO_FEATURES', 'vivid', 'samsung-utils', '', d)} \
-	${@bb.utils.contains('DISTRO_FEATURES', 'opencv-sdk', 'qr-reader', '', d)} \
 	${@bb.utils.contains('DISTRO_FEATURES', 'darknet', 'darknet', '', d)} \
-	${@bb.utils.contains('DISTRO_FEATURES', 'CMM', 'du-cmm-tp', '', d)} \
+	${@bb.utils.contains('DISTRO_FEATURES', 'color-managerment', 'du-cmm-tp', '', d)} \
+	${@bb.utils.contains('DISTRO_FEATURES', 'edge-ai', 'kernel-devicetree rz-edge-ai-demo', '', d)} \
 "
 
 IMAGE_INSTALL_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'xbmc', 'kodi', '', d)} "
 IMAGE_INSTALL_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'xbmc', 'kodi-addon-pvr-hts', '', d)} "
 IMAGE_INSTALL_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'xbmc', 'kodi-addon-inputstream-adaptive', '', d)} "
 #IMAGE_INSTALL_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'xbmc', 'kodi-addon-peripheral-joystick', '', d)} "
+
+do_image_wic[noexec] = "1"
+do_image_ext4[noexec] = "1"
+do_rootfs_wicenv[noexec] = "1"
 
 # Kernel modules of CMEMDRV
 # IMAGE_INSTALL_remove = " kernel-module-cmemdrv"

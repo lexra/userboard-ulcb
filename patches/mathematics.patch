@@ -1,0 +1,70 @@
+diff --git a/recipes-mathematics/arm-compute-library/arm-compute-library_22.02.bb b/recipes-mathematics/arm-compute-library/arm-compute-library_22.02.bb
+index 73b7806..416bc96 100644
+--- a/recipes-mathematics/arm-compute-library/arm-compute-library_22.02.bb
++++ b/recipes-mathematics/arm-compute-library/arm-compute-library_22.02.bb
+@@ -20,7 +20,7 @@ SRC_URI = " \
+ 	file://0001-Fix-validation-problem-in-CLQLSTMLayer.patch \
+ "
+ 
+-COMPATIBLE_MACHINE = "(hihope-rzg2h|hihope-rzg2m|hihope-rzg2n|ek874|smarc-rzg2l|smarc-rzg2lc|smarc-rzg2ul)"
++COMPATIBLE_MACHINE = "(hihope-rzg2h|hihope-rzg2m|hihope-rzg2n|ek874|smarc-rzg2l|smarc-rzg2lc|smarc-rzg2ul|h3ulcb|m3ulcb|m3nulcb|ebisu|salvator-x)"
+ 
+ S = "${WORKDIR}/git"
+ 
+diff --git a/recipes-mathematics/armnn/armnn_22.02.bb b/recipes-mathematics/armnn/armnn_22.02.bb
+index e1330a5..2b4d91e 100644
+--- a/recipes-mathematics/armnn/armnn_22.02.bb
++++ b/recipes-mathematics/armnn/armnn_22.02.bb
+@@ -110,17 +110,17 @@ EXTRA_OECMAKE= " \
+ 	-DTfLite_Schema_INCLUDE_PATH=${STAGING_DIR_TARGET}/usr/include/tensorflow/lite/schema/ \
+ 	-DTFLITE_LIB_ROOT=${STAGING_DIR_TARGET}/usr/include/tensorflow/lite/ \
+ 	-DCMAKE_SYSROOT=${STAGING_DIR_TARGET} \
+-	-DARMCOMPUTE_BUILD_DIR=${STAGING_DIR_TARGET}/usr/lib64/ \
+-	-DTfLite_LIB=${STAGING_DIR_TARGET}/usr/lib64/libtensorflow-lite.a \
+-	-DFLATBUFFERS_LIBRARY=${STAGING_DIR_TARGET}/usr/lib64/libflatbuffers.a \
+-	-DPROTOBUF_LIBRARY_DEBUG=${STAGING_DIR_TARGET}/usr/lib64/libprotobuf.so.23.0.4 \
+-	-DPROTOBUF_LIBRARY_RELEASE=${STAGING_DIR_TARGET}/usr/lib64/libprotobuf.so.23.0.4 \
++	-DARMCOMPUTE_BUILD_DIR=${STAGING_DIR_TARGET}${libdir} \
++	-DTfLite_LIB=${STAGING_DIR_TARGET}${libdir}/libtensorflow-lite.a \
++	-DFLATBUFFERS_LIBRARY=${STAGING_DIR_TARGET}${libdir}/libflatbuffers.a \
++	-DPROTOBUF_LIBRARY_DEBUG=${STAGING_DIR_TARGET}${libdir}/libprotobuf.so.23.0.4 \
++	-DPROTOBUF_LIBRARY_RELEASE=${STAGING_DIR_TARGET}${libdir}/libprotobuf.so.23.0.4 \
+ 	-DCMAKE_CXX_STANDARD_LIBRARIES="-ldl -fopenmp \
+-	${STAGING_DIR_TARGET}/usr/lib64/libtensorflow-lite.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libXNNPACK.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libcpuinfo.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libclog.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libpthreadpool.a" \
++	${STAGING_DIR_TARGET}${libdir}/libtensorflow-lite.a \
++	${STAGING_DIR_TARGET}${libdir}/libXNNPACK.a \
++	${STAGING_DIR_TARGET}${libdir}/libcpuinfo.a \
++	${STAGING_DIR_TARGET}${libdir}/libclog.a \
++	${STAGING_DIR_TARGET}${libdir}/libpthreadpool.a" \
+ "
+ 
+ EXTRA_OECMAKE_append_smarc-rzg2l  = "-DARMCOMPUTECL=1"
+diff --git a/recipes-mathematics/tensorflow-lite/tensorflow-lite_2.5.3.bb b/recipes-mathematics/tensorflow-lite/tensorflow-lite_2.5.3.bb
+index 4768c68..a63565f 100644
+--- a/recipes-mathematics/tensorflow-lite/tensorflow-lite_2.5.3.bb
++++ b/recipes-mathematics/tensorflow-lite/tensorflow-lite_2.5.3.bb
+@@ -81,8 +81,9 @@ do_compile_append_aarch64() {
+ 	cd ${S}
+ 	PYTHON_INCLUDES=" \
+ 		-I${STAGING_DIR_NATIVE}/usr/include/${PYTHON_DIR}/ \
+-		-I${STAGING_DIR_TARGET}/usr/lib64/${PYTHON_DIR}/site-packages/numpy/core/include/ \
+-		-I${STAGING_LIBDIR_TARGET}/${PYTHON_DIR}/site-packages/pybind11/include/ \
++		-I${STAGING_DIR_TARGET}${libdir}/${PYTHON_DIR}/site-packages/numpy/core/include \
++		-I${STAGING_DIR_TARGET}${libdir}/${PYTHON_DIR}/site-packages/numpy/core/include \
++		-I${STAGING_LIBDIR_TARGET}/${PYTHON_DIR}/site-packages/pybind11/include \
+ 		-I${STAGING_DIR_NATIVE}/usr/include/tirpc/ \
+ 	"
+ 
+@@ -95,6 +96,8 @@ do_compile_append_aarch64() {
+ 		${WORKDIR}/build/python
+ }
+ 
++#recipe-sysroot/usr/lib/python3.8/site-packages/numpy/core/include/numpy/arrayobject.h
++
+ do_install_append() {
+ 	install -d ${D}${libdir}
+ 	install -m 0644 ${WORKDIR}/build/tensorflow-lite/libtensorflow-lite.a ${D}${libdir}

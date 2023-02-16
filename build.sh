@@ -78,6 +78,15 @@ git -C meta-browser checkout -b mydevelop ${META_BROWSER_COMMIT} || true
 git clone https://github.com/lexra/meta-rcar-xbmc.git || true
 git -C meta-rcar-xbmc checkout -b mydevelop master || true
 
+git clone https://github.com/renesas-rz/meta-renesas-ai.git || true
+git -C meta-renesas-ai checkout -b mydevelop 3032939d08a1df7187ab29bab621c3de8b5f3cb7 || true
+git -C meta-renesas-ai checkout recipes-benchmark recipes-mathematics recipes-support recipes-core recipes-kernel
+git -C meta-renesas-ai apply ../../patches/benchmark.patch ../../patches/mathematics.patch ../../patches/swapfile.patch
+rm -rfv meta-renesas-ai/recipes-core/images/core-image-qt.bbappend
+git clone https://github.com/renesas-rz/meta-rz-edge-ai-demo.git || true
+
+git -C meta-rz-edge-ai-demo checkout -b mydevelop master || true
+
 # Populate meta-renesas with proprietary software packages
 cd ${WORK}
 WORK_PROP_DIR=${WORK}/proprietary

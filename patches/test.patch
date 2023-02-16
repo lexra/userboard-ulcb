@@ -1,0 +1,31 @@
+diff --git a/recipes-benchmark/armnn-benchmark/armnn-benchmark.bb b/recipes-benchmark/armnn-benchmark/armnn-benchmark.bb
+index fa24c71..e9dbc3e 100644
+--- a/recipes-benchmark/armnn-benchmark/armnn-benchmark.bb
++++ b/recipes-benchmark/armnn-benchmark/armnn-benchmark.bb
+@@ -9,16 +9,16 @@ DEPENDS = " armnn"
+ SRC_URI = "file://armnnBenchmark.cpp"
+ 
+ LDFLAGS += " \
+-	${STAGING_DIR_TARGET}/usr/lib64/libtensorflow-lite.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libflatbuffers.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libfft2d_fftsg2d.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libruy.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libXNNPACK.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libpthreadpool.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libcpuinfo.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libclog.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libfft2d_fftsg.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libfarmhash.a \
++	${STAGING_DIR_TARGET}${libdir}/libtensorflow-lite.a \
++	${STAGING_DIR_TARGET}${libdir}/libflatbuffers.a \
++	${STAGING_DIR_TARGET}${libdir}/libfft2d_fftsg2d.a \
++	${STAGING_DIR_TARGET}${libdir}/libruy.a \
++	${STAGING_DIR_TARGET}${libdir}/libXNNPACK.a \
++	${STAGING_DIR_TARGET}${libdir}/libpthreadpool.a \
++	${STAGING_DIR_TARGET}${libdir}/libcpuinfo.a \
++	${STAGING_DIR_TARGET}${libdir}/libclog.a \
++	${STAGING_DIR_TARGET}${libdir}/libfft2d_fftsg.a \
++	${STAGING_DIR_TARGET}${libdir}/libfarmhash.a \
+ "
+ 
+ do_compile() {

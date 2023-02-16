@@ -1,0 +1,35 @@
+diff --git a/recipes-support/initscripts/mkswap.bb b/recipes-support/initscripts/mkswap.bb
+index 5807b16..36c983a 100644
+--- a/recipes-support/initscripts/mkswap.bb
++++ b/recipes-support/initscripts/mkswap.bb
+@@ -7,14 +7,14 @@ DEPENDS = "util-linux-native"
+ RDEPENDS_${PN} += " base-files"
+ 
+ # Default swap size
+-SWAP_SIZE ?= "2048"
++SWAP_SIZE ?= "256"
+ 
+ do_install() {
+ 	# Create swap file
+-	install -d ${D}/mnt
+-	dd if=/dev/zero of=${D}/mnt/swap bs=1M count=${SWAP_SIZE}
+-	mkswap ${D}/mnt/swap
+-	chmod 600 ${D}/mnt/swap
++	install -d ${D}
++	dd if=/dev/zero of=${D}/swapfile bs=1M count=${SWAP_SIZE}
++	mkswap ${D}/swapfile
++	chmod 600 ${D}/swapfile
+ }
+ 
+-FILES_${PN} = "/mnt/swap"
++FILES_${PN} = "/swapfile"
+diff --git a/recipes-kernel/linux/linux-renesas_%.bbappend b/recipes-kernel/linux/linux-renesas_%.bbappend
+index b73f31c..183c2dd 100644
+--- a/recipes-kernel/linux/linux-renesas_%.bbappend
++++ b/recipes-kernel/linux/linux-renesas_%.bbappend
+@@ -2,5 +2,4 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/linux-renesas:"
+ 
+ SRC_URI_append = " \
+ 	file://swap.cfg \
+-	file://0001-Revert-arm64-dts-renesas-cat875-Add-EtherAVB-interna.patch \
+ "

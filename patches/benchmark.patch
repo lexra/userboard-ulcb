@@ -1,0 +1,106 @@
+diff --git a/recipes-benchmark/armnn-benchmark/armnn-benchmark.bb b/recipes-benchmark/armnn-benchmark/armnn-benchmark.bb
+index fa24c71..e9dbc3e 100644
+--- a/recipes-benchmark/armnn-benchmark/armnn-benchmark.bb
++++ b/recipes-benchmark/armnn-benchmark/armnn-benchmark.bb
+@@ -9,16 +9,16 @@ DEPENDS = " armnn"
+ SRC_URI = "file://armnnBenchmark.cpp"
+ 
+ LDFLAGS += " \
+-	${STAGING_DIR_TARGET}/usr/lib64/libtensorflow-lite.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libflatbuffers.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libfft2d_fftsg2d.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libruy.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libXNNPACK.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libpthreadpool.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libcpuinfo.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libclog.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libfft2d_fftsg.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libfarmhash.a \
++	${STAGING_DIR_TARGET}${libdir}/libtensorflow-lite.a \
++	${STAGING_DIR_TARGET}${libdir}/libflatbuffers.a \
++	${STAGING_DIR_TARGET}${libdir}/libfft2d_fftsg2d.a \
++	${STAGING_DIR_TARGET}${libdir}/libruy.a \
++	${STAGING_DIR_TARGET}${libdir}/libXNNPACK.a \
++	${STAGING_DIR_TARGET}${libdir}/libpthreadpool.a \
++	${STAGING_DIR_TARGET}${libdir}/libcpuinfo.a \
++	${STAGING_DIR_TARGET}${libdir}/libclog.a \
++	${STAGING_DIR_TARGET}${libdir}/libfft2d_fftsg.a \
++	${STAGING_DIR_TARGET}${libdir}/libfarmhash.a \
+ "
+ 
+ do_compile() {
+diff --git a/recipes-benchmark/tensorflow-lite-benchmark/tensorflow-lite-benchmark.bb b/recipes-benchmark/tensorflow-lite-benchmark/tensorflow-lite-benchmark.bb
+index 1b18a5c..ea9d611 100644
+--- a/recipes-benchmark/tensorflow-lite-benchmark/tensorflow-lite-benchmark.bb
++++ b/recipes-benchmark/tensorflow-lite-benchmark/tensorflow-lite-benchmark.bb
+@@ -29,22 +29,22 @@ SRC_URI += " \
+ "
+ 
+ LDFLAGS += " \
+-	${STAGING_DIR_TARGET}/usr/lib64/libflatbuffers.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libfft2d_fftsg2d.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libruy.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libXNNPACK.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libpthreadpool.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libcpuinfo.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libclog.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libfft2d_fftsg.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libfarmhash.a \
++	${STAGING_DIR_TARGET}${libdir}/libflatbuffers.a \
++	${STAGING_DIR_TARGET}${libdir}/libfft2d_fftsg2d.a \
++	${STAGING_DIR_TARGET}${libdir}/libruy.a \
++	${STAGING_DIR_TARGET}${libdir}/libXNNPACK.a \
++	${STAGING_DIR_TARGET}${libdir}/libpthreadpool.a \
++	${STAGING_DIR_TARGET}${libdir}/libcpuinfo.a \
++	${STAGING_DIR_TARGET}${libdir}/libclog.a \
++	${STAGING_DIR_TARGET}${libdir}/libfft2d_fftsg.a \
++	${STAGING_DIR_TARGET}${libdir}/libfarmhash.a \
+ 	-DDUNFELL_XNNPACK \
+ "
+ 
+ do_compile() {
+ 	cp ../tensorflow-lite-benchmark.cc .
+ 	${CC} tensorflow-lite-benchmark.cc ${STAGING_DIR_TARGET}/usr/include/bitmap_helpers.cc \
+-		${STAGING_DIR_TARGET}/usr/lib64/libtensorflow-lite.a \
++		${STAGING_DIR_TARGET}${libdir}/libtensorflow-lite.a \
+ 		-o tensorflow-lite-benchmark \
+ 		-lstdc++ -lpthread -lm -ldl ${LDFLAGS}
+ }
+diff --git a/recipes-benchmark/tensorflow-lite-benchmark/tensorflow-lite-delegate-benchmark.bb b/recipes-benchmark/tensorflow-lite-benchmark/tensorflow-lite-delegate-benchmark.bb
+index 74f3d49..15e75fe 100644
+--- a/recipes-benchmark/tensorflow-lite-benchmark/tensorflow-lite-delegate-benchmark.bb
++++ b/recipes-benchmark/tensorflow-lite-benchmark/tensorflow-lite-delegate-benchmark.bb
+@@ -27,22 +27,22 @@ RDEPENDS_${PN} += " \
+ "
+ 
+ LDFLAGS += " \
+-	${STAGING_DIR_TARGET}/usr/lib64/libtensorflow-lite.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libflatbuffers.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libfft2d_fftsg2d.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libruy.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libXNNPACK.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libpthreadpool.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libcpuinfo.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libclog.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libfft2d_fftsg.a \
+-	${STAGING_DIR_TARGET}/usr/lib64/libfarmhash.a \
++	${STAGING_DIR_TARGET}${libdir}/libtensorflow-lite.a \
++	${STAGING_DIR_TARGET}${libdir}/libflatbuffers.a \
++	${STAGING_DIR_TARGET}${libdir}/libfft2d_fftsg2d.a \
++	${STAGING_DIR_TARGET}${libdir}/libruy.a \
++	${STAGING_DIR_TARGET}${libdir}/libXNNPACK.a \
++	${STAGING_DIR_TARGET}${libdir}/libpthreadpool.a \
++	${STAGING_DIR_TARGET}${libdir}/libcpuinfo.a \
++	${STAGING_DIR_TARGET}${libdir}/libclog.a \
++	${STAGING_DIR_TARGET}${libdir}/libfft2d_fftsg.a \
++	${STAGING_DIR_TARGET}${libdir}/libfarmhash.a \
+ 	-DDUNFELL_XNNPACK \
+ "
+ 
+ do_compile() {
+ 	${CC} ../tfLiteDelegateBenchmark.cpp \
+-		${STAGING_DIR_TARGET}/usr/lib64/libtensorflow-lite.a \
++		${STAGING_DIR_TARGET}${libdir}/libtensorflow-lite.a \
+ 		${STAGING_DIR_TARGET}/usr/include/bitmap_helpers.cc \
+ 		-o tfLiteDelegateBenchmark \
+ 		-I ${STAGING_DIR_TARGET}/usr/include/delegate/ \
