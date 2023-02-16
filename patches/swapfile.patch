@@ -33,3 +33,15 @@ index b73f31c..183c2dd 100644
  	file://swap.cfg \
 -	file://0001-Revert-arm64-dts-renesas-cat875-Add-EtherAVB-interna.patch \
  "
+diff --git a/recipes-core/base-files/base-files_3.0.14.bbappend b/recipes-core/base-files/base-files_3.0.14.bbappend
+index ac6cc96..f64c754 100644
+--- a/recipes-core/base-files/base-files_3.0.14.bbappend
++++ b/recipes-core/base-files/base-files_3.0.14.bbappend
+@@ -1,6 +1,6 @@
+ do_install_append () {
+ 	cat>>${D}${sysconfdir}/fstab<<-EOF
+ 	# Enable swap area (if present) for large AI models
+-	/mnt/swap	none	swap	sw	0	0
++	/swapfile	none	swap	sw	0	0
+ 	EOF
+ }
