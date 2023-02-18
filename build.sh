@@ -33,7 +33,8 @@ fi
 if [[ ( ! -e proprietary/${GFX_MMP_LIB} || ! -e proprietary/${GFX_MMP_DRIVER} ) && ! -e proprietary/${GEN3E_V590_SOFTWARE} ]]; then
 	Usage
 fi
-sudo chown -R ${USER}.${USER} *.sh meta-userboard* proprietary
+sudo chown -R ${USER}.${USER} assets patches *.sh meta-userboard* proprietary 
+sudo chown -R ${USER}.${USER} ${TARGET_BOARD}/meta-* ${TARGET_BOARD}/poky ${TARGET_BOARD}/proprietary || true
 sudo find meta-userboard* -name "*.conf" | xargs chmod -x
 
 sudo apt-get install -y gawk wget git-core diffstat unzip texinfo gcc-multilib \
@@ -94,8 +95,8 @@ mkdir -p ${WORK_PROP_DIR}
 if [ "${TARGET_BOARD}" == "m3ulcb" -o "${TARGET_BOARD}" == "h3ulcb" -o "${TARGET_BOARD}" == "salvator-x" ]; then
 	unzip -qo ${PROPRIETARY_DIR}/${GFX_MMP_LIB} -d ${WORK_PROP_DIR}
 	unzip -qo ${PROPRIETARY_DIR}/${GFX_MMP_DRIVER} -d ${WORK_PROP_DIR}
-	#[ -e ${WORK_PROP_DIR}/INFRTM8RC7795ZG300Q10JPL3E_4_2_1.zip -a -e ${WORK_PROP_DIR}/INFRTM8RC7795ZG300Q10JPL3E_4_1_1.zip ] && rm -rfv ${WORK_PROP_DIR}/INFRTM8RC7795ZG300Q10JPL3E_4_1_1.zip
-	#[ -e ${WORK_PROP_DIR}/INFRTM8RC7796ZG300Q10JPL3E_4_2_1.zip -a -e ${WORK_PROP_DIR}/INFRTM8RC7796ZG300Q10JPL3E_4_1_1.zip ] && rm -rfv ${WORK_PROP_DIR}/INFRTM8RC7796ZG300Q10JPL3E_4_1_1.zip
+	[ -e ${WORK_PROP_DIR}/INFRTM8RC7795ZG300Q10JPL3E_4_2_1.zip -a -e ${WORK_PROP_DIR}/INFRTM8RC7795ZG300Q10JPL3E_4_1_1.zip ] && rm -rfv ${WORK_PROP_DIR}/INFRTM8RC7795ZG300Q10JPL3E_4_1_1.zip
+	[ -e ${WORK_PROP_DIR}/INFRTM8RC7796ZG300Q10JPL3E_4_2_1.zip -a -e ${WORK_PROP_DIR}/INFRTM8RC7796ZG300Q10JPL3E_4_1_1.zip ] && rm -rfv ${WORK_PROP_DIR}/INFRTM8RC7796ZG300Q10JPL3E_4_1_1.zip
 fi
 if [ "${TARGET_BOARD}" == "m3nulcb" -o "${TARGET_BOARD}" == "ebisu" ]; then
 	unzip -qo ${PROPRIETARY_DIR}/${GEN3E_V590_SOFTWARE} -d ${WORK_PROP_DIR}
