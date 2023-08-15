@@ -16,7 +16,7 @@ inherit cmake
 EXTRA_OECMAKE = " -DCMAKE_FIND_ROOT_PATH=${STAGING_DIR_TARGET} -DEIGEN3_INCLUDE_DIRS=${STAGING_DIR_TARGET}${includedir}/eigen3 -DBUILD_SHARED_LIBS=0 -DCMAKE_TOOLCHAIN_FILE=../toolchain.cmake"
 
 do_configure_append () {
-	sed 's|-march=native||g' -i ${S}/CMakeLists.txt
+	sed 's|-march=native|-march=armv8-a|g' -i ${S}/CMakeLists.txt
 }
 
 do_install_class-target () {
